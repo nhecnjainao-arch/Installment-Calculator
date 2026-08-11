@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NVI Lending & Installment Management System</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+NVI Lending & Installment Management System
+</title>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
@@ -15,27 +21,27 @@ body{
     margin:0;
     font-family:Arial,Helvetica,sans-serif;
     background:#f3f4f6;
-    color:#222;
+    color:#111827;
 }
 
 header{
     background:#111827;
     color:white;
-    padding:20px;
+    padding:22px;
 }
 
 header h1{
     margin:0;
-    font-size:25px;
+    font-size:26px;
 }
 
 header p{
-    margin:5px 0 0;
+    margin:6px 0 0;
     color:#d1d5db;
 }
 
 .container{
-    max-width:1400px;
+    max-width:1450px;
     margin:auto;
     padding:20px;
 }
@@ -50,22 +56,29 @@ header p{
 
 h2{
     margin-top:0;
-    color:#111827;
+}
+
+h3{
+    margin-bottom:8px;
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
     gap:15px;
 }
 
 label{
-    font-weight:bold;
     display:block;
+    font-weight:bold;
     margin-bottom:6px;
 }
 
-input,select,button{
+input,
+select,
+button,
+textarea{
     width:100%;
     padding:11px;
     border:1px solid #d1d5db;
@@ -73,11 +86,15 @@ input,select,button{
     font-size:14px;
 }
 
+input[type="file"]{
+    background:#f9fafb;
+}
+
 button{
     cursor:pointer;
     border:none;
-    background:#2563eb;
     color:white;
+    background:#2563eb;
     font-weight:bold;
 }
 
@@ -97,36 +114,57 @@ button:hover{
     background:#ea580c;
 }
 
-.btn-gray{
-    background:#4b5563;
-}
-
 .btn-purple{
     background:#7c3aed;
 }
 
+.btn-gray{
+    background:#4b5563;
+}
+
+.btn-black{
+    background:#111827;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:15px;
+}
+
+.actions button{
+    width:auto;
+}
+
 .stats{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
     gap:15px;
 }
 
 .stat{
     background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    border-radius:10px;
+    padding:18px;
+    box-shadow:0 2px 7px rgba(0,0,0,.08);
 }
 
 .stat-title{
     color:#6b7280;
-    font-size:14px;
+    font-size:13px;
 }
 
 .stat-value{
-    font-size:24px;
+    font-size:23px;
     font-weight:bold;
-    margin-top:8px;
+    margin-top:7px;
+}
+
+.table-container{
+    width:100%;
+    overflow-x:auto;
 }
 
 table{
@@ -135,7 +173,8 @@ table{
     margin-top:15px;
 }
 
-th,td{
+th,
+td{
     padding:10px;
     border-bottom:1px solid #e5e7eb;
     text-align:left;
@@ -146,70 +185,75 @@ th{
     background:#f9fafb;
 }
 
-.table-container{
-    overflow-x:auto;
-}
-
 .badge{
-    padding:5px 8px;
+    display:inline-block;
+    padding:5px 9px;
     border-radius:20px;
     font-size:12px;
     font-weight:bold;
 }
 
-.active{
+.badge-active{
     background:#dcfce7;
     color:#166534;
 }
 
-.paid{
+.badge-paid{
     background:#dbeafe;
     color:#1e40af;
 }
 
-.late{
+.badge-late{
     background:#fee2e2;
     color:#991b1b;
 }
 
-.warning{
+.badge-warning{
     background:#fef3c7;
     color:#92400e;
 }
 
 .result-card{
-    border:1px solid #ddd;
+    border:1px solid #e5e7eb;
     border-radius:10px;
-    padding:15px;
+    padding:17px;
     margin-top:12px;
 }
 
 .result-header{
     display:flex;
     justify-content:space-between;
+    flex-wrap:wrap;
     gap:10px;
-    flex-wrap:wrap;
 }
 
-.actions{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    margin-top:10px;
+.info-box{
+    background:#f9fafb;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #e5e7eb;
 }
 
-.actions button{
-    width:auto;
+.warning-box{
+    background:#fffbeb;
+    border:1px solid #f59e0b;
+    color:#92400e;
+    padding:12px;
+    border-radius:8px;
 }
 
-.hidden{
-    display:none;
+.success-box{
+    background:#f0fdf4;
+    border:1px solid #22c55e;
+    color:#166534;
+    padding:12px;
+    border-radius:8px;
 }
 
 .modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.55);
+    background:rgba(0,0,0,.60);
     display:none;
     align-items:center;
     justify-content:center;
@@ -219,18 +263,30 @@ th{
 
 .modal-content{
     background:white;
-    width:min(800px,100%);
-    max-height:90vh;
+    width:min(900px,100%);
+    max-height:92vh;
     overflow:auto;
     border-radius:12px;
-    padding:20px;
+    padding:22px;
 }
 
 .close{
     float:right;
-    background:#dc2626;
     width:auto;
     padding:7px 12px;
+    background:#dc2626;
+}
+
+.preview-image{
+    max-width:350px;
+    max-height:350px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+.hidden{
+    display:none !important;
 }
 
 .customer-copy{
@@ -238,16 +294,38 @@ th{
     padding:30px;
 }
 
-.customer-copy h1{
+.customer-copy h1,
+.customer-copy h2{
     text-align:center;
 }
 
-.receipt-total{
-    font-size:20px;
-    font-weight:bold;
+.customer-copy table{
+    border:1px solid #ccc;
+}
+
+.customer-copy th,
+.customer-copy td{
+    border:1px solid #ccc;
+}
+
+@media(max-width:700px){
+
+    header h1{
+        font-size:20px;
+    }
+
+    .container{
+        padding:10px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
 }
 
 @media print{
+
     body *{
         visibility:hidden;
     }
@@ -263,187 +341,406 @@ th{
         top:0;
         width:100%;
     }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
+
 <header>
-    <h1>NVI Lending & Installment Management System</h1>
-    <p>Borrower, Installment, Payment & Profit Management</p>
+
+<h1>
+NVI Lending & Installment Management System
+</h1>
+
+<p>
+Borrower • Installment • Payment • Profit • Reference Proof
+</p>
+
 </header>
+
 
 <div class="container">
 
-<!-- DASHBOARD -->
+
+<!-- =====================================================
+DASHBOARD
+===================================================== -->
 
 <div class="card">
-    <h2>Dashboard</h2>
 
-    <div class="stats">
+<h2>Dashboard</h2>
 
-        <div class="stat">
-            <div class="stat-title">Total Borrowers</div>
-            <div class="stat-value" id="totalBorrowers">₱0.00</div>
-        </div>
+<div class="stats">
 
-        <div class="stat">
-            <div class="stat-title">Total Money Borrowed</div>
-            <div class="stat-value" id="totalBorrowed">₱0.00</div>
-        </div>
+<div class="stat">
 
-        <div class="stat">
-            <div class="stat-title">Payments Received</div>
-            <div class="stat-value" id="totalReceived">₱0.00</div>
-        </div>
+<div class="stat-title">
+Total Borrowers
+</div>
 
-        <div class="stat">
-            <div class="stat-title">Outstanding Balance</div>
-            <div class="stat-value" id="totalOutstanding">₱0.00</div>
-        </div>
+<div class="stat-value"
+id="totalBorrowers">
+0
+</div>
 
-        <div class="stat">
-            <div class="stat-title">Total Planned Profit</div>
-            <div class="stat-value" id="totalProfit">₱0.00</div>
-        </div>
-
-    </div>
 </div>
 
 
-<!-- BORROWER FORM -->
+<div class="stat">
+
+<div class="stat-title">
+Total Money Borrowed
+</div>
+
+<div class="stat-value"
+id="totalBorrowed">
+₱0.00
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+Total Payments Received
+</div>
+
+<div class="stat-value"
+id="totalReceived">
+₱0.00
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+Outstanding Balance
+</div>
+
+<div class="stat-value"
+id="totalOutstanding">
+₱0.00
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+Total Planned Profit
+</div>
+
+<div class="stat-value"
+id="totalProfit">
+₱0.00
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+Total Late Charges
+</div>
+
+<div class="stat-value"
+id="totalLateCharges">
+₱0.00
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+NEW BORROWER
+===================================================== -->
 
 <div class="card">
 
-<h2>New Borrowing / Installment</h2>
+<h2>
+New Borrowing / Installment
+</h2>
+
 
 <div class="grid">
 
+
 <div>
-<label>Borrower Name</label>
-<input type="text" id="borrowerName" placeholder="Enter borrower name">
+
+<label>
+Borrower Name
+</label>
+
+<input
+type="text"
+id="borrowerName"
+placeholder="Enter borrower name">
+
 </div>
 
+
 <div>
-<label>Contact Number</label>
-<input type="text" id="contactNumber" placeholder="Optional">
+
+<label>
+Contact Number
+</label>
+
+<input
+type="text"
+id="contactNumber"
+placeholder="Optional">
+
 </div>
 
+
 <div>
-<label>Purchase / Borrowed Amount (PHP)</label>
-<input type="number" id="borrowAmount" min="0" step="0.01" placeholder="5,000.00">
+
+<label>
+Purchase / Borrowed Amount (PHP)
+</label>
+
+<input
+type="number"
+id="borrowAmount"
+min="0"
+step="0.01"
+placeholder="5,000.00">
+
 </div>
 
+
 <div>
-<label>Borrow Date</label>
-<input type="date" id="borrowDate">
+
+<label>
+Borrow Date
+</label>
+
+<input
+type="date"
+id="borrowDate">
+
 </div>
 
-<div>
-<label>Installment Period</label>
 
-<select id="months" onchange="updateLoanPreview()">
-<option value="1">1 Month - 5%</option>
-<option value="3">3 Months - 7%</option>
-<option value="4">4 Months - 10%</option>
-<option value="6">6 Months - 15%</option>
-<option value="12">12 Months - 20%</option>
-<option value="24">24 Months - 35%</option>
+<div>
+
+<label>
+Installment Period
+</label>
+
+<select
+id="months"
+onchange="updateLoanPreview()">
+
+<option value="1">
+1 Month - 5%
+</option>
+
+<option value="3">
+3 Months - 7%
+</option>
+
+<option value="4">
+4 Months - 10%
+</option>
+
+<option value="6">
+6 Months - 15%
+</option>
+
+<option value="12">
+12 Months - 20%
+</option>
+
+<option value="24">
+24 Months - 35%
+</option>
+
 </select>
 
 </div>
 
-<div>
-<label>Interest Rate</label>
-<input type="text" id="interestRate" readonly>
-</div>
 
 <div>
-<label>Final Due Date</label>
-<input type="date" id="finalDueDate" readonly>
+
+<label>
+Interest Rate
+</label>
+
+<input
+type="text"
+id="interestRate"
+readonly>
+
 </div>
+
 
 <div>
-<label>Payment Frequency</label>
-<input type="text" value="Monthly" readonly>
-</div>
+
+<label>
+Final Due Date
+</label>
+
+<input
+type="date"
+id="finalDueDate"
+readonly>
 
 </div>
+
+
+<div>
+
+<label>
+Payment Frequency
+</label>
+
+<input
+type="text"
+value="Monthly"
+readonly>
+
+</div>
+
+
+</div>
+
 
 <br>
+
 
 <div id="loanPreview"></div>
 
+
 <br>
 
-<button class="btn-green" onclick="createLoan()">
+
+<button
+class="btn-green"
+onclick="createLoan()">
+
 Create Borrowing Record
+
 </button>
 
 </div>
 
 
-<!-- SEARCH -->
+<!-- =====================================================
+SEARCH
+===================================================== -->
 
 <div class="card">
 
-<h2>Search Borrowers</h2>
+<h2>
+Search Borrowers
+</h2>
+
 
 <div class="grid">
 
+
 <div>
-<label>Search Name</label>
+
+<label>
+Search Name
+</label>
+
 <input
 type="text"
 id="searchName"
-placeholder="Type borrower name..."
+placeholder="Search borrower..."
 oninput="searchBorrowers()">
+
 </div>
 
-<div>
-<label>Search Status</label>
 
-<select id="searchStatus" onchange="searchBorrowers()">
-<option value="">All</option>
-<option value="Active">Active</option>
-<option value="Fully Paid">Fully Paid</option>
+<div>
+
+<label>
+Status
+</label>
+
+<select
+id="searchStatus"
+onchange="searchBorrowers()">
+
+<option value="">
+All
+</option>
+
+<option value="Active">
+Active
+</option>
+
+<option value="Fully Paid">
+Fully Paid
+</option>
+
 </select>
 
 </div>
 
 </div>
+
 
 <div id="borrowerResults"></div>
 
 </div>
 
 
-<!-- ALL PAYMENT -->
+<!-- =====================================================
+PAYMENT MANAGEMENT
+===================================================== -->
 
 <div class="card">
 
-<h2>Payment Management</h2>
+<h2>
+Payment Management
+</h2>
 
 <p>
-Record payments from any borrower. Payments will automatically update
-the borrower's balance and payment history.
+Select any borrower to record a payment.
 </p>
 
-<button class="btn-purple" onclick="showAllBorrowersForPayment()">
-Record Payment for Borrower
+<button
+class="btn-purple"
+onclick="showAllBorrowersForPayment()">
+
+Show Borrowers for Payment
+
 </button>
+
 
 <div id="paymentBorrowerList"></div>
 
 </div>
 
 
-<!-- MONTHLY BREAKDOWN -->
+<!-- =====================================================
+SCHEDULE
+===================================================== -->
 
 <div class="card">
 
-<h2>Monthly Payment Schedule & Profit Breakdown</h2>
+<h2>
+Monthly Payment Schedule & Profit Breakdown
+</h2>
+
 
 <div class="table-container">
 
@@ -452,19 +749,47 @@ Record Payment for Borrower
 <thead>
 
 <tr>
-<th>Borrower</th>
-<th>Month</th>
-<th>Due Date</th>
-<th>Required Payment</th>
-<th>Monthly Profit</th>
-<th>Paid</th>
-<th>Balance</th>
-<th>Status</th>
+
+<th>
+Borrower
+</th>
+
+<th>
+Month
+</th>
+
+<th>
+Due Date
+</th>
+
+<th>
+Required Payment
+</th>
+
+<th>
+Monthly Profit
+</th>
+
+<th>
+Paid
+</th>
+
+<th>
+Remaining
+</th>
+
+<th>
+Status
+</th>
+
 </tr>
 
 </thead>
 
-<tbody id="scheduleTable"></tbody>
+
+<tbody
+id="scheduleTable">
+</tbody>
 
 </table>
 
@@ -472,75 +797,201 @@ Record Payment for Borrower
 
 </div>
 
+
 </div>
 
 
-<!-- PAYMENT MODAL -->
+<!-- =====================================================
+PAYMENT MODAL
+===================================================== -->
 
-<div class="modal" id="paymentModal">
+<div
+class="modal"
+id="paymentModal">
 
 <div class="modal-content">
 
-<button class="close" onclick="closePaymentModal()">X</button>
 
-<h2>Record Payment</h2>
+<button
+class="close"
+onclick="closePaymentModal()">
+
+X
+
+</button>
+
+
+<h2>
+Record Payment
+</h2>
+
 
 <div id="paymentBorrowerInfo"></div>
 
+
 <br>
+
 
 <div class="grid">
 
+
 <div>
-<label>Payment Amount</label>
-<input type="number" id="paymentAmount" min="0" step="0.01">
+
+<label>
+Payment Amount
+</label>
+
+<input
+type="number"
+id="paymentAmount"
+min="0"
+step="0.01">
+
 </div>
 
+
 <div>
-<label>Payment Date</label>
-<input type="date" id="paymentDate">
+
+<label>
+Payment Date
+</label>
+
+<input
+type="date"
+id="paymentDate">
+
 </div>
 
+
 <div>
-<label>Payment Method</label>
 
-<select id="paymentMethod">
+<label>
+Payment Method
+</label>
 
-<option>Cash</option>
-<option>Bank Transfer</option>
-<option>GCash</option>
-<option>Maya</option>
-<option>Card</option>
-<option>Other</option>
+<select
+id="paymentMethod"
+onchange="togglePaymentProof()">
+
+<option value="Cash">
+Cash
+</option>
+
+<option value="GCash">
+GCash
+</option>
+
+<option value="Bank Transfer">
+Bank Transfer
+</option>
+
+<option value="Bank Deposit">
+Bank Deposit
+</option>
+
+<option value="Maya">
+Maya
+</option>
+
+<option value="Card">
+Card
+</option>
+
+<option value="Other">
+Other
+</option>
 
 </select>
 
 </div>
 
+
+<div>
+
+<label>
+Reference / Transaction Number
+</label>
+
+<input
+type="text"
+id="paymentReference"
+placeholder="Enter transaction/reference number">
+
 </div>
 
+</div>
+
+
 <br>
+
+
+<div>
+
+<label>
+Payment Reference Proof
+</label>
+
+<input
+type="file"
+id="paymentProof"
+accept="image/*,.pdf">
+
+<small>
+
+Upload GCash screenshot, bank receipt,
+deposit slip, Maya receipt or other proof.
+
+</small>
+
+
+<div
+id="proofPreview"
+style="margin-top:10px;">
+</div>
+
+</div>
+
+
+<br>
+
 
 <div id="latePaymentInfo"></div>
 
+
 <br>
 
-<button class="btn-green" onclick="savePayment()">
+
+<button
+class="btn-green"
+onclick="savePayment()">
+
 Save Payment
+
 </button>
 
-</div>
 
 </div>
 
+</div>
 
-<!-- BORROWER DETAILS MODAL -->
 
-<div class="modal" id="detailsModal">
+<!-- =====================================================
+DETAILS MODAL
+===================================================== -->
+
+<div
+class="modal"
+id="detailsModal">
 
 <div class="modal-content">
 
-<button class="close" onclick="closeDetails()">X</button>
+<button
+class="close"
+onclick="closeDetails()">
+
+X
+
+</button>
 
 <div id="detailsContent"></div>
 
@@ -549,62 +1000,73 @@ Save Payment
 </div>
 
 
-<!-- PRINT AREA -->
+<!-- =====================================================
+PRINT AREA
+===================================================== -->
 
-<div id="printArea" class="customer-copy hidden"></div>
+<div
+id="printArea"
+class="customer-copy hidden">
+</div>
 
 
 <script>
 
-/* =========================================================
-   NVI LENDING SYSTEM
-   ========================================================= */
+
+/* =====================================================
+DATABASE
+===================================================== */
+
+let borrowers =
+JSON.parse(
+localStorage.getItem("nviBorrowers")
+) || [];
 
 
-/* INTEREST TABLE */
+let selectedBorrowerId =
+null;
+
+
+/* =====================================================
+INTEREST RATES
+===================================================== */
 
 const interestRates = {
 
-    1: 5,
-    3: 7,
-    4: 10,
-    6: 15,
-    12: 20,
-    24: 35
+    1:5,
+    3:7,
+    4:10,
+    6:15,
+    12:20,
+    24:35
 
 };
 
 
-/* LATE CHARGE
-   0.4% PER LATE DAY
-*/
+/* =====================================================
+LATE PAYMENT RATE
+0.4% PER DAY
+===================================================== */
 
 const LATE_RATE = 0.004;
 
 
-/* ADVANCE DISCOUNT
-   0.01% PER ADVANCE DAY
-*/
+/* =====================================================
+ADVANCE PAYMENT DISCOUNT
+0.01% PER DAY
+===================================================== */
 
 const ADVANCE_RATE = 0.0001;
 
 
-/* DATABASE */
-
-let borrowers =
-JSON.parse(localStorage.getItem("nviBorrowers")) || [];
-
-
-/* PAYMENT SELECTED BORROWER */
-
-let selectedBorrowerId = null;
-
-
-/* PHP FORMAT */
+/* =====================================================
+MONEY FORMAT
+===================================================== */
 
 function money(value){
 
-    return "₱" + Number(value || 0).toLocaleString(
+    return "₱" +
+    Number(value || 0).toLocaleString(
         "en-PH",
         {
             minimumFractionDigits:2,
@@ -615,13 +1077,26 @@ function money(value){
 }
 
 
-/* DATE FORMAT */
+/* =====================================================
+DATE
+===================================================== */
+
+function todayISO(){
+
+    let d = new Date();
+
+    return d.toISOString().split("T")[0];
+
+}
+
 
 function formatDate(date){
 
-    if(!date) return "";
+    if(!date)
+        return "-";
 
-    let d = new Date(date + "T00:00:00");
+    let d =
+    new Date(date+"T00:00:00");
 
     return d.toLocaleDateString(
         "en-PH",
@@ -635,24 +1110,25 @@ function formatDate(date){
 }
 
 
-/* TODAY */
+/* =====================================================
+ESCAPE
+===================================================== */
 
-function todayISO(){
+function escapeHTML(value){
 
-    let d = new Date();
-
-    return d.toISOString().split("T")[0];
+    return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-document.getElementById("borrowDate").value = todayISO();
-document.getElementById("paymentDate").value = todayISO();
-
-
-/* =========================================================
-   GET INTEREST
-   ========================================================= */
+/* =====================================================
+GET INTEREST
+===================================================== */
 
 function getInterestRate(months){
 
@@ -661,74 +1137,125 @@ function getInterestRate(months){
 }
 
 
-/* =========================================================
-   CALCULATE FINAL DUE DATE
-   ========================================================= */
+/* =====================================================
+ADD MONTHS
+===================================================== */
 
-function calculateFinalDueDate(startDate, months){
-
-    let date = new Date(startDate + "T00:00:00");
-
-    date.setMonth(date.getMonth() + months);
-
-    return date.toISOString().split("T")[0];
-
-}
-
-
-/* =========================================================
-   ADD MONTHS
-   ========================================================= */
-
-function addMonths(dateString, months){
+function addMonths(
+    dateString,
+    months
+){
 
     let date =
-    new Date(dateString + "T00:00:00");
+    new Date(
+        dateString+"T00:00:00"
+    );
 
-    date.setMonth(date.getMonth() + months);
+    date.setMonth(
+        date.getMonth()+months
+    );
 
-    return date.toISOString().split("T")[0];
+    return date
+    .toISOString()
+    .split("T")[0];
 
 }
 
 
-/* =========================================================
-   UPDATE LOAN PREVIEW
-   ========================================================= */
+/* =====================================================
+FINAL DUE DATE
+===================================================== */
+
+function calculateFinalDueDate(
+    startDate,
+    months
+){
+
+    return addMonths(
+        startDate,
+        months
+    );
+
+}
+
+
+/* =====================================================
+INITIAL DATE
+===================================================== */
+
+document.getElementById(
+    "borrowDate"
+).value = todayISO();
+
+
+document.getElementById(
+    "paymentDate"
+).value = todayISO();
+
+
+/* =====================================================
+LOAN PREVIEW
+===================================================== */
 
 function updateLoanPreview(){
 
     let amount =
     parseFloat(
-        document.getElementById("borrowAmount").value
+        document.getElementById(
+            "borrowAmount"
+        ).value
     ) || 0;
+
 
     let months =
     parseInt(
-        document.getElementById("months").value
+        document.getElementById(
+            "months"
+        ).value
     );
+
+
+    let borrowDate =
+    document.getElementById(
+        "borrowDate"
+    ).value;
+
 
     let rate =
     getInterestRate(months);
 
-    let borrowDate =
-    document.getElementById("borrowDate").value;
 
     let interest =
     amount * rate / 100;
 
+
     let total =
     amount + interest;
 
-    let monthly =
-    total / months;
 
-    document.getElementById("interestRate").value =
-    rate + "%";
+    let monthly =
+    months > 0
+    ? total / months
+    : 0;
+
+
+    let monthlyProfit =
+    months > 0
+    ? interest / months
+    : 0;
+
+
+    document.getElementById(
+        "interestRate"
+    ).value =
+    rate+"%";
+
 
     if(borrowDate){
 
-        document.getElementById("finalDueDate").value =
+        document.getElementById(
+            "finalDueDate"
+        ).value =
         calculateFinalDueDate(
             borrowDate,
             months
@@ -736,68 +1263,90 @@ function updateLoanPreview(){
 
     }
 
-    document.getElementById("loanPreview").innerHTML = `
 
-    <div class="grid">
+    document.getElementById(
+        "loanPreview"
+    ).innerHTML = `
+
+    <div class="stats">
+
 
         <div class="stat">
-            <div class="stat-title">
-                Principal
-            </div>
 
-            <div class="stat-value">
-                ${money(amount)}
-            </div>
+        <div class="stat-title">
+        Principal
         </div>
 
-        <div class="stat">
-            <div class="stat-title">
-                Interest (${rate}%)
-            </div>
-
-            <div class="stat-value">
-                ${money(interest)}
-            </div>
+        <div class="stat-value">
+        ${money(amount)}
         </div>
 
-        <div class="stat">
-            <div class="stat-title">
-                Total Lending Cost
-            </div>
-
-            <div class="stat-value">
-                ${money(total)}
-            </div>
         </div>
 
-        <div class="stat">
-            <div class="stat-title">
-                Monthly Payment
-            </div>
 
-            <div class="stat-value">
-                ${money(monthly)}
-            </div>
+        <div class="stat">
+
+        <div class="stat-title">
+        Interest
+        (${rate}%)
         </div>
 
-        <div class="stat">
-            <div class="stat-title">
-                Monthly Profit
-            </div>
-
-            <div class="stat-value">
-                ${money(interest / months)}
-            </div>
+        <div class="stat-value">
+        ${money(interest)}
         </div>
 
-        <div class="stat">
-            <div class="stat-title">
-                Whole Period Profit
-            </div>
+        </div>
 
-            <div class="stat-value">
-                ${money(interest)}
-            </div>
+
+        <div class="stat">
+
+        <div class="stat-title">
+        Total Lending Cost
+        </div>
+
+        <div class="stat-value">
+        ${money(total)}
+        </div>
+
+        </div>
+
+
+        <div class="stat">
+
+        <div class="stat-title">
+        Monthly Payment
+        </div>
+
+        <div class="stat-value">
+        ${money(monthly)}
+        </div>
+
+        </div>
+
+
+        <div class="stat">
+
+        <div class="stat-title">
+        Monthly Profit
+        </div>
+
+        <div class="stat-value">
+        ${money(monthlyProfit)}
+        </div>
+
+        </div>
+
+
+        <div class="stat">
+
+        <div class="stat-title">
+        Whole Period Profit
+        </div>
+
+        <div class="stat-value">
+        ${money(interest)}
+        </div>
+
         </div>
 
     </div>
@@ -807,59 +1356,93 @@ function updateLoanPreview(){
 }
 
 
-document.getElementById("borrowAmount")
-.addEventListener("input", updateLoanPreview);
+document.getElementById(
+    "borrowAmount"
+).addEventListener(
+    "input",
+    updateLoanPreview
+);
 
-document.getElementById("borrowDate")
-.addEventListener("change", updateLoanPreview);
+
+document.getElementById(
+    "borrowDate"
+).addEventListener(
+    "change",
+    updateLoanPreview
+);
+
 
 updateLoanPreview();
 
 
-/* =========================================================
-   CREATE LOAN
-   ========================================================= */
+/* =====================================================
+CREATE LOAN
+===================================================== */
 
 function createLoan(){
 
     let name =
-    document.getElementById("borrowerName")
-    .value.trim();
+    document.getElementById(
+        "borrowerName"
+    ).value.trim();
+
 
     let contact =
-    document.getElementById("contactNumber")
-    .value.trim();
+    document.getElementById(
+        "contactNumber"
+    ).value.trim();
+
 
     let amount =
     parseFloat(
-        document.getElementById("borrowAmount").value
+        document.getElementById(
+            "borrowAmount"
+        ).value
     ) || 0;
 
+
     let borrowDate =
-    document.getElementById("borrowDate").value;
+    document.getElementById(
+        "borrowDate"
+    ).value;
+
 
     let months =
     parseInt(
-        document.getElementById("months").value
+        document.getElementById(
+            "months"
+        ).value
     );
+
 
     if(!name){
 
-        alert("Please enter borrower name.");
+        alert(
+            "Please enter borrower name."
+        );
+
         return;
 
     }
+
 
     if(amount <= 0){
 
-        alert("Please enter a valid borrowing amount.");
+        alert(
+            "Please enter a valid amount."
+        );
+
         return;
 
     }
 
+
     if(!borrowDate){
 
-        alert("Please select borrow date.");
+        alert(
+            "Please select borrow date."
+        );
+
         return;
 
     }
@@ -868,14 +1451,22 @@ function createLoan(){
     let rate =
     getInterestRate(months);
 
+
     let interest =
     amount * rate / 100;
+
 
     let total =
     amount + interest;
 
+
     let monthly =
     total / months;
+
+
+    let monthlyProfit =
+    interest / months;
+
 
     let finalDueDate =
     calculateFinalDueDate(
@@ -884,28 +1475,30 @@ function createLoan(){
     );
 
 
-    let schedule = [];
+    let schedule=[];
 
 
-    for(let i=1;i<=months;i++){
-
-        let dueDate =
-        addMonths(
-            borrowDate,
-            i
-        );
+    for(
+        let i=1;
+        i<=months;
+        i++
+    ){
 
         schedule.push({
 
             month:i,
 
-            dueDate:dueDate,
+            dueDate:
+            addMonths(
+                borrowDate,
+                i
+            ),
 
             requiredPayment:
             monthly,
 
             monthlyProfit:
-            interest / months,
+            monthlyProfit,
 
             paid:0,
 
@@ -916,7 +1509,7 @@ function createLoan(){
     }
 
 
-    let borrower = {
+    let borrower={
 
         id:Date.now(),
 
@@ -936,7 +1529,7 @@ function createLoan(){
 
         monthlyPayment:monthly,
 
-        monthlyProfit:interest/months,
+        monthlyProfit:monthlyProfit,
 
         totalProfit:interest,
 
@@ -956,11 +1549,13 @@ function createLoan(){
 
 
     if(!confirm(
-        "Save this borrowing record for " +
-        name +
-        "?\n\n" +
-        "Total Lending Cost: " +
-        money(total)
+
+        "Save borrowing record?\n\n"+
+        "Borrower: "+name+"\n"+
+        "Amount: "+money(amount)+"\n"+
+        "Interest: "+money(interest)+"\n"+
+        "Total: "+money(total)
+
     )){
 
         return;
@@ -968,102 +1563,142 @@ function createLoan(){
     }
 
 
-    borrowers.push(borrower);
+    borrowers.push(
+        borrower
+    );
+
 
     saveDatabase();
 
-    alert("Borrowing record successfully saved.");
 
-    clearForm();
+    alert(
+        "Borrowing record saved successfully."
+    );
+
+
+    clearBorrowForm();
 
     refreshAll();
 
 }
 
 
-/* =========================================================
-   CLEAR FORM
-   ========================================================= */
+/* =====================================================
+CLEAR BORROW FORM
+===================================================== */
 
-function clearForm(){
+function clearBorrowForm(){
 
-    document.getElementById("borrowerName").value="";
-    document.getElementById("contactNumber").value="";
-    document.getElementById("borrowAmount").value="";
+    document.getElementById(
+        "borrowerName"
+    ).value="";
 
-    document.getElementById("borrowDate").value =
-    todayISO();
 
-    document.getElementById("months").value="1";
+    document.getElementById(
+        "contactNumber"
+    ).value="";
+
+
+    document.getElementById(
+        "borrowAmount"
+    ).value="";
+
+
+    document.getElementById(
+        "borrowDate"
+    ).value=todayISO();
+
+
+    document.getElementById(
+        "months"
+    ).value="1";
+
 
     updateLoanPreview();
 
 }
 
 
-/* =========================================================
-   SAVE DATABASE
-   ========================================================= */
+/* =====================================================
+SAVE DATABASE
+===================================================== */
 
 function saveDatabase(){
 
     localStorage.setItem(
         "nviBorrowers",
-        JSON.stringify(borrowers)
+        JSON.stringify(
+            borrowers
+        )
     );
 
 }
 
 
-/* =========================================================
-   SEARCH BORROWERS
-   ========================================================= */
+/* =====================================================
+SEARCH
+===================================================== */
 
 function searchBorrowers(){
 
     let keyword =
-    document.getElementById("searchName")
-    .value
+    document.getElementById(
+        "searchName"
+    ).value
     .trim()
     .toLowerCase();
 
+
     let status =
-    document.getElementById("searchStatus")
-    .value;
+    document.getElementById(
+        "searchStatus"
+    ).value;
 
 
     let result =
-    borrowers.filter(function(b){
+    borrowers.filter(
+        function(b){
 
-        let nameMatch =
-        b.name.toLowerCase()
-        .includes(keyword);
-
-        let statusMatch =
-        !status ||
-        b.status === status;
-
-        return nameMatch && statusMatch;
-
-    });
+            let nameMatch =
+            b.name
+            .toLowerCase()
+            .includes(keyword);
 
 
-    displayBorrowers(result);
+            let statusMatch =
+            !status ||
+            b.status===status;
+
+
+            return (
+                nameMatch &&
+                statusMatch
+            );
+
+        }
+    );
+
+
+    displayBorrowers(
+        result
+    );
 
 }
 
 
-/* =========================================================
-   DISPLAY BORROWERS
-   ========================================================= */
+/* =====================================================
+DISPLAY BORROWERS
+===================================================== */
 
 function displayBorrowers(list){
 
     let container =
-    document.getElementById("borrowerResults");
+    document.getElementById(
+        "borrowerResults"
+    );
 
 
-    if(list.length === 0){
+    if(list.length===0){
 
         container.innerHTML =
         "<p>No borrower records found.</p>";
@@ -1074,51 +1709,65 @@ function displayBorrowers(list){
 
 
     container.innerHTML =
-    list.map(function(b){
+    list.map(
+        function(b){
 
-        let next =
-        getNextPayment(b);
-
-        let late =
-        calculateCurrentLateCharge(b);
+            let next =
+            getNextPayment(b);
 
 
-        return `
+            let late =
+            calculateCurrentLateCharge(b);
 
-        <div class="result-card">
+
+            return `
+
+            <div class="result-card">
+
 
             <div class="result-header">
 
-                <div>
+            <div>
 
-                    <h3>
-                    ${escapeHTML(b.name)}
-                    </h3>
+            <h3>
+            ${escapeHTML(b.name)}
+            </h3>
 
-                    <div>
-                    Contact: ${escapeHTML(b.contact || "-")}
-                    </div>
+            <div>
+            Contact:
+            ${escapeHTML(
+                b.contact || "-"
+            )}
+            </div>
 
-                    <div>
-                    Borrow Date:
-                    ${formatDate(b.borrowDate)}
-                    </div>
+            <div>
+            Borrow Date:
+            ${formatDate(
+                b.borrowDate
+            )}
+            </div>
 
-                </div>
+            </div>
 
 
-                <div>
+            <div>
 
-                    <span class="badge ${
-                        b.status==="Fully Paid"
-                        ?"paid":"active"
-                    }">
+            <span class="
+            badge
+            ${
+                b.status==="Fully Paid"
+                ?
+                "badge-paid"
+                :
+                "badge-active"
+            }
+            ">
 
-                    ${b.status}
+            ${b.status}
 
-                    </span>
+            </span>
 
-                </div>
+            </div>
 
             </div>
 
@@ -1128,186 +1777,222 @@ function displayBorrowers(list){
 
             <div class="grid">
 
-                <div>
-                    <b>Borrowed</b><br>
-                    ${money(b.amount)}
-                </div>
 
-                <div>
-                    <b>Interest</b><br>
-                    ${b.interestRate}%
-                    (${money(b.interestAmount)})
-                </div>
+            <div>
+            <b>Borrowed</b><br>
+            ${money(b.amount)}
+            </div>
 
-                <div>
-                    <b>Total Lending Cost</b><br>
-                    ${money(b.totalLendingCost)}
-                </div>
 
-                <div>
-                    <b>Monthly Required</b><br>
-                    ${money(b.monthlyPayment)}
-                </div>
+            <div>
+            <b>Interest</b><br>
+            ${b.interestRate}%
+            (${money(b.interestAmount)})
+            </div>
 
-                <div>
-                    <b>Monthly Profit</b><br>
-                    ${money(b.monthlyProfit)}
-                </div>
 
-                <div>
-                    <b>Whole Period Profit</b><br>
-                    ${money(b.totalProfit)}
-                </div>
+            <div>
+            <b>Total Lending Cost</b><br>
+            ${money(b.totalLendingCost)}
+            </div>
 
-                <div>
-                    <b>Remaining Balance</b><br>
-                    ${money(b.balance)}
-                </div>
 
-                <div>
-                    <b>Next Payment</b><br>
-                    ${
-                        next
-                        ? formatDate(next.dueDate)
-                        : "Completed"
-                    }
-                </div>
+            <div>
+            <b>Monthly Required</b><br>
+            ${money(b.monthlyPayment)}
+            </div>
 
-                <div>
-                    <b>Current Late Charge</b><br>
-                    ${money(late)}
-                </div>
+
+            <div>
+            <b>Monthly Profit</b><br>
+            ${money(b.monthlyProfit)}
+            </div>
+
+
+            <div>
+            <b>Whole Period Profit</b><br>
+            ${money(b.totalProfit)}
+            </div>
+
+
+            <div>
+            <b>Remaining Balance</b><br>
+            ${money(b.balance)}
+            </div>
+
+
+            <div>
+            <b>Next Payment</b><br>
+
+            ${
+                next
+                ?
+                formatDate(
+                    next.dueDate
+                )
+                :
+                "Completed"
+            }
+
+            </div>
+
+
+            <div>
+            <b>Current Late Charge</b><br>
+            ${money(late)}
+            </div>
+
 
             </div>
 
 
             <div class="actions">
 
-                <button
-                onclick="openPaymentModal(${b.id})">
-                Record Payment
-                </button>
+
+            <button
+            onclick="openPaymentModal(${b.id})">
+
+            Record Payment
+
+            </button>
 
 
-                <button
-                class="btn-green"
-                onclick="payFull(${b.id})">
-                Pay Full Balance
-                </button>
+            <button
+            class="btn-green"
+            onclick="payFull(${b.id})">
+
+            Pay Full Balance
+
+            </button>
 
 
-                <button
-                class="btn-purple"
-                onclick="showDetails(${b.id})">
-                View Details
-                </button>
+            <button
+            class="btn-purple"
+            onclick="showDetails(${b.id})">
+
+            View Details
+
+            </button>
 
 
-                <button
-                class="btn-orange"
-                onclick="printCustomerCopy(${b.id})">
-                Print Customer Copy
-                </button>
+            <button
+            class="btn-orange"
+            onclick="printCustomerCopy(${b.id})">
+
+            Print Customer Copy
+
+            </button>
 
 
-                <button
-                class="btn-gray"
-                onclick="emailCustomerCopy(${b.id})">
-                Email
-                </button>
+            <button
+            class="btn-gray"
+            onclick="emailCustomerCopy(${b.id})">
+
+            Email
+
+            </button>
 
 
-                <button
-                class="btn-red"
-                onclick="deleteBorrower(${b.id})">
-                Delete
-                </button>
+            <button
+            class="btn-red"
+            onclick="deleteBorrower(${b.id})">
+
+            Delete
+
+            </button>
+
 
             </div>
 
-        </div>
 
-        `;
+            </div>
 
-    }).join("");
+            `;
 
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-   ========================================================= */
-
-function escapeHTML(value){
-
-    return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+        }
+    ).join("");
 
 }
 
 
-/* =========================================================
-   NEXT PAYMENT
-   ========================================================= */
+/* =====================================================
+NEXT PAYMENT
+===================================================== */
 
 function getNextPayment(b){
 
     return b.schedule.find(
-        x => x.paid < x.requiredPayment
+        function(s){
+
+            return (
+                s.paid <
+                s.requiredPayment
+            );
+
+        }
     );
 
 }
 
 
-/* =========================================================
-   CURRENT LATE CHARGE
-   ========================================================= */
+/* =====================================================
+CURRENT LATE CHARGE
+===================================================== */
 
 function calculateCurrentLateCharge(b){
 
-    if(b.status === "Fully Paid")
+    if(
+        b.status==="Fully Paid"
+    )
         return 0;
 
 
     let today =
-    new Date(todayISO()+"T00:00:00");
+    new Date(
+        todayISO()+"T00:00:00"
+    );
 
 
-    let totalLate = 0;
+    let totalLate=0;
 
 
-    b.schedule.forEach(function(s){
+    b.schedule.forEach(
+        function(s){
 
-        let due =
-        new Date(s.dueDate+"T00:00:00");
-
-
-        if(today > due &&
-           s.paid < s.requiredPayment){
-
-            let days =
-            Math.floor(
-                (today-due) /
-                (1000*60*60*24)
+            let due =
+            new Date(
+                s.dueDate+
+                "T00:00:00"
             );
 
 
-            let unpaid =
-            s.requiredPayment - s.paid;
+            if(
+                today>due &&
+                s.paid<
+                s.requiredPayment
+            ){
+
+                let days =
+                Math.floor(
+                    (today-due)/
+                    (1000*60*60*24)
+                );
 
 
-            totalLate +=
-            unpaid *
-            LATE_RATE *
-            days;
+                let unpaid =
+                s.requiredPayment-
+                s.paid;
+
+
+                totalLate +=
+                unpaid*
+                LATE_RATE*
+                days;
+
+            }
 
         }
-
-    });
+    );
 
 
     return totalLate;
@@ -1315,50 +2000,58 @@ function calculateCurrentLateCharge(b){
 }
 
 
-/* =========================================================
-   LATE DAYS
-   ========================================================= */
+/* =====================================================
+LATE DAYS
+===================================================== */
 
 function calculateLateDays(
     dueDate,
     paymentDate
 ){
 
-    if(!paymentDate)
-        return 0;
-
-
     let due =
-    new Date(dueDate+"T00:00:00");
+    new Date(
+        dueDate+"T00:00:00"
+    );
 
-    let paid =
-    new Date(paymentDate+"T00:00:00");
+
+    let payment =
+    new Date(
+        paymentDate+"T00:00:00"
+    );
 
 
-    due.setHours(0,0,0,0);
-    paid.setHours(0,0,0,0);
+    due.setHours(
+        0,0,0,0
+    );
+
+
+    payment.setHours(
+        0,0,0,0
+    );
 
 
     let difference =
-    paid - due;
+    payment-due;
 
 
     let days =
     Math.floor(
-        difference /
+        difference/
         (1000*60*60*24)
     );
 
 
-    return days > 0 ? days : 0;
+    return days>0
+    ?days
+    :0;
 
 }
 
 
-/* =========================================================
-   ADVANCE PAYMENT DISCOUNT
-   0.01% PER DAY
-   ========================================================= */
+/* =====================================================
+ADVANCE DISCOUNT
+===================================================== */
 
 function calculateAdvanceDiscount(
     dueDate,
@@ -1367,105 +2060,166 @@ function calculateAdvanceDiscount(
 ){
 
     let due =
-    new Date(dueDate+"T00:00:00");
+    new Date(
+        dueDate+"T00:00:00"
+    );
+
 
     let payment =
-    new Date(paymentDate+"T00:00:00");
+    new Date(
+        paymentDate+"T00:00:00"
+    );
 
 
-    if(payment >= due)
+    if(payment>=due)
         return 0;
 
 
     let days =
     Math.floor(
-        (due-payment) /
+        (due-payment)/
         (1000*60*60*24)
     );
 
 
-    let discount =
-    amount *
-    ADVANCE_RATE *
-    days;
-
-
-    return discount;
+    return (
+        amount*
+        ADVANCE_RATE*
+        days
+    );
 
 }
 
 
-/* =========================================================
-   OPEN PAYMENT MODAL
-   ========================================================= */
+/* =====================================================
+OPEN PAYMENT MODAL
+===================================================== */
 
 function openPaymentModal(id){
 
     let borrower =
     borrowers.find(
-        b => b.id === id
+        function(b){
+
+            return b.id===id;
+
+        }
     );
 
 
     if(!borrower){
 
-        alert("Borrower not found.");
+        alert(
+            "Borrower not found."
+        );
+
         return;
 
     }
 
 
-    if(borrower.status === "Fully Paid"){
+    if(
+        borrower.status===
+        "Fully Paid"
+    ){
 
-        alert("This borrower is already fully paid.");
+        alert(
+            "This borrower is fully paid."
+        );
+
         return;
 
     }
 
 
-    selectedBorrowerId = id;
+    selectedBorrowerId=id;
 
 
     let next =
-    getNextPayment(borrower);
+    getNextPayment(
+        borrower
+    );
 
 
     document.getElementById(
         "paymentAmount"
     ).value =
     next
-    ? next.requiredPayment - next.paid
-    : borrower.balance;
+    ?
+    (
+        next.requiredPayment-
+        next.paid
+    ).toFixed(2)
+    :
+    borrower.balance.toFixed(2);
 
 
     document.getElementById(
         "paymentDate"
-    ).value =
+    ).value=
     todayISO();
 
 
     document.getElementById(
+        "paymentReference"
+    ).value="";
+
+
+    document.getElementById(
+        "paymentProof"
+    ).value="";
+
+
+    document.getElementById(
+        "proofPreview"
+    ).innerHTML="";
+
+
+    document.getElementById(
         "paymentBorrowerInfo"
-    ).innerHTML = `
+    ).innerHTML=`
 
-    <div class="stat">
+    <div class="info-box">
 
-        <b>${escapeHTML(borrower.name)}</b>
+    <b>
+    ${escapeHTML(
+        borrower.name
+    )}
+    </b>
 
-        <br><br>
+    <br><br>
 
-        Total Lending Cost:
-        ${money(borrower.totalLendingCost)}
+    Borrowed:
+    ${money(
+        borrower.amount
+    )}
 
-        <br>
+    <br>
 
-        Monthly Required:
-        ${money(borrower.monthlyPayment)}
+    Monthly Required:
+    ${money(
+        borrower.monthlyPayment
+    )}
 
-        <br>
+    <br>
 
-        Current Balance:
-        ${money(borrower.balance)}
+    Current Balance:
+    ${money(
+        borrower.balance
+    )}
+
+    <br>
+
+    Next Due Date:
+    ${
+        next
+        ?
+        formatDate(
+            next.dueDate
+        )
+        :
+        "Completed"
+    }
 
     </div>
 
@@ -1482,9 +2236,145 @@ function openPaymentModal(id){
 }
 
 
-/* =========================================================
-   UPDATE LATE INFORMATION
-   ========================================================= */
+/* =====================================================
+PAYMENT METHOD
+===================================================== */
+
+function togglePaymentProof(){
+
+    let method =
+    document.getElementById(
+        "paymentMethod"
+    ).value;
+
+
+    let reference =
+    document.getElementById(
+        "paymentReference"
+    );
+
+
+    if(
+        method==="GCash" ||
+        method==="Bank Transfer" ||
+        method==="Bank Deposit" ||
+        method==="Maya"
+    ){
+
+        reference.placeholder=
+        "Enter transaction/reference number";
+
+    }
+    else{
+
+        reference.placeholder=
+        "Optional reference number";
+
+    }
+
+}
+
+
+/* =====================================================
+PAYMENT PROOF PREVIEW
+===================================================== */
+
+document.getElementById(
+    "paymentProof"
+).addEventListener(
+    "change",
+    function(){
+
+        let file =
+        this.files[0];
+
+
+        let preview =
+        document.getElementById(
+            "proofPreview"
+        );
+
+
+        if(!file){
+
+            preview.innerHTML="";
+            return;
+
+        }
+
+
+        if(file.type.startsWith(
+            "image/"
+        )){
+
+            let reader =
+            new FileReader();
+
+
+            reader.onload=
+            function(e){
+
+                preview.innerHTML=`
+
+                <div>
+
+                <b>
+                Payment Proof Preview
+                </b>
+
+                <br>
+
+                <img
+                class="preview-image"
+                src="${e.target.result}">
+
+                <br>
+
+                <small>
+                ${escapeHTML(
+                    file.name
+                )}
+                </small>
+
+                </div>
+
+                `;
+
+            };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+        else{
+
+            preview.innerHTML=`
+
+            <div class="warning-box">
+
+            <b>
+            File selected:
+            </b>
+
+            ${escapeHTML(
+                file.name
+            )}
+
+            </div>
+
+            `;
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+UPDATE PAYMENT INFO
+===================================================== */
 
 function updateLatePaymentInfo(){
 
@@ -1494,8 +2384,29 @@ function updateLatePaymentInfo(){
 
     let borrower =
     borrowers.find(
-        b => b.id === selectedBorrowerId
+        function(b){
+
+            return (
+                b.id===
+                selectedBorrowerId
+            );
+
+        }
     );
+
+
+    if(!borrower)
+        return;
+
+
+    let next =
+    getNextPayment(
+        borrower
+    );
+
+
+    if(!next)
+        return;
 
 
     let paymentDate =
@@ -1512,14 +2423,6 @@ function updateLatePaymentInfo(){
     ) || 0;
 
 
-    let next =
-    getNextPayment(borrower);
-
-
-    if(!next)
-        return;
-
-
     let lateDays =
     calculateLateDays(
         next.dueDate,
@@ -1527,43 +2430,50 @@ function updateLatePaymentInfo(){
     );
 
 
-    let lateCharge = 0;
+    let lateCharge=0;
 
 
-    if(lateDays > 0){
+    if(lateDays>0){
 
-        lateCharge =
-        amount *
-        LATE_RATE *
+        lateCharge=
+        amount*
+        LATE_RATE*
         lateDays;
 
     }
 
 
-    let advanceDays = 0;
+    let advanceDays=0;
 
-    let advanceDiscount = 0;
+    let advanceDiscount=0;
 
 
-    if(paymentDate < next.dueDate){
+    if(
+        paymentDate<
+        next.dueDate
+    ){
 
-        advanceDays =
+        advanceDays=
         Math.floor(
+
             (
                 new Date(
-                    next.dueDate+"T00:00:00"
+                    next.dueDate+
+                    "T00:00:00"
                 )
                 -
                 new Date(
-                    paymentDate+"T00:00:00"
+                    paymentDate+
+                    "T00:00:00"
                 )
             )
             /
             (1000*60*60*24)
+
         );
 
 
-        advanceDiscount =
+        advanceDiscount=
         calculateAdvanceDiscount(
             next.dueDate,
             paymentDate,
@@ -1575,83 +2485,107 @@ function updateLatePaymentInfo(){
 
     document.getElementById(
         "latePaymentInfo"
-    ).innerHTML = `
+    ).innerHTML=`
 
-    <div class="grid">
-
-        <div class="stat">
-
-            <div class="stat-title">
-                Days Late
-            </div>
-
-            <div class="stat-value">
-
-                ${lateDays}
-
-            </div>
-
-        </div>
+    <div class="stats">
 
 
-        <div class="stat">
+    <div class="stat">
 
-            <div class="stat-title">
-                Late Rate
-            </div>
+    <div class="stat-title">
+    Monthly Due Date
+    </div>
 
-            <div class="stat-value">
+    <div class="stat-value"
+    style="font-size:17px">
 
-                0.4% / day
+    ${formatDate(
+        next.dueDate
+    )}
 
-            </div>
+    </div>
 
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-title">
-                Additional Late Charge
-            </div>
-
-            <div class="stat-value">
-
-                ${money(lateCharge)}
-
-            </div>
-
-        </div>
+    </div>
 
 
-        <div class="stat">
+    <div class="stat">
 
-            <div class="stat-title">
-                Advance Days
-            </div>
+    <div class="stat-title">
+    Days Late
+    </div>
 
-            <div class="stat-value">
+    <div class="stat-value">
 
-                ${advanceDays}
+    ${lateDays}
 
-            </div>
+    </div>
 
-        </div>
+    </div>
 
 
-        <div class="stat">
+    <div class="stat">
 
-            <div class="stat-title">
-                Advance Discount
-            </div>
+    <div class="stat-title">
+    Late Rate
+    </div>
 
-            <div class="stat-value">
+    <div class="stat-value">
 
-                ${money(advanceDiscount)}
+    0.4%
 
-            </div>
+    </div>
 
-        </div>
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Additional Late Charge
+    </div>
+
+    <div class="stat-value">
+
+    ${money(
+        lateCharge
+    )}
+
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Advance Days
+    </div>
+
+    <div class="stat-value">
+
+    ${advanceDays}
+
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Advance Discount
+    </div>
+
+    <div class="stat-value">
+
+    ${money(
+        advanceDiscount
+    )}
+
+    </div>
+
+    </div>
+
 
     </div>
 
@@ -1662,8 +2596,7 @@ function updateLatePaymentInfo(){
 
 document.getElementById(
     "paymentDate"
-)
-.addEventListener(
+).addEventListener(
     "change",
     updateLatePaymentInfo
 );
@@ -1671,20 +2604,20 @@ document.getElementById(
 
 document.getElementById(
     "paymentAmount"
-)
-.addEventListener(
+).addEventListener(
     "input",
     updateLatePaymentInfo
 );
 
 
-/* =========================================================
-   CLOSE PAYMENT MODAL
-   ========================================================= */
+/* =====================================================
+CLOSE PAYMENT
+===================================================== */
 
 function closePaymentModal(){
 
-    selectedBorrowerId = null;
+    selectedBorrowerId=null;
+
 
     document.getElementById(
         "paymentModal"
@@ -1693,15 +2626,18 @@ function closePaymentModal(){
 }
 
 
-/* =========================================================
-   SAVE PAYMENT
-   ========================================================= */
+/* =====================================================
+SAVE PAYMENT
+===================================================== */
 
 function savePayment(){
 
     if(!selectedBorrowerId){
 
-        alert("No borrower selected.");
+        alert(
+            "Please select a borrower."
+        );
+
         return;
 
     }
@@ -1709,13 +2645,23 @@ function savePayment(){
 
     let borrower =
     borrowers.find(
-        b => b.id === selectedBorrowerId
+        function(b){
+
+            return (
+                b.id===
+                selectedBorrowerId
+            );
+
+        }
     );
 
 
     if(!borrower){
 
-        alert("Borrower not found.");
+        alert(
+            "Borrower not found."
+        );
+
         return;
 
     }
@@ -1741,9 +2687,24 @@ function savePayment(){
     ).value;
 
 
-    if(amount <= 0){
+    let reference =
+    document.getElementById(
+        "paymentReference"
+    ).value.trim();
 
-        alert("Enter a valid payment amount.");
+
+    let proofFile =
+    document.getElementById(
+        "paymentProof"
+    ).files[0];
+
+
+    if(amount<=0){
+
+        alert(
+            "Enter a valid payment amount."
+        );
+
         return;
 
     }
@@ -1751,154 +2712,269 @@ function savePayment(){
 
     if(!paymentDate){
 
-        alert("Select payment date.");
+        alert(
+            "Select payment date."
+        );
+
         return;
 
     }
 
 
-    if(amount > borrower.balance){
+    if(amount>
+       borrower.balance){
 
         if(!confirm(
-            "Payment is greater than the remaining balance. Continue?"
+
+            "The payment is greater than the current balance.\n\n"+
+            "Continue with full balance payment?"
+
         )){
 
             return;
 
         }
 
-        amount = borrower.balance;
+        amount=
+        borrower.balance;
 
     }
-
-
-    let remainingPayment = amount;
-
-    let totalLateCharge = 0;
-
-    let totalAdvanceDiscount = 0;
-
-
-    /*
-       APPLY PAYMENT TO OLDEST
-       UNPAID MONTH FIRST
-    */
-
-    for(
-        let i=0;
-        i<borrower.schedule.length;
-        i++
-    ){
-
-        let schedule =
-        borrower.schedule[i];
-
-
-        let unpaid =
-        schedule.requiredPayment -
-        schedule.paid;
-
-
-        if(unpaid <= 0)
-            continue;
-
-
-        if(remainingPayment <= 0)
-            break;
-
-
-        let paymentToMonth =
-        Math.min(
-            remainingPayment,
-            unpaid
-        );
-
-
-        let lateDays =
-        calculateLateDays(
-            schedule.dueDate,
-            paymentDate
-        );
-
-
-        let lateCharge = 0;
-
-
-        if(lateDays > 0){
-
-            lateCharge =
-            paymentToMonth *
-            LATE_RATE *
-            lateDays;
-
-            totalLateCharge +=
-            lateCharge;
-
-        }
-
-
-        let advanceDiscount = 0;
-
-
-        if(
-            paymentDate <
-            schedule.dueDate
-        ){
-
-            advanceDiscount =
-            calculateAdvanceDiscount(
-                schedule.dueDate,
-                paymentDate,
-                paymentToMonth
-            );
-
-            totalAdvanceDiscount +=
-            advanceDiscount;
-
-        }
-
-
-        schedule.paid +=
-        paymentToMonth;
-
-
-        if(
-            schedule.paid >=
-            schedule.requiredPayment
-        ){
-
-            schedule.status =
-            "Paid";
-
-        }
-        else{
-
-            schedule.status =
-            "Partial";
-
-        }
-
-
-        remainingPayment -=
-        paymentToMonth;
-
-    }
-
-
-    borrower.balance -= amount;
 
 
     if(
-        borrower.balance <= 0.009
+        method!=="Cash" &&
+        !reference &&
+        !proofFile
     ){
 
-        borrower.balance = 0;
+        if(!confirm(
 
-        borrower.status =
+            "No transaction reference or proof was uploaded.\n\n"+
+            "Do you want to continue without payment proof?"
+
+        )){
+
+            return;
+
+        }
+
+    }
+
+
+    if(!confirm(
+
+        "Save this payment?\n\n"+
+        "Borrower: "+
+        borrower.name+
+        "\nAmount: "+
+        money(amount)+
+        "\nMethod: "+
+        method+
+        "\nReference: "+
+        (reference||"None")
+
+    )){
+
+        return;
+
+    }
+
+
+    let remainingPayment=
+    amount;
+
+
+    let totalLateCharge=0;
+
+    let totalAdvanceDiscount=0;
+
+
+    borrower.schedule.forEach(
+        function(s){
+
+            if(
+                remainingPayment<=0
+            )
+                return;
+
+
+            let unpaid=
+            s.requiredPayment-
+            s.paid;
+
+
+            if(unpaid<=0)
+                return;
+
+
+            let paymentToMonth=
+            Math.min(
+                remainingPayment,
+                unpaid
+            );
+
+
+            let lateDays=
+            calculateLateDays(
+                s.dueDate,
+                paymentDate
+            );
+
+
+            let lateCharge=0;
+
+
+            if(lateDays>0){
+
+                lateCharge=
+                paymentToMonth*
+                LATE_RATE*
+                lateDays;
+
+                totalLateCharge+=
+                lateCharge;
+
+            }
+
+
+            let advanceDiscount=0;
+
+
+            if(
+                paymentDate<
+                s.dueDate
+            ){
+
+                advanceDiscount=
+                calculateAdvanceDiscount(
+                    s.dueDate,
+                    paymentDate,
+                    paymentToMonth
+                );
+
+                totalAdvanceDiscount+=
+                advanceDiscount;
+
+            }
+
+
+            s.paid+=
+            paymentToMonth;
+
+
+            if(
+                s.paid>=
+                s.requiredPayment
+            ){
+
+                s.paid=
+                s.requiredPayment;
+
+                s.status=
+                "Paid";
+
+            }
+            else{
+
+                s.status=
+                "Partial";
+
+            }
+
+
+            remainingPayment-=
+            paymentToMonth;
+
+        }
+    );
+
+
+    borrower.balance-=
+    amount;
+
+
+    if(
+        borrower.balance<=0.009
+    ){
+
+        borrower.balance=0;
+
+        borrower.status=
         "Fully Paid";
 
     }
 
+
+    /*
+       If proof exists,
+       read it before storing.
+    */
+
+    if(proofFile){
+
+        let reader=
+        new FileReader();
+
+
+        reader.onload=
+        function(e){
+
+            addPaymentRecord(
+                borrower,
+                amount,
+                paymentDate,
+                method,
+                reference,
+                e.target.result,
+                proofFile.name,
+                totalLateCharge,
+                totalAdvanceDiscount
+            );
+
+        };
+
+
+        reader.readAsDataURL(
+            proofFile
+        );
+
+    }
+    else{
+
+        addPaymentRecord(
+            borrower,
+            amount,
+            paymentDate,
+            method,
+            reference,
+            null,
+            null,
+            totalLateCharge,
+            totalAdvanceDiscount
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+ADD PAYMENT RECORD
+===================================================== */
+
+function addPaymentRecord(
+
+    borrower,
+    amount,
+    paymentDate,
+    method,
+    reference,
+    proof,
+    proofName,
+    lateCharge,
+    advanceDiscount
+
+){
 
     borrower.paymentHistory.push({
 
@@ -1910,9 +2986,20 @@ function savePayment(){
 
         method:method,
 
-        lateCharge:totalLateCharge,
+        reference:
+        reference || "",
 
-        advanceDiscount:totalAdvanceDiscount
+        proof:
+        proof,
+
+        proofName:
+        proofName,
+
+        lateCharge:
+        lateCharge,
+
+        advanceDiscount:
+        advanceDiscount
 
     });
 
@@ -1922,22 +3009,20 @@ function savePayment(){
 
     alert(
 
-        "Payment saved successfully.\n\n" +
-
-        "Payment: " +
-        money(amount) +
-
-        "\nLate Charge: " +
-        money(totalLateCharge) +
-
-        "\nAdvance Discount: " +
-        money(totalAdvanceDiscount) +
-
-        "\nRemaining Balance: " +
+        "Payment successfully recorded.\n\n"+
+        "Amount: "+
+        money(amount)+
+        "\nLate Charge: "+
+        money(lateCharge)+
+        "\nAdvance Discount: "+
+        money(advanceDiscount)+
+        "\nRemaining Balance: "+
         money(borrower.balance)
 
     );
 
+
+    resetPaymentForm();
 
     closePaymentModal();
 
@@ -1946,15 +3031,53 @@ function savePayment(){
 }
 
 
-/* =========================================================
-   PAY FULL BALANCE
-   ========================================================= */
+/* =====================================================
+RESET PAYMENT FORM
+===================================================== */
+
+function resetPaymentForm(){
+
+    document.getElementById(
+        "paymentAmount"
+    ).value="";
+
+
+    document.getElementById(
+        "paymentReference"
+    ).value="";
+
+
+    document.getElementById(
+        "paymentProof"
+    ).value="";
+
+
+    document.getElementById(
+        "proofPreview"
+    ).innerHTML="";
+
+
+    document.getElementById(
+        "paymentDate"
+    ).value=
+    todayISO();
+
+}
+
+
+/* =====================================================
+FULL PAYMENT
+===================================================== */
 
 function payFull(id){
 
-    let borrower =
+    let borrower=
     borrowers.find(
-        b => b.id === id
+        function(b){
+
+            return b.id===id;
+
+        }
     );
 
 
@@ -1962,18 +3085,29 @@ function payFull(id){
         return;
 
 
-    if(borrower.status === "Fully Paid"){
+    if(
+        borrower.status===
+        "Fully Paid"
+    ){
 
-        alert("This loan is already fully paid.");
+        alert(
+            "This loan is already fully paid."
+        );
+
         return;
 
     }
 
 
     if(!confirm(
-        "Are you sure you want to pay the FULL BALANCE of " +
-        money(borrower.balance) +
-        "?"
+
+        "Pay the FULL BALANCE?\n\n"+
+        borrower.name+
+        "\n"+
+        money(
+            borrower.balance
+        )
+
     )){
 
         return;
@@ -1981,21 +3115,27 @@ function payFull(id){
     }
 
 
-    let amount =
+    let amount=
     borrower.balance;
 
 
     borrower.schedule.forEach(
         function(s){
 
-            s.paid =
+            s.paid=
             s.requiredPayment;
 
-            s.status =
+            s.status=
             "Paid";
 
         }
     );
+
+
+    borrower.balance=0;
+
+    borrower.status=
+    "Fully Paid";
 
 
     borrower.paymentHistory.push({
@@ -2006,18 +3146,20 @@ function payFull(id){
 
         date:todayISO(),
 
-        method:"Full Balance Payment",
+        method:
+        "Full Balance Payment",
+
+        reference:"",
+
+        proof:null,
+
+        proofName:null,
 
         lateCharge:0,
 
         advanceDiscount:0
 
     });
-
-
-    borrower.balance=0;
-
-    borrower.status="Fully Paid";
 
 
     saveDatabase();
@@ -2033,15 +3175,221 @@ function payFull(id){
 }
 
 
-/* =========================================================
-   SHOW DETAILS
-   ========================================================= */
+/* =====================================================
+VIEW PAYMENT PROOF
+===================================================== */
+
+function viewPaymentProof(
+    borrowerId,
+    paymentId
+){
+
+    let borrower=
+    borrowers.find(
+        function(b){
+
+            return b.id===
+            borrowerId;
+
+        }
+    );
+
+
+    if(!borrower)
+        return;
+
+
+    let payment=
+    borrower.paymentHistory.find(
+        function(p){
+
+            return p.id===
+            paymentId;
+
+        }
+    );
+
+
+    if(
+        !payment ||
+        !payment.proof
+    ){
+
+        alert(
+            "No payment proof available."
+        );
+
+        return;
+
+    }
+
+
+    let win=
+    window.open(
+        "",
+        "_blank"
+    );
+
+
+    if(
+        payment.proof
+        .startsWith(
+            "data:image"
+        )
+    ){
+
+        win.document.write(`
+
+        <html>
+
+        <head>
+
+        <title>
+        Payment Proof
+        </title>
+
+        </head>
+
+        <body
+        style="
+        font-family:Arial;
+        text-align:center;
+        padding:25px;
+        ">
+
+
+        <h2>
+        Payment Reference Proof
+        </h2>
+
+
+        <p>
+
+        <b>
+        Borrower:
+        </b>
+
+        ${escapeHTML(
+            borrower.name
+        )}
+
+        </p>
+
+
+        <p>
+
+        <b>
+        Payment:
+        </b>
+
+        ${money(
+            payment.amount
+        )}
+
+        </p>
+
+
+        <p>
+
+        <b>
+        Method:
+        </b>
+
+        ${escapeHTML(
+            payment.method
+        )}
+
+        </p>
+
+
+        <p>
+
+        <b>
+        Reference:
+        </b>
+
+        ${escapeHTML(
+            payment.reference ||
+            "-"
+        )}
+
+        </p>
+
+
+        <img
+        src="${payment.proof}"
+        style="
+        max-width:90%;
+        max-height:75vh;
+        border:1px solid #ddd;
+        ">
+
+
+        </body>
+
+        </html>
+
+        `);
+
+    }
+    else{
+
+        win.document.write(`
+
+        <html>
+
+        <body
+        style="
+        font-family:Arial;
+        padding:30px;
+        ">
+
+        <h2>
+        Payment Proof
+        </h2>
+
+        <p>
+        ${escapeHTML(
+            payment.proofName ||
+            "Uploaded File"
+        )}
+        </p>
+
+        <a
+        href="${payment.proof}"
+        target="_blank">
+
+        Open Payment Proof
+
+        </a>
+
+        </body>
+
+        </html>
+
+        `);
+
+    }
+
+
+    win.document.close();
+
+}
+
+
+/* =====================================================
+SHOW DETAILS
+===================================================== */
 
 function showDetails(id){
 
-    let b =
+    let b=
     borrowers.find(
-        x=>x.id===id
+        function(x){
+
+            return x.id===id;
+
+        }
     );
 
 
@@ -2049,130 +3397,286 @@ function showDetails(id){
         return;
 
 
-    let history =
-    b.paymentHistory || [];
+    let html=`
 
 
-    let html = `
+    <h2>
+    ${escapeHTML(b.name)}
+    </h2>
 
-    <h2>${escapeHTML(b.name)}</h2>
 
-    <div class="grid">
+    <div class="stats">
 
-        <div>
-        <b>Borrowed Amount</b><br>
-        ${money(b.amount)}
-        </div>
 
-        <div>
-        <b>Interest Rate</b><br>
-        ${b.interestRate}%
-        </div>
+    <div class="stat">
 
-        <div>
-        <b>Interest</b><br>
-        ${money(b.interestAmount)}
-        </div>
+    <div class="stat-title">
+    Borrowed Amount
+    </div>
 
-        <div>
-        <b>Total Lending Cost</b><br>
-        ${money(b.totalLendingCost)}
-        </div>
-
-        <div>
-        <b>Monthly Payment</b><br>
-        ${money(b.monthlyPayment)}
-        </div>
-
-        <div>
-        <b>Monthly Profit</b><br>
-        ${money(b.monthlyProfit)}
-        </div>
-
-        <div>
-        <b>Whole Period Profit</b><br>
-        ${money(b.totalProfit)}
-        </div>
-
-        <div>
-        <b>Borrow Date</b><br>
-        ${formatDate(b.borrowDate)}
-        </div>
-
-        <div>
-        <b>Final Due Date</b><br>
-        ${formatDate(b.finalDueDate)}
-        </div>
-
-        <div>
-        <b>Balance</b><br>
-        ${money(b.balance)}
-        </div>
+    <div class="stat-value">
+    ${money(b.amount)}
+    </div>
 
     </div>
 
 
-    <h3>Payment History</h3>
+    <div class="stat">
+
+    <div class="stat-title">
+    Interest Rate
+    </div>
+
+    <div class="stat-value">
+    ${b.interestRate}%
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Total Interest / Profit
+    </div>
+
+    <div class="stat-value">
+    ${money(b.totalProfit)}
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Total Lending Cost
+    </div>
+
+    <div class="stat-value">
+    ${money(b.totalLendingCost)}
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Monthly Payment
+    </div>
+
+    <div class="stat-value">
+    ${money(b.monthlyPayment)}
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Monthly Profit
+    </div>
+
+    <div class="stat-value">
+    ${money(b.monthlyProfit)}
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Borrow Date
+    </div>
+
+    <div class="stat-value"
+    style="font-size:17px">
+
+    ${formatDate(b.borrowDate)}
+
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Final Due Date
+    </div>
+
+    <div class="stat-value"
+    style="font-size:17px">
+
+    ${formatDate(b.finalDueDate)}
+
+    </div>
+
+    </div>
+
+
+    <div class="stat">
+
+    <div class="stat-title">
+    Current Balance
+    </div>
+
+    <div class="stat-value">
+    ${money(b.balance)}
+    </div>
+
+    </div>
+
+
+    </div>
+
+
+    <h3>
+    Payment History
+    </h3>
+
 
     <div class="table-container">
 
     <table>
 
+
     <thead>
 
     <tr>
-    <th>Date</th>
-    <th>Amount</th>
-    <th>Method</th>
-    <th>Late Charge</th>
-    <th>Advance Discount</th>
+
+    <th>
+    Date
+    </th>
+
+    <th>
+    Amount
+    </th>
+
+    <th>
+    Method
+    </th>
+
+    <th>
+    Reference
+    </th>
+
+    <th>
+    Proof
+    </th>
+
+    <th>
+    Late Charge
+    </th>
+
+    <th>
+    Advance Discount
+    </th>
+
     </tr>
 
     </thead>
 
+
     <tbody>
 
+
     ${
-        history.length
+        b.paymentHistory.length
         ?
-        history.map(
-            p=>`
 
-            <tr>
+        b.paymentHistory.map(
+            function(p){
 
-            <td>
-            ${formatDate(p.date)}
-            </td>
+                return `
 
-            <td>
-            ${money(p.amount)}
-            </td>
+                <tr>
 
-            <td>
-            ${escapeHTML(p.method)}
-            </td>
+                <td>
+                ${formatDate(p.date)}
+                </td>
 
-            <td>
-            ${money(p.lateCharge)}
-            </td>
+                <td>
+                ${money(p.amount)}
+                </td>
 
-            <td>
-            ${money(p.advanceDiscount)}
-            </td>
+                <td>
+                ${escapeHTML(
+                    p.method
+                )}
+                </td>
 
-            </tr>
+                <td>
+                ${escapeHTML(
+                    p.reference ||
+                    "-"
+                )}
+                </td>
 
-            `
+                <td>
+
+                ${
+                    p.proof
+                    ?
+
+                    `<button
+                    onclick="
+                    viewPaymentProof(
+                    ${b.id},
+                    ${p.id}
+                    )">
+
+                    View Proof
+
+                    </button>`
+
+                    :
+
+                    "No Proof"
+                }
+
+                </td>
+
+                <td>
+                ${money(
+                    p.lateCharge
+                )}
+                </td>
+
+                <td>
+                ${money(
+                    p.advanceDiscount
+                )}
+                </td>
+
+                </tr>
+
+                `;
+
+            }
         ).join("")
+
         :
+
         `
+
         <tr>
-        <td colspan="5">
+
+        <td colspan="7">
+
         No payments recorded.
+
         </td>
+
         </tr>
+
         `
+
     }
+
 
     </tbody>
 
@@ -2181,7 +3685,10 @@ function showDetails(id){
     </div>
 
 
-    <h3>Monthly Payment Schedule</h3>
+    <h3>
+    Monthly Payment Schedule
+    </h3>
+
 
     <div class="table-container">
 
@@ -2190,63 +3697,102 @@ function showDetails(id){
     <thead>
 
     <tr>
-    <th>Month</th>
-    <th>Due Date</th>
-    <th>Required</th>
-    <th>Profit</th>
-    <th>Paid</th>
-    <th>Remaining</th>
-    <th>Status</th>
+
+    <th>
+    Month
+    </th>
+
+    <th>
+    Due Date
+    </th>
+
+    <th>
+    Required
+    </th>
+
+    <th>
+    Monthly Profit
+    </th>
+
+    <th>
+    Paid
+    </th>
+
+    <th>
+    Remaining
+    </th>
+
+    <th>
+    Status
+    </th>
+
     </tr>
 
     </thead>
 
+
     <tbody>
+
 
     ${
         b.schedule.map(
-            s=>`
+            function(s){
 
-            <tr>
+                return `
 
-            <td>
-            ${s.month}
-            </td>
+                <tr>
 
-            <td>
-            ${formatDate(s.dueDate)}
-            </td>
+                <td>
+                ${s.month}
+                </td>
 
-            <td>
-            ${money(s.requiredPayment)}
-            </td>
+                <td>
+                ${formatDate(
+                    s.dueDate
+                )}
+                </td>
 
-            <td>
-            ${money(s.monthlyProfit)}
-            </td>
+                <td>
+                ${money(
+                    s.requiredPayment
+                )}
+                </td>
 
-            <td>
-            ${money(s.paid)}
-            </td>
+                <td>
+                ${money(
+                    s.monthlyProfit
+                )}
+                </td>
 
-            <td>
-            ${money(
-                Math.max(
-                    0,
-                    s.requiredPayment-s.paid
-                )
-            )}
-            </td>
+                <td>
+                ${money(
+                    s.paid
+                )}
+                </td>
 
-            <td>
-            ${s.status}
-            </td>
+                <td>
+                ${money(
+                    Math.max(
+                        0,
+                        s.requiredPayment-
+                        s.paid
+                    )
+                )}
+                </td>
 
-            </tr>
+                <td>
+                ${s.status}
+                </td>
 
-            `
+                </tr>
+
+                `;
+
+            }
         ).join("")
+
     }
+
 
     </tbody>
 
@@ -2278,21 +3824,23 @@ function closeDetails(){
 }
 
 
-/* =========================================================
-   PAYMENT LIST
-   ========================================================= */
+/* =====================================================
+ALL BORROWERS PAYMENT
+===================================================== */
 
 function showAllBorrowersForPayment(){
 
-    let container =
+    let container=
     document.getElementById(
         "paymentBorrowerList"
     );
 
 
-    if(borrowers.length===0){
+    if(
+        borrowers.length===0
+    ){
 
-        container.innerHTML =
+        container.innerHTML=
         "<p>No borrowers available.</p>";
 
         return;
@@ -2300,7 +3848,7 @@ function showAllBorrowersForPayment(){
     }
 
 
-    container.innerHTML = `
+    container.innerHTML=`
 
     <div class="table-container">
 
@@ -2310,54 +3858,107 @@ function showAllBorrowersForPayment(){
 
     <tr>
 
-    <th>Borrower</th>
-    <th>Borrowed</th>
-    <th>Monthly Required</th>
-    <th>Balance</th>
-    <th>Action</th>
+    <th>
+    Borrower
+    </th>
+
+    <th>
+    Borrowed
+    </th>
+
+    <th>
+    Monthly Required
+    </th>
+
+    <th>
+    Balance
+    </th>
+
+    <th>
+    Status
+    </th>
+
+    <th>
+    Action
+    </th>
 
     </tr>
 
     </thead>
 
+
     <tbody>
+
 
     ${
         borrowers.map(
-            b=>`
+            function(b){
 
-            <tr>
+                return `
 
-            <td>
-            ${escapeHTML(b.name)}
-            </td>
+                <tr>
 
-            <td>
-            ${money(b.amount)}
-            </td>
+                <td>
+                ${escapeHTML(
+                    b.name
+                )}
+                </td>
 
-            <td>
-            ${money(b.monthlyPayment)}
-            </td>
+                <td>
+                ${money(b.amount)}
+                </td>
 
-            <td>
-            ${money(b.balance)}
-            </td>
+                <td>
+                ${money(
+                    b.monthlyPayment
+                )}
+                </td>
 
-            <td>
+                <td>
+                ${money(
+                    b.balance
+                )}
+                </td>
 
-            <button
-            onclick="openPaymentModal(${b.id})">
-            Record Payment
-            </button>
+                <td>
+                ${b.status}
+                </td>
 
-            </td>
+                <td>
 
-            </tr>
+                ${
+                    b.status===
+                    "Fully Paid"
 
-            `
+                    ?
+
+                    "Fully Paid"
+
+                    :
+
+                    `<button
+                    onclick="
+                    openPaymentModal(
+                    ${b.id}
+                    )">
+
+                    Record Payment
+
+                    </button>`
+
+                }
+
+                </td>
+
+                </tr>
+
+                `;
+
+            }
         ).join("")
+
     }
+
 
     </tbody>
 
@@ -2370,13 +3971,13 @@ function showAllBorrowersForPayment(){
 }
 
 
-/* =========================================================
-   MONTHLY SCHEDULE TABLE
-   ========================================================= */
+/* =====================================================
+MONTHLY SCHEDULE
+===================================================== */
 
 function renderSchedule(){
 
-    let tbody =
+    let tbody=
     document.getElementById(
         "scheduleTable"
     );
@@ -2396,7 +3997,9 @@ function renderSchedule(){
                     <tr>
 
                     <td>
-                    ${escapeHTML(b.name)}
+                    ${escapeHTML(
+                        b.name
+                    )}
                     </td>
 
                     <td>
@@ -2404,26 +4007,34 @@ function renderSchedule(){
                     </td>
 
                     <td>
-                    ${formatDate(s.dueDate)}
+                    ${formatDate(
+                        s.dueDate
+                    )}
                     </td>
 
                     <td>
-                    ${money(s.requiredPayment)}
+                    ${money(
+                        s.requiredPayment
+                    )}
                     </td>
 
                     <td>
-                    ${money(s.monthlyProfit)}
+                    ${money(
+                        s.monthlyProfit
+                    )}
                     </td>
 
                     <td>
-                    ${money(s.paid)}
+                    ${money(
+                        s.paid
+                    )}
                     </td>
 
                     <td>
                     ${money(
                         Math.max(
                             0,
-                            s.requiredPayment -
+                            s.requiredPayment-
                             s.paid
                         )
                     )}
@@ -2444,15 +4055,15 @@ function renderSchedule(){
     );
 
 
-    tbody.innerHTML =
+    tbody.innerHTML=
     rows.join("");
 
 }
 
 
-/* =========================================================
-   DASHBOARD
-   ========================================================= */
+/* =====================================================
+DASHBOARD
+===================================================== */
 
 function updateDashboard(){
 
@@ -2464,25 +4075,35 @@ function updateDashboard(){
 
     let totalProfit=0;
 
+    let totalLateCharges=0;
+
 
     borrowers.forEach(
         function(b){
 
-            totalBorrowed +=
-            b.amount;
+            totalBorrowed+=
+            Number(b.amount)||0;
 
-            totalOutstanding +=
-            b.balance;
 
-            totalProfit +=
-            b.totalProfit;
+            totalOutstanding+=
+            Number(b.balance)||0;
+
+
+            totalProfit+=
+            Number(b.totalProfit)||0;
 
 
             b.paymentHistory.forEach(
                 function(p){
 
-                    totalReceived +=
-                    Number(p.amount) || 0;
+                    totalReceived+=
+                    Number(p.amount)||0;
+
+
+                    totalLateCharges+=
+                    Number(
+                        p.lateCharge
+                    )||0;
 
                 }
             );
@@ -2493,45 +4114,55 @@ function updateDashboard(){
 
     document.getElementById(
         "totalBorrowers"
-    ).textContent =
+    ).textContent=
     borrowers.length;
 
 
     document.getElementById(
         "totalBorrowed"
-    ).textContent =
+    ).textContent=
     money(totalBorrowed);
 
 
     document.getElementById(
         "totalReceived"
-    ).textContent =
+    ).textContent=
     money(totalReceived);
 
 
     document.getElementById(
         "totalOutstanding"
-    ).textContent =
+    ).textContent=
     money(totalOutstanding);
 
 
     document.getElementById(
         "totalProfit"
-    ).textContent =
+    ).textContent=
     money(totalProfit);
+
+
+    document.getElementById(
+        "totalLateCharges"
+    ).textContent=
+    money(totalLateCharges);
 
 }
 
 
-/* =========================================================
-   PRINT CUSTOMER COPY
-   ========================================================= */
+/* =====================================================
+PRINT CUSTOMER COPY
+===================================================== */
 
 function printCustomerCopy(id){
 
-    let b =
+    let b=
     borrowers.find(
-        x=>x.id===id
+        function(x){
+
+            return x.id===id;
+
+        }
     );
 
 
@@ -2539,81 +4170,143 @@ function printCustomerCopy(id){
         return;
 
 
-    let printArea =
+    let printArea=
     document.getElementById(
         "printArea"
     );
 
 
-    printArea.innerHTML = `
+    printArea.innerHTML=`
 
     <h1>
     NVI Lending & Installment Management System
     </h1>
 
-    <h2 style="text-align:center">
+    <h2>
     CUSTOMER BORROWING COPY
     </h2>
 
+
     <hr>
+
 
     <p>
     <b>Borrower:</b>
     ${escapeHTML(b.name)}
     </p>
 
+
     <p>
     <b>Contact:</b>
-    ${escapeHTML(b.contact || "-")}
+    ${escapeHTML(
+        b.contact||"-"
+    )}
     </p>
+
 
     <p>
     <b>Borrow Date:</b>
-    ${formatDate(b.borrowDate)}
+    ${formatDate(
+        b.borrowDate
+    )}
     </p>
+
 
     <p>
     <b>Final Due Date:</b>
-    ${formatDate(b.finalDueDate)}
+    ${formatDate(
+        b.finalDueDate
+    )}
     </p>
 
+
     <hr>
+
 
     <table>
 
     <tr>
-    <td>Borrowed Amount</td>
-    <td>${money(b.amount)}</td>
+    <td>
+    Borrowed Amount
+    </td>
+
+    <td>
+    ${money(b.amount)}
+    </td>
     </tr>
 
-    <tr>
-    <td>Interest Rate</td>
-    <td>${b.interestRate}%</td>
-    </tr>
 
     <tr>
-    <td>Total Interest / Profit</td>
-    <td>${money(b.totalProfit)}</td>
+    <td>
+    Interest Rate
+    </td>
+
+    <td>
+    ${b.interestRate}%
+    </td>
     </tr>
 
-    <tr>
-    <td>Total Lending Cost</td>
-    <td>${money(b.totalLendingCost)}</td>
-    </tr>
 
     <tr>
-    <td>Monthly Payment</td>
-    <td>${money(b.monthlyPayment)}</td>
+    <td>
+    Total Profit
+    </td>
+
+    <td>
+    ${money(b.totalProfit)}
+    </td>
     </tr>
 
-    <tr>
-    <td>Monthly Profit</td>
-    <td>${money(b.monthlyProfit)}</td>
-    </tr>
 
     <tr>
-    <td>Current Balance</td>
-    <td>${money(b.balance)}</td>
+    <td>
+    Total Lending Cost
+    </td>
+
+    <td>
+    ${money(
+        b.totalLendingCost
+    )}
+    </td>
+    </tr>
+
+
+    <tr>
+    <td>
+    Monthly Payment
+    </td>
+
+    <td>
+    ${money(
+        b.monthlyPayment
+    )}
+    </td>
+    </tr>
+
+
+    <tr>
+    <td>
+    Monthly Profit
+    </td>
+
+    <td>
+    ${money(
+        b.monthlyProfit
+    )}
+    </td>
+    </tr>
+
+
+    <tr>
+    <td>
+    Current Balance
+    </td>
+
+    <td>
+    ${money(
+        b.balance
+    )}
+    </td>
     </tr>
 
     </table>
@@ -2623,47 +4316,79 @@ function printCustomerCopy(id){
     Monthly Payment Schedule
     </h3>
 
+
     <table>
 
     <tr>
-    <th>Month</th>
-    <th>Due Date</th>
-    <th>Required</th>
-    <th>Profit</th>
-    <th>Paid</th>
+
+    <th>
+    Month
+    </th>
+
+    <th>
+    Due Date
+    </th>
+
+    <th>
+    Required
+    </th>
+
+    <th>
+    Profit
+    </th>
+
+    <th>
+    Paid
+    </th>
+
     </tr>
+
 
     ${
         b.schedule.map(
-            s=>`
+            function(s){
 
-            <tr>
+                return `
 
-            <td>
-            ${s.month}
-            </td>
+                <tr>
 
-            <td>
-            ${formatDate(s.dueDate)}
-            </td>
+                <td>
+                ${s.month}
+                </td>
 
-            <td>
-            ${money(s.requiredPayment)}
-            </td>
+                <td>
+                ${formatDate(
+                    s.dueDate
+                )}
+                </td>
 
-            <td>
-            ${money(s.monthlyProfit)}
-            </td>
+                <td>
+                ${money(
+                    s.requiredPayment
+                )}
+                </td>
 
-            <td>
-            ${money(s.paid)}
-            </td>
+                <td>
+                ${money(
+                    s.monthlyProfit
+                )}
+                </td>
 
-            </tr>
+                <td>
+                ${money(
+                    s.paid
+                )}
+                </td>
 
-            `
+                </tr>
+
+                `;
+
+            }
         ).join("")
+
     }
+
 
     </table>
 
@@ -2672,52 +4397,90 @@ function printCustomerCopy(id){
     Payment History
     </h3>
 
+
     <table>
 
     <tr>
-    <th>Date</th>
-    <th>Amount</th>
-    <th>Method</th>
+
+    <th>
+    Date
+    </th>
+
+    <th>
+    Amount
+    </th>
+
+    <th>
+    Method
+    </th>
+
+    <th>
+    Reference
+    </th>
+
     </tr>
+
 
     ${
         b.paymentHistory.map(
-            p=>`
+            function(p){
 
-            <tr>
+                return `
 
-            <td>
-            ${formatDate(p.date)}
-            </td>
+                <tr>
 
-            <td>
-            ${money(p.amount)}
-            </td>
+                <td>
+                ${formatDate(
+                    p.date
+                )}
+                </td>
 
-            <td>
-            ${escapeHTML(p.method)}
-            </td>
+                <td>
+                ${money(
+                    p.amount
+                )}
+                </td>
 
-            </tr>
+                <td>
+                ${escapeHTML(
+                    p.method
+                )}
+                </td>
 
-            `
+                <td>
+                ${escapeHTML(
+                    p.reference||
+                    "-"
+                )}
+                </td>
+
+                </tr>
+
+                `;
+
+            }
         ).join("")
+
     }
+
 
     </table>
 
 
     <br><br>
 
+
     <p>
-    This document is a customer copy of the
-    borrowing and installment calculation.
+    Customer copy generated by
+    NVI Lending & Installment Management System.
     </p>
 
     `;
 
 
-    printArea.classList.remove("hidden");
+    printArea.classList.remove(
+        "hidden"
+    );
 
 
     window.print();
@@ -2726,7 +4489,9 @@ function printCustomerCopy(id){
     setTimeout(
         function(){
 
-            printArea.classList.add("hidden");
+            printArea.classList.add(
+                "hidden"
+            );
 
         },
         1000
@@ -2735,15 +4500,19 @@ function printCustomerCopy(id){
 }
 
 
-/* =========================================================
-   EMAIL CUSTOMER COPY
-   ========================================================= */
+/* =====================================================
+EMAIL
+===================================================== */
 
 function emailCustomerCopy(id){
 
-    let b =
+    let b=
     borrowers.find(
-        x=>x.id===id
+        function(x){
+
+            return x.id===id;
+
+        }
     );
 
 
@@ -2751,17 +4520,16 @@ function emailCustomerCopy(id){
         return;
 
 
-    let subject =
-    encodeURIComponent(
-        "NVI Lending - Borrowing Statement - " +
-        b.name
-    );
+    let subject=
+    "NVI Lending Statement - "+
+    b.name;
 
 
-    let body =
-    `NVI Lending & Installment Management System
+    let body=
+`NVI Lending & Installment Management System
 
-Borrower: ${b.name}
+Borrower:
+${b.name}
 
 Borrowed Amount:
 ${money(b.amount)}
@@ -2769,7 +4537,7 @@ ${money(b.amount)}
 Interest Rate:
 ${b.interestRate}%
 
-Total Interest / Profit:
+Total Profit:
 ${money(b.totalProfit)}
 
 Total Lending Cost:
@@ -2781,6 +4549,9 @@ ${money(b.monthlyPayment)}
 Monthly Profit:
 ${money(b.monthlyProfit)}
 
+Borrow Date:
+${formatDate(b.borrowDate)}
+
 Final Due Date:
 ${formatDate(b.finalDueDate)}
 
@@ -2790,35 +4561,44 @@ ${money(b.balance)}
 Thank you.`;
 
 
-    window.location.href =
-    "mailto:?subject=" +
-    subject +
-    "&body=" +
-    encodeURIComponent(body);
+    window.location.href=
+    "mailto:?subject="+
+    encodeURIComponent(
+        subject
+    )+
+    "&body="+
+    encodeURIComponent(
+        body
+    );
 
 }
 
 
-/* =========================================================
-   DELETE BORROWER
-   ========================================================= */
+/* =====================================================
+DELETE
+===================================================== */
 
 function deleteBorrower(id){
 
-    let borrower =
+    let b=
     borrowers.find(
-        b=>b.id===id
+        function(x){
+
+            return x.id===id;
+
+        }
     );
 
 
-    if(!borrower)
+    if(!b)
         return;
 
 
     if(!confirm(
-        "Delete borrower record for " +
-        borrower.name +
-        "?"
+
+        "Delete borrower record?\n\n"+
+        b.name
+
     )){
 
         return;
@@ -2826,9 +4606,13 @@ function deleteBorrower(id){
     }
 
 
-    borrowers =
+    borrowers=
     borrowers.filter(
-        b=>b.id!==id
+        function(x){
+
+            return x.id!==id;
+
+        }
     );
 
 
@@ -2839,9 +4623,9 @@ function deleteBorrower(id){
 }
 
 
-/* =========================================================
-   REFRESH EVERYTHING
-   ========================================================= */
+/* =====================================================
+REFRESH
+===================================================== */
 
 function refreshAll(){
 
@@ -2849,16 +4633,16 @@ function refreshAll(){
 
     renderSchedule();
 
-    showAllBorrowersForPayment();
-
     searchBorrowers();
+
+    showAllBorrowersForPayment();
 
 }
 
 
-/* =========================================================
-   START
-   ========================================================= */
+/* =====================================================
+START
+===================================================== */
 
 refreshAll();
 
