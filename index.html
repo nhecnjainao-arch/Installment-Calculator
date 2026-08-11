@@ -7,568 +7,601 @@
 <title>PHP Installment & Borrowing Calculator</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
 
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        margin: 0;
-        background: #f4f6fa;
-        color: #172033;
-    }
+/* =========================================================
+   GENERAL
+========================================================= */
 
-    .container {
-        max-width: 1200px;
-        margin: auto;
-        padding: 25px;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    h1 {
-        margin-bottom: 8px;
-        font-size: 34px;
-    }
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6fa;
+    color: #172033;
+}
 
-    h2 {
-        margin-top: 0;
-        color: #172033;
-    }
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
 
-    h3 {
-        margin-bottom: 10px;
-    }
+header {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
 
-    .subtitle {
-        color: #667085;
-        margin-bottom: 25px;
-    }
+header h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+}
+
+header p {
+    margin: 0;
+    color: #667085;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input,
+select {
+    border: 1px solid #b8bec9;
+    background: white;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    background: #3f51b5;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.secondary {
+    background: #e9edf5;
+    color: #172033;
+}
+
+.green {
+    background: #087443;
+}
+
+.red {
+    background: #b42318;
+}
+
+
+/* =========================================================
+   RATE DISPLAY
+========================================================= */
+
+.rate-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #eef3ff;
+    border-left: 5px solid #3f51b5;
+}
+
+.rate-box small {
+    display: block;
+    color: #667085;
+}
+
+.rate-box strong {
+    font-size: 26px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.button-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   RESULTS
+========================================================= */
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.metric {
+    background: #f7f8fb;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.metric small {
+    display: block;
+    color: #667085;
+    margin-bottom: 5px;
+}
+
+.metric strong {
+    font-size: 19px;
+}
+
+.metric.highlight {
+    background: #eef3ff;
+}
+
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    min-width: 650px;
+}
+
+th,
+td {
+    padding: 11px;
+    border-bottom: 1px solid #ddd;
+    text-align: right;
+}
+
+th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+th {
+    background: #f1f3f7;
+}
+
+tr.selected {
+    background: #eef3ff;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   INFORMATION
+========================================================= */
+
+.info {
+    background: #fff7df;
+    color: #665500;
+    padding: 13px;
+    border-radius: 9px;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.note {
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    text-align: center;
+    color: #667085;
+    padding: 20px;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
 
     .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
-
-    .card {
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 16px;
-        padding: 22px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-
-    label {
-        display: block;
-        font-weight: bold;
-        margin: 13px 0 6px;
-    }
-
-    input,
-    select,
-    button {
-        width: 100%;
-        padding: 12px;
-        border-radius: 8px;
-        font-size: 15px;
-    }
-
-    input,
-    select {
-        border: 1px solid #bbb;
-        background: white;
-    }
-
-    button {
-        border: none;
-        background: #3f51b5;
-        color: white;
-        cursor: pointer;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-
-    button:hover {
-        opacity: 0.9;
-    }
-
-    .secondary {
-        background: #e9edf5;
-        color: #172033;
-    }
-
-    .danger {
-        background: #b42318;
-    }
-
-    .success {
-        background: #087443;
-    }
-
-    .warning {
-        background: #fff7df;
-        color: #7a4b00;
-        padding: 12px;
-        border-radius: 9px;
-        margin-bottom: 15px;
-        line-height: 1.5;
+        grid-template-columns: 1fr;
     }
 
     .metrics {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-top: 15px;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .metric {
-        background: #f7f8fb;
-        padding: 15px;
-        border-radius: 10px;
+}
+
+@media (max-width: 550px) {
+
+    .container {
+        padding: 10px;
     }
 
-    .metric small {
-        display: block;
-        color: #667085;
-        margin-bottom: 4px;
+    header h1 {
+        font-size: 24px;
     }
 
-    .metric b {
-        font-size: 20px;
-    }
-
-    .highlight {
-        background: #eef4ff;
-        border: 1px solid #c9d8ff;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
-        background: white;
-    }
-
-    th,
-    td {
-        padding: 12px 10px;
-        border-bottom: 1px solid #ddd;
-        text-align: right;
-    }
-
-    th:first-child,
-    td:first-child {
-        text-align: left;
-    }
-
-    th {
-        background: #f1f3f7;
-    }
-
-    tr.selected {
-        background: #eef4ff;
-        font-weight: bold;
-    }
-
-    .rate-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-    }
-
-    .rate-box {
-        background: #f7f8fb;
-        padding: 12px;
-        border-radius: 10px;
-    }
-
-    .rate-box label {
-        margin-top: 0;
-    }
-
-    .late-table th,
-    .late-table td {
-        text-align: right;
-    }
-
-    .late-table th:first-child,
-    .late-table td:first-child {
-        text-align: left;
-    }
-
-    .note {
-        color: #667085;
-        font-size: 13px;
-        line-height: 1.5;
-    }
-
-    .footer {
-        text-align: center;
-        color: #667085;
-        font-size: 13px;
-        padding: 20px;
+    .metrics {
+        grid-template-columns: 1fr;
     }
 
     .button-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        grid-template-columns: 1fr;
     }
 
-    @media (max-width: 800px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
-
-        .metrics {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .rate-grid {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        h1 {
-            font-size: 27px;
-        }
+    .card {
+        padding: 16px;
     }
 
-    @media (max-width: 500px) {
-        .container {
-            padding: 12px;
-        }
+}
 
-        .metrics {
-            grid-template-columns: 1fr;
-        }
-
-        .rate-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .button-row {
-            grid-template-columns: 1fr;
-        }
-
-        th,
-        td {
-            padding: 9px 6px;
-            font-size: 13px;
-        }
-    }
-
-    @media print {
-        body {
-            background: white;
-        }
-
-        button,
-        .rate-settings,
-        .footer {
-            display: none !important;
-        }
-
-        .card {
-            box-shadow: none;
-            page-break-inside: avoid;
-        }
-    }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
     <h1>PHP Installment & Borrowing Calculator</h1>
 
-    <p class="subtitle">
-        Calculate profit, processing fees, total payable amount, monthly installment
-        and late-payment charges.
+    <p>
+        Calculate interest/profit, processing fees, monthly installments,
+        total payable amount and late-payment charges.
     </p>
 
-    <!-- MAIN CALCULATOR -->
-
-    <div class="grid">
-
-        <div class="card">
-
-            <h2>💰 Main Calculator</h2>
-
-            <label for="amount">
-                Purchase / Borrowed Amount (PHP)
-            </label>
-
-            <input
-                id="amount"
-                type="number"
-                value="5000"
-                min="0"
-                step="0.01"
-                oninput="calculateAll()"
-            >
-
-            <label for="tenure">
-                Tenure (Months)
-            </label>
-
-            <select id="tenure" onchange="updateRateFromTenure()">
-                <option value="2">2 Months</option>
-                <option value="3">3 Months</option>
-                <option value="4">4 Months</option>
-                <option value="6">6 Months</option>
-                <option value="8">8 Months</option>
-                <option value="9" selected>9 Months</option>
-                <option value="12">12 Months</option>
-            </select>
-
-            <label for="profitRate">
-                Profit Rate (%)
-            </label>
-
-            <input
-                id="profitRate"
-                type="number"
-                value="10.31"
-                min="0"
-                step="0.01"
-                oninput="calculateAll()"
-            >
-
-            <label for="processingRate">
-                Processing Fee (%)
-            </label>
-
-            <input
-                id="processingRate"
-                type="number"
-                value="0.51"
-                min="0"
-                step="0.01"
-                oninput="calculateAll()"
-            >
-
-            <div class="button-row">
-
-                <button onclick="calculateAll()">
-                    Calculate
-                </button>
-
-                <button class="secondary" onclick="resetCalculator()">
-                    Reset
-                </button>
-
-            </div>
-
-            <button class="success" onclick="window.print()">
-                🖨 Print Calculation
-            </button>
-
-            <div class="metrics">
-
-                <div class="metric">
-                    <small>Profit</small>
-                    <b id="profit">PHP 0.00</b>
-                </div>
-
-                <div class="metric">
-                    <small>Processing Fee</small>
-                    <b id="processing">PHP 0.00</b>
-                </div>
-
-                <div class="metric">
-                    <small>Total Extra</small>
-                    <b id="extra">PHP 0.00</b>
-                </div>
-
-                <div class="metric highlight">
-                    <small>Total Payable</small>
-                    <b id="total">PHP 0.00</b>
-                </div>
-
-                <div class="metric highlight">
-                    <small>Monthly Installment</small>
-                    <b id="monthly">PHP 0.00</b>
-                </div>
-
-                <div class="metric">
-                    <small>Extra %</small>
-                    <b id="extraPercent">0.00%</b>
-                </div>
-
-            </div>
-
-        </div>
+</header>
 
 
-        <!-- LATE PAYMENT -->
+<!-- =========================================================
+     MAIN CALCULATOR + LATE PAYMENT
+========================================================= -->
 
-        <div class="card">
+<div class="grid">
 
-            <h2>⏰ Late Payment Calculator</h2>
 
-            <div class="warning">
-                Default late-payment rate is 0%. Enter the rate only if your
-                financing agreement specifies a late-payment charge.
-            </div>
+<!-- =========================================================
+     MAIN CALCULATOR
+========================================================= -->
 
-            <label for="dueAmount">
-                Amount Due (PHP)
-            </label>
+<div class="card">
 
-            <input
-                id="dueAmount"
-                type="number"
-                value="5000"
-                min="0"
-                step="0.01"
-                oninput="calculateLate()"
-            >
+    <h2>💰 Installment Calculator</h2>
 
-            <label for="lateRate">
-                Late Charge Rate Per Day (%)
-            </label>
 
-            <input
-                id="lateRate"
-                type="number"
-                value="0"
-                min="0"
-                step="0.01"
-                oninput="calculateLate()"
-            >
+    <label for="amount">
+        Purchase / Borrowed Amount (PHP)
+    </label>
 
-            <table class="late-table">
+    <input
+        type="number"
+        id="amount"
+        value="5000"
+        min="0"
+        step="0.01"
+        oninput="calculate()"
+    >
 
-                <thead>
-                    <tr>
-                        <th>Delay</th>
-                        <th>Additional Charge</th>
-                        <th>Total Due</th>
-                    </tr>
-                </thead>
 
-                <tbody id="lateTable">
-                </tbody>
+    <label for="months">
+        Installment Period
+    </label>
 
-            </table>
+    <select
+        id="months"
+        onchange="updateRate()"
+    >
 
-            <p class="note">
-                Formula:
-                Additional Charge = Amount Due × Daily Late Rate × Number of Days.
-            </p>
+        <option value="2">2 Months</option>
 
-        </div>
+        <option value="3">3 Months</option>
+
+        <option value="4">4 Months</option>
+
+        <option value="6">6 Months</option>
+
+        <option value="8">8 Months</option>
+
+        <option value="9" selected>9 Months</option>
+
+        <option value="12">12 Months</option>
+
+        <option value="18">18 Months</option>
+
+        <option value="24">24 Months</option>
+
+    </select>
+
+
+    <label for="interestRate">
+        Interest / Profit Rate
+    </label>
+
+    <input
+        type="number"
+        id="interestRate"
+        value="10.31"
+        min="0"
+        step="0.01"
+        oninput="calculate()"
+    >
+
+
+    <div class="rate-box">
+
+        <small>
+            Automatic Rate for Selected Period
+        </small>
+
+        <strong id="displayRate">
+            10.31%
+        </strong>
 
     </div>
 
 
-    <!-- RATE SETTINGS -->
+    <label for="processingRate">
+        Processing Fee (%)
+    </label>
 
-    <div class="card rate-settings">
+    <input
+        type="number"
+        id="processingRate"
+        value="0.51"
+        min="0"
+        step="0.01"
+        oninput="calculate()"
+    >
 
-        <h2>⚙️ Rate Settings</h2>
 
-        <p class="note">
-            Enter the actual profit rate applicable to each tenure according
-            to your financing provider. The current default is 10.31% based
-            on your provided example.
-        </p>
+    <div class="button-row">
 
-        <div class="rate-grid">
+        <button onclick="calculate()">
+            Calculate
+        </button>
 
-            <div class="rate-box">
-                <label for="rate2">2 Months (%)</label>
-                <input id="rate2" type="number" value="05.01" step="0.01"
-                       onchange="saveRates(); updateRateFromTenure();">
-            </div>
-
-            <div class="rate-box">
-                <label for="rate3">3 Months (%)</label>
-                <input id="rate3" type="number" value="06.02" step="0.01"
-                       onchange="saveRates(); updateRateFromTenure();">
-            </div>
-
-            <div class="rate-box">
-                <label for="rate4">4 Months (%)</label>
-                <input id="rate4" type="number" value="07.03" step="0.01"
-                       onchange="saveRates(); updateRateFromTenure();">
-            </div>
-
-            <div class="rate-box">
-                <label for="rate6">6 Months (%)</label>
-                <input id="rate6" type="number" value="08.04" step="0.01"
-                       onchange="saveRates(); updateRateFromTenure();">
-            </div>
-
-            <div class="rate-box">
-                <label for="rate8">8 Months (%)</label>
-                <input id="rate8" type="number" value="09.05" step="0.01"
-                       onchange="saveRates(); updateRateFromTenure();">
-            </div>
-
-            <div class="rate-box">
-                <label for="rate9">9 Months (%)</label>
-                <input id="rate9" type="number" value="10.06" step="0.01"
-                       onchange="saveRates(); updateRateFromTenure();">
-            </div>
-
-            <div class="rate-box">
-                <label for="rate12">12 Months (%)</label>
-                <input id="rate12" type="number" value="10.07" step="0.01"
-                       onchange="saveRates(); updateRateFromTenure();">
-            </div>
-
-            <div class="rate-box">
-                <label for="processingDefault">
-                    Processing Fee (%)
-                </label>
-
-                <input
-                    id="processingDefault"
-                    type="number"
-                    value="0.51"
-                    min="0"
-                    step="0.01"
-                    onchange="updateProcessingRate()"
-                >
-            </div>
-
-        </div>
-
-        <button class="secondary" onclick="resetRates()">
-            Reset Rates
+        <button
+            class="secondary"
+            onclick="resetCalculator()"
+        >
+            Reset
         </button>
 
     </div>
 
 
-    <!-- COMPARISON -->
+    <!-- RESULTS -->
 
-    <div class="card">
+    <div class="metrics">
 
-        <h2>📊 Installment Comparison</h2>
+        <div class="metric">
 
-        <p class="note">
-            This table automatically compares all available installment periods
-            using the amount entered above.
-        </p>
+            <small>
+                Interest / Profit
+            </small>
+
+            <strong id="profit">
+                PHP 0.00
+            </strong>
+
+        </div>
+
+
+        <div class="metric">
+
+            <small>
+                Processing Fee
+            </small>
+
+            <strong id="processing">
+                PHP 0.00
+            </strong>
+
+        </div>
+
+
+        <div class="metric">
+
+            <small>
+                Total Extra Cost
+            </small>
+
+            <strong id="extra">
+                PHP 0.00
+            </strong>
+
+        </div>
+
+
+        <div class="metric highlight">
+
+            <small>
+                Total Payable
+            </small>
+
+            <strong id="total">
+                PHP 0.00
+            </strong>
+
+        </div>
+
+
+        <div class="metric highlight">
+
+            <small>
+                Monthly Installment
+            </small>
+
+            <strong id="monthly">
+                PHP 0.00
+            </strong>
+
+        </div>
+
+
+        <div class="metric">
+
+            <small>
+                Effective Extra %
+            </small>
+
+            <strong id="extraPercent">
+                0.00%
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     LATE PAYMENT
+========================================================= -->
+
+<div class="card">
+
+    <h2>⏰ Late Payment Calculator</h2>
+
+
+    <div class="info">
+
+        Enter the applicable daily late-payment rate
+        according to your agreement.
+
+        <br><br>
+
+        Default rate is <strong>0%</strong>.
+
+    </div>
+
+
+    <label for="dueAmount">
+        Amount Due (PHP)
+    </label>
+
+    <input
+        type="number"
+        id="dueAmount"
+        value="5000"
+        min="0"
+        step="0.01"
+        oninput="calculateLate()"
+    >
+
+
+    <label for="lateRate">
+        Late Charge Rate Per Day (%)
+    </label>
+
+    <input
+        type="number"
+        id="lateRate"
+        value="0"
+        min="0"
+        step="0.01"
+        oninput="calculateLate()"
+    >
+
+
+    <div class="table-container">
 
         <table>
 
             <thead>
+
                 <tr>
-                    <th>Tenure</th>
-                    <th>Profit Rate</th>
-                    <th>Profit</th>
-                    <th>Processing</th>
-                    <th>Total Payable</th>
-                    <th>Monthly</th>
-                    <th>Extra %</th>
+
+                    <th>
+                        Delay
+                    </th>
+
+                    <th>
+                        Additional Charge
+                    </th>
+
+                    <th>
+                        Total Due
+                    </th>
+
                 </tr>
+
             </thead>
 
-            <tbody id="comparisonTable">
+            <tbody id="lateTable">
+
             </tbody>
 
         </table>
@@ -576,52 +609,281 @@
     </div>
 
 
-    <!-- FORMULA -->
+    <p class="note">
 
-    <div class="card">
+        Formula:
 
-        <h2>🧮 Calculation Formula</h2>
-
-        <p>
-            <strong>Profit:</strong><br>
-            Borrowed Amount × Profit Rate
-        </p>
-
-        <p>
-            <strong>Processing Fee:</strong><br>
-            Borrowed Amount × Processing Fee Rate
-        </p>
-
-        <p>
-            <strong>Total Payable:</strong><br>
-            Borrowed Amount + Profit + Processing Fee
-        </p>
-
-        <p>
-            <strong>Monthly Installment:</strong><br>
-            Total Payable ÷ Number of Months
-        </p>
-
-        <p>
-            <strong>Late Payment Charge:</strong><br>
-            Amount Due × Daily Late Rate × Number of Delayed Days
-        </p>
-
-        <p class="note">
-            Note: This calculator uses a simple add-on profit calculation.
-            Actual financing providers may use different methods, fees,
-            APR calculations, VAT, administrative fees, or contractual
-            late-payment rules. Always verify the actual agreement.
-        </p>
-
-    </div>
-
-
-    <div class="footer">
-        PHP Installment & Borrowing Calculator
         <br>
-        For calculation and planning purposes only.
+
+        Additional Charge =
+        Amount Due × Daily Late Rate × Number of Days
+
+    </p>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     INTEREST RATE TABLE
+========================================================= -->
+
+<div class="card">
+
+    <h2>📊 Interest / Profit Rate Schedule</h2>
+
+    <p>
+
+        The interest rate automatically increases as the
+        installment period becomes longer.
+
+    </p>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Period
+                    </th>
+
+                    <th>
+                        Interest / Profit Rate
+                    </th>
+
+                    <th>
+                        Processing Fee
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="rateTable">
+
+            </tbody>
+
+        </table>
+
     </div>
+
+</div>
+
+
+<!-- =========================================================
+     COMPARISON TABLE
+========================================================= -->
+
+<div class="card">
+
+    <h2>📋 Installment Comparison</h2>
+
+    <p>
+
+        This table compares all available installment
+        periods using the amount entered above.
+
+    </p>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Period
+                    </th>
+
+                    <th>
+                        Rate
+                    </th>
+
+                    <th>
+                        Profit
+                    </th>
+
+                    <th>
+                        Processing
+                    </th>
+
+                    <th>
+                        Total Payable
+                    </th>
+
+                    <th>
+                        Monthly Payment
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="comparisonTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PAYMENT SCHEDULE
+========================================================= -->
+
+<div class="card">
+
+    <h2>📅 Payment Schedule</h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Payment #
+                    </th>
+
+                    <th>
+                        Principal
+                    </th>
+
+                    <th>
+                        Interest
+                    </th>
+
+                    <th>
+                        Processing
+                    </th>
+
+                    <th>
+                        Payment
+                    </th>
+
+                    <th>
+                        Remaining Balance
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="schedule">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FORMULAS
+========================================================= -->
+
+<div class="card">
+
+    <h2>🧮 Calculation Method</h2>
+
+
+    <p>
+
+        <strong>Interest / Profit:</strong>
+
+        <br>
+
+        Amount × Interest Rate
+
+    </p>
+
+
+    <p>
+
+        <strong>Processing Fee:</strong>
+
+        <br>
+
+        Amount × Processing Fee Rate
+
+    </p>
+
+
+    <p>
+
+        <strong>Total Payable:</strong>
+
+        <br>
+
+        Amount + Interest + Processing Fee
+
+    </p>
+
+
+    <p>
+
+        <strong>Monthly Installment:</strong>
+
+        <br>
+
+        Total Payable ÷ Number of Months
+
+    </p>
+
+
+    <p>
+
+        <strong>Late Payment Charge:</strong>
+
+        <br>
+
+        Amount Due × Daily Late Rate × Number of Days
+
+    </p>
+
+
+    <div class="info">
+
+        <strong>Important:</strong>
+
+        This calculator uses a simple percentage/add-on
+        calculation. Actual banks, financing companies,
+        credit-card providers and lending agreements may
+        calculate interest, APR, fees, VAT or penalties
+        differently.
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    PHP Installment & Borrowing Calculator
+
+    <br><br>
+
+    For calculation and planning purposes only.
+
+</footer>
+
 
 </div>
 
@@ -629,212 +891,264 @@
 <script>
 
 /* =========================================================
-   GENERAL FUNCTIONS
+   INTEREST RATE SETTINGS
+=========================================================
+
+   CHANGE THE NUMBERS BELOW TO YOUR ACTUAL RATES.
+
+   Longer period = higher rate.
+
+========================================================= */
+
+const interestRates = {
+
+    2: 2.50,
+
+    3: 3.50,
+
+    4: 4.50,
+
+    6: 6.50,
+
+    8: 8.50,
+
+    9: 10.31,
+
+    12: 13.50,
+
+    18: 18.50,
+
+    24: 24.50
+
+};
+
+
+/* =========================================================
+   DEFAULT PROCESSING FEE
+========================================================= */
+
+const defaultProcessingRate = 0.51;
+
+
+/* =========================================================
+   CURRENCY FORMAT
 ========================================================= */
 
 function money(value) {
-    return "PHP " + Number(value).toLocaleString("en-SA", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
-}
 
+    return "PHP " + Number(value).toLocaleString(
+        "en-PH",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    );
 
-function numberValue(id) {
-    return parseFloat(document.getElementById(id).value) || 0;
 }
 
 
 /* =========================================================
-   RATE MANAGEMENT
+   GET INPUT NUMBER
 ========================================================= */
 
-function getRate(tenure) {
+function getNumber(id) {
 
-    const input = document.getElementById("rate" + tenure);
+    return parseFloat(
+        document.getElementById(id).value
+    ) || 0;
 
-    if (!input) {
-        return 10.31;
-    }
-
-    return parseFloat(input.value) || 0;
 }
 
 
-function updateRateFromTenure() {
+/* =========================================================
+   GET INTEREST RATE
+========================================================= */
 
-    const tenure = document.getElementById("tenure").value;
+function getInterestRate(months) {
 
-    const rate = getRate(tenure);
+    return interestRates[months] || 0;
 
-    document.getElementById("profitRate").value = rate.toFixed(2);
-
-    calculateAll();
 }
 
 
-function updateProcessingRate() {
+/* =========================================================
+   UPDATE RATE AUTOMATICALLY
+========================================================= */
 
-    const rate = numberValue("processingDefault");
+function updateRate() {
 
-    document.getElementById("processingRate").value = rate.toFixed(2);
-
-    calculateAll();
-}
-
-
-function saveRates() {
-
-    const rates = {};
-
-    [2,3,4,6,8,9,12].forEach(function(months) {
-
-        rates[months] = getRate(months);
-
-    });
-
-    localStorage.setItem(
-        "installmentRates",
-        JSON.stringify(rates)
-    );
-}
+    const months =
+        parseInt(
+            document.getElementById("months").value
+        );
 
 
-function loadRates() {
+    const rate =
+        getInterestRate(months);
 
-    const saved = localStorage.getItem("installmentRates");
-
-    if (!saved) {
-        return;
-    }
-
-    try {
-
-        const rates = JSON.parse(saved);
-
-        [2,3,4,6,8,9,12].forEach(function(months) {
-
-            if (rates[months] !== undefined) {
-
-                document.getElementById(
-                    "rate" + months
-                ).value = rates[months];
-
-            }
-
-        });
-
-    } catch (error) {
-
-        console.log("Unable to load saved rates.");
-
-    }
-}
-
-
-function resetRates() {
-
-    const defaultRate = 10.31;
-
-    [2,3,4,6,8,9,12].forEach(function(months) {
-
-        document.getElementById(
-            "rate" + months
-        ).value = defaultRate;
-
-    });
 
     document.getElementById(
-        "processingDefault"
-    ).value = "0.51";
+        "interestRate"
+    ).value = rate.toFixed(2);
 
-    localStorage.removeItem("installmentRates");
 
-    updateRateFromTenure();
+    document.getElementById(
+        "displayRate"
+    ).innerText = rate.toFixed(2) + "%";
+
+
+    calculate();
+
 }
 
 
 /* =========================================================
-   MAIN CALCULATOR
+   MAIN CALCULATION
 ========================================================= */
 
-function calculateAll() {
+function calculate() {
 
-    const amount = numberValue("amount");
-
-    const tenure = parseInt(
-        document.getElementById("tenure").value
-    );
-
-    const profitRate = numberValue("profitRate");
-
-    const processingRate = numberValue("processingRate");
+    const amount =
+        getNumber("amount");
 
 
-    /* Profit */
+    const months =
+        parseInt(
+            document.getElementById("months").value
+        ) || 1;
+
+
+    const interestRate =
+        getNumber("interestRate");
+
+
+    const processingRate =
+        getNumber("processingRate");
+
+
+    /*
+       INTEREST / PROFIT
+    */
 
     const profit =
-        amount * (profitRate / 100);
+        amount *
+        (interestRate / 100);
 
 
-    /* Processing */
+    /*
+       PROCESSING FEE
+    */
 
     const processing =
-        amount * (processingRate / 100);
+        amount *
+        (processingRate / 100);
 
 
-    /* Total extra */
+    /*
+       TOTAL EXTRA
+    */
 
     const extra =
-        profit + processing;
+        profit +
+        processing;
 
 
-    /* Total payable */
+    /*
+       TOTAL PAYABLE
+    */
 
     const total =
-        amount + extra;
+        amount +
+        extra;
 
 
-    /* Monthly */
+    /*
+       MONTHLY PAYMENT
+    */
 
     const monthly =
-        tenure > 0 ? total / tenure : 0;
+        total / months;
 
 
-    /* Extra percentage */
+    /*
+       EFFECTIVE EXTRA PERCENTAGE
+    */
 
     const extraPercent =
-        amount > 0 ? (extra / amount) * 100 : 0;
+        amount > 0
+        ? (extra / amount) * 100
+        : 0;
 
 
-    document.getElementById("profit").innerText =
+    /*
+       DISPLAY RESULTS
+    */
+
+    document.getElementById(
+        "profit"
+    ).innerText =
         money(profit);
 
-    document.getElementById("processing").innerText =
+
+    document.getElementById(
+        "processing"
+    ).innerText =
         money(processing);
 
-    document.getElementById("extra").innerText =
+
+    document.getElementById(
+        "extra"
+    ).innerText =
         money(extra);
 
-    document.getElementById("total").innerText =
+
+    document.getElementById(
+        "total"
+    ).innerText =
         money(total);
 
-    document.getElementById("monthly").innerText =
+
+    document.getElementById(
+        "monthly"
+    ).innerText =
         money(monthly);
 
-    document.getElementById("extraPercent").innerText =
+
+    document.getElementById(
+        "extraPercent"
+    ).innerText =
         extraPercent.toFixed(2) + "%";
 
 
-    /* Update late-payment amount */
+    document.getElementById(
+        "displayRate"
+    ).innerText =
+        interestRate.toFixed(2) + "%";
 
-    document.getElementById("dueAmount").value =
+
+    /*
+       UPDATE LATE PAYMENT AMOUNT
+    */
+
+    document.getElementById(
+        "dueAmount"
+    ).value =
         total.toFixed(2);
 
 
-    calculateLate();
+    /*
+       UPDATE OTHER SECTIONS
+    */
 
     createComparison();
+
+    createSchedule(
+        amount,
+        profit,
+        processing,
+        months
+    );
+
 }
 
 
@@ -844,153 +1158,401 @@ function calculateAll() {
 
 function createComparison() {
 
-    const amount = numberValue("amount");
+    const amount =
+        getNumber("amount");
+
 
     const processingRate =
-        numberValue("processingRate");
-
-    const selectedTenure =
-        parseInt(document.getElementById("tenure").value);
+        getNumber("processingRate");
 
 
-    const tenures = [
+    const selectedMonths =
+        parseInt(
+            document.getElementById("months").value
+        );
+
+
+    const table =
+        document.getElementById(
+            "comparisonTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    const periods = [
         2,
         3,
         4,
         6,
         8,
         9,
-        12
+        12,
+        18,
+        24
     ];
 
 
-    let html = "";
+    periods.forEach(function(months) {
 
+        const rate =
+            getInterestRate(months);
 
-    tenures.forEach(function(months) {
-
-        const rate = getRate(months);
 
         const profit =
-            amount * (rate / 100);
+            amount *
+            (rate / 100);
+
 
         const processing =
-            amount * (processingRate / 100);
+            amount *
+            (processingRate / 100);
+
 
         const total =
-            amount + profit + processing;
+            amount +
+            profit +
+            processing;
+
 
         const monthly =
             total / months;
 
-        const extra =
-            profit + processing;
 
-        const extraPercent =
-            amount > 0
-            ? (extra / amount) * 100
-            : 0;
+        const row =
+            document.createElement("tr");
 
 
-        const selected =
-            months === selectedTenure
-            ? "selected"
-            : "";
+        if (months === selectedMonths) {
+
+            row.classList.add(
+                "selected"
+            );
+
+        }
 
 
-        html += `
-            <tr class="${selected}">
-                <td>${months} Months</td>
-                <td>${rate.toFixed(2)}%</td>
-                <td>${money(profit)}</td>
-                <td>${money(processing)}</td>
-                <td>${money(total)}</td>
-                <td>${money(monthly)}</td>
-                <td>${extraPercent.toFixed(2)}%</td>
-            </tr>
+        row.innerHTML = `
+
+            <td>
+                ${months} Months
+            </td>
+
+            <td>
+                ${rate.toFixed(2)}%
+            </td>
+
+            <td>
+                ${money(profit)}
+            </td>
+
+            <td>
+                ${money(processing)}
+            </td>
+
+            <td>
+                ${money(total)}
+            </td>
+
+            <td>
+                <strong>
+                    ${money(monthly)}
+                </strong>
+            </td>
+
         `;
+
+
+        table.appendChild(row);
 
     });
 
-
-    document.getElementById(
-        "comparisonTable"
-    ).innerHTML = html;
 }
 
 
 /* =========================================================
-   LATE PAYMENT
+   RATE TABLE
+========================================================= */
+
+function createRateTable() {
+
+    const table =
+        document.getElementById(
+            "rateTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    const periods = [
+        2,
+        3,
+        4,
+        6,
+        8,
+        9,
+        12,
+        18,
+        24
+    ];
+
+
+    periods.forEach(function(months) {
+
+        const rate =
+            getInterestRate(months);
+
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+                ${months} Months
+            </td>
+
+            <td>
+                <strong>
+                    ${rate.toFixed(2)}%
+                </strong>
+            </td>
+
+            <td>
+                ${defaultProcessingRate.toFixed(2)}%
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================================================
+   PAYMENT SCHEDULE
+========================================================= */
+
+function createSchedule(
+    amount,
+    profit,
+    processing,
+    months
+) {
+
+    const table =
+        document.getElementById(
+            "schedule"
+        );
+
+
+    table.innerHTML = "";
+
+
+    if (
+        amount <= 0 ||
+        months <= 0
+    ) {
+
+        return;
+
+    }
+
+
+    const principalPerMonth =
+        amount / months;
+
+
+    const interestPerMonth =
+        profit / months;
+
+
+    const processingPerMonth =
+        processing / months;
+
+
+    const monthlyPayment =
+        principalPerMonth +
+        interestPerMonth +
+        processingPerMonth;
+
+
+    let balance =
+        amount;
+
+
+    for (
+        let paymentNumber = 1;
+        paymentNumber <= months;
+        paymentNumber++
+    ) {
+
+
+        balance -=
+            principalPerMonth;
+
+
+        if (balance < 0.01) {
+
+            balance = 0;
+
+        }
+
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+                ${paymentNumber}
+            </td>
+
+            <td>
+                ${money(principalPerMonth)}
+            </td>
+
+            <td>
+                ${money(interestPerMonth)}
+            </td>
+
+            <td>
+                ${money(processingPerMonth)}
+            </td>
+
+            <td>
+                <strong>
+                    ${money(monthlyPayment)}
+                </strong>
+            </td>
+
+            <td>
+                ${money(balance)}
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    }
+
+}
+
+
+/* =========================================================
+   LATE PAYMENT CALCULATOR
 ========================================================= */
 
 function calculateLate() {
 
     const amount =
-        numberValue("dueAmount");
+        getNumber("dueAmount");
+
 
     const dailyRate =
-        numberValue("lateRate") / 100;
+        getNumber("lateRate");
 
 
     const delays = [
         1,
         3,
         7,
-        14
+        14,
+        30
     ];
 
 
-    let html = "";
+    const table =
+        document.getElementById(
+            "lateTable"
+        );
+
+
+    table.innerHTML = "";
 
 
     delays.forEach(function(days) {
 
+
         const charge =
-            amount * dailyRate * days;
+            amount *
+            (dailyRate / 100) *
+            days;
+
 
         const total =
-            amount + charge;
+            amount +
+            charge;
 
 
-        html += `
-            <tr>
-                <td>${days} day${days > 1 ? "s" : ""}</td>
-                <td>${money(charge)}</td>
-                <td>${money(total)}</td>
-            </tr>
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+                ${days}
+                day${days > 1 ? "s" : ""}
+            </td>
+
+            <td>
+                ${money(charge)}
+            </td>
+
+            <td>
+                <strong>
+                    ${money(total)}
+                </strong>
+            </td>
+
         `;
+
+
+        table.appendChild(row);
 
     });
 
-
-    document.getElementById(
-        "lateTable"
-    ).innerHTML = html;
 }
 
 
 /* =========================================================
-   RESET MAIN CALCULATOR
+   RESET CALCULATOR
 ========================================================= */
 
 function resetCalculator() {
 
-    document.getElementById("amount").value =
-        "5000";
+    document.getElementById(
+        "amount"
+    ).value = "5000";
 
-    document.getElementById("tenure").value =
-        "9";
 
-    document.getElementById("profitRate").value =
-        "10.31";
+    document.getElementById(
+        "months"
+    ).value = "9";
 
-    document.getElementById("processingRate").value =
-        "0.51";
 
-    document.getElementById("lateRate").value =
-        "0";
+    document.getElementById(
+        "processingRate"
+    ).value =
+        defaultProcessingRate.toFixed(2);
 
-    calculateAll();
+
+    document.getElementById(
+        "lateRate"
+    ).value = "0";
+
+
+    updateRate();
+
 }
 
 
@@ -998,11 +1560,17 @@ function resetCalculator() {
    INITIALIZE
 ========================================================= */
 
-loadRates();
+document.getElementById(
+    "processingRate"
+).value =
+    defaultProcessingRate.toFixed(2);
 
-updateRateFromTenure();
 
-calculateAll();
+createRateTable();
+
+updateRate();
+
+calculateLate();
 
 </script>
 
