@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SAR Installment & Borrowing Calculator</title>
+<title>PHP Installment & Borrowing Calculator</title>
 
 <style>
     * {
@@ -280,7 +280,7 @@
 
 <div class="container">
 
-    <h1>SAR Installment & Borrowing Calculator</h1>
+    <h1>PHP Installment & Borrowing Calculator</h1>
 
     <p class="subtitle">
         Calculate profit, processing fees, total payable amount, monthly installment
@@ -296,7 +296,7 @@
             <h2>💰 Main Calculator</h2>
 
             <label for="amount">
-                Purchase / Borrowed Amount (SAR)
+                Purchase / Borrowed Amount (PHP)
             </label>
 
             <input
@@ -368,27 +368,27 @@
 
                 <div class="metric">
                     <small>Profit</small>
-                    <b id="profit">SAR 0.00</b>
+                    <b id="profit">PHP 0.00</b>
                 </div>
 
                 <div class="metric">
                     <small>Processing Fee</small>
-                    <b id="processing">SAR 0.00</b>
+                    <b id="processing">PHP 0.00</b>
                 </div>
 
                 <div class="metric">
                     <small>Total Extra</small>
-                    <b id="extra">SAR 0.00</b>
+                    <b id="extra">PHP 0.00</b>
                 </div>
 
                 <div class="metric highlight">
                     <small>Total Payable</small>
-                    <b id="total">SAR 0.00</b>
+                    <b id="total">PHP 0.00</b>
                 </div>
 
                 <div class="metric highlight">
                     <small>Monthly Installment</small>
-                    <b id="monthly">SAR 0.00</b>
+                    <b id="monthly">PHP 0.00</b>
                 </div>
 
                 <div class="metric">
@@ -413,7 +413,7 @@
             </div>
 
             <label for="dueAmount">
-                Amount Due (SAR)
+                Amount Due (PHP)
             </label>
 
             <input
@@ -618,7 +618,7 @@
 
 
     <div class="footer">
-        SAR Installment & Borrowing Calculator
+        PHP Installment & Borrowing Calculator
         <br>
         For calculation and planning purposes only.
     </div>
@@ -633,7 +633,7 @@
 ========================================================= */
 
 function money(value) {
-    return "SAR " + Number(value).toLocaleString("en-SA", {
+    return "PHP " + Number(value).toLocaleString("en-SA", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
