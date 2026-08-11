@@ -4,9 +4,13 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NVI Lending & Installment Management System</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+NVI Lending & Installment Management System
+</title>
 
 <style>
 
@@ -22,7 +26,7 @@ body{
 }
 
 .container{
-    max-width:1500px;
+    max-width:1600px;
     margin:auto;
     padding:20px;
 }
@@ -38,12 +42,11 @@ header,
 
 header h1{
     margin:0 0 8px;
-    font-size:30px;
 }
 
 header p{
-    color:#667085;
     margin:0;
+    color:#667085;
 }
 
 h2{
@@ -86,6 +89,18 @@ h3{
     background:#eef3ff;
 }
 
+.success-box{
+    background:#ecfdf3;
+}
+
+.warning-box{
+    background:#fff7df;
+}
+
+.danger-box{
+    background:#fff0f0;
+}
+
 label{
     display:block;
     margin-top:14px;
@@ -100,7 +115,7 @@ button{
     width:100%;
     padding:12px;
     border-radius:8px;
-    font-size:16px;
+    font-size:15px;
 }
 
 input,
@@ -112,7 +127,6 @@ textarea{
 
 textarea{
     min-height:100px;
-    resize:vertical;
 }
 
 button{
@@ -147,7 +161,7 @@ button:hover{
 
 .button-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:10px;
 }
 
@@ -156,6 +170,23 @@ button:hover{
     grid-template-columns:repeat(3,1fr);
     gap:12px;
     margin-top:20px;
+}
+
+.info{
+    background:#fff7df;
+    padding:15px;
+    border-radius:9px;
+    margin-top:15px;
+    line-height:1.6;
+}
+
+.date-box{
+    background:#f0fdf4;
+    border-left:5px solid #16803c;
+    padding:14px;
+    border-radius:8px;
+    margin-top:15px;
+    line-height:1.8;
 }
 
 .rate-box{
@@ -170,24 +201,6 @@ button:hover{
     font-size:25px;
 }
 
-.info{
-    background:#fff7df;
-    color:#665500;
-    padding:14px;
-    border-radius:9px;
-    margin-top:15px;
-    line-height:1.5;
-}
-
-.date-box{
-    background:#f0fdf4;
-    border-left:5px solid #16803c;
-    padding:14px;
-    border-radius:8px;
-    margin-top:15px;
-    line-height:1.8;
-}
-
 .table-container{
     overflow-x:auto;
 }
@@ -196,12 +209,12 @@ table{
     width:100%;
     border-collapse:collapse;
     margin-top:15px;
-    min-width:900px;
+    min-width:950px;
 }
 
 th,
 td{
-    padding:11px;
+    padding:10px;
     border-bottom:1px solid #ddd;
     text-align:right;
     white-space:nowrap;
@@ -221,17 +234,35 @@ th{
     font-weight:bold;
 }
 
-.status{
-    padding:12px;
-    border-radius:8px;
-    margin-top:10px;
-    display:none;
+.paid{
+    color:#16803c;
+    font-weight:bold;
+}
+
+.unpaid{
+    color:#c62828;
+    font-weight:bold;
+}
+
+.partial{
+    color:#d97706;
+    font-weight:bold;
+}
+
+.search-result{
+    background:#eef3ff;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+.payment-history{
+    margin-top:20px;
 }
 
 .dashboard-chart{
     width:100%;
     height:350px;
-    margin-top:15px;
 }
 
 canvas{
@@ -239,12 +270,27 @@ canvas{
     height:100%;
 }
 
-.customer-copy{
+.status{
     display:none;
+    padding:12px;
+    border-radius:8px;
+    margin-top:10px;
 }
 
-.print-area{
-    display:none;
+.discount-box{
+    background:#ecfdf3;
+    border-left:5px solid #16803c;
+    padding:15px;
+    border-radius:8px;
+    margin-top:15px;
+}
+
+.late-box{
+    background:#fff0f0;
+    border-left:5px solid #c62828;
+    padding:15px;
+    border-radius:8px;
+    margin-top:15px;
 }
 
 @media(max-width:1100px){
@@ -265,17 +311,13 @@ canvas{
         grid-template-columns:1fr 1fr;
     }
 
+    .button-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
 }
 
 @media(max-width:600px){
-
-    .container{
-        padding:10px;
-    }
-
-    header h1{
-        font-size:23px;
-    }
 
     .dashboard-grid,
     .metrics,
@@ -283,23 +325,22 @@ canvas{
         grid-template-columns:1fr;
     }
 
+    .container{
+        padding:10px;
+    }
+
 }
 
 @media print{
 
-    body{
-        background:white;
-    }
-
     .no-print,
     header,
     footer{
-        display:none !important;
+        display:none!important;
     }
 
-    .print-area{
-        display:block !important;
-        box-shadow:none;
+    body{
+        background:white;
     }
 
 }
@@ -312,13 +353,16 @@ canvas{
 
 <div class="container">
 
+
 <header>
 
-<h1>NVI Lending & Installment Management System</h1>
+<h1>
+NVI Lending & Installment Management System
+</h1>
 
 <p>
-Borrower registration, installment calculation,
-payment tracking, profit monitoring and lending dashboard.
+Borrower Management • Installment Calculation •
+Payment Tracking • Profit Monitoring
 </p>
 
 </header>
@@ -330,9 +374,13 @@ DASHBOARD
 
 <div class="card no-print">
 
-<h2>📊 Lending Dashboard</h2>
+<h2>
+📊 Lending Dashboard
+</h2>
 
-<label>Dashboard Month</label>
+<label>
+Dashboard Month
+</label>
 
 <input
 type="month"
@@ -344,72 +392,113 @@ onchange="updateDashboard()"
 
 <div class="metric highlight">
 
-<small>Total Borrowers</small>
+<small>
+Total Borrowers
+</small>
 
-<strong id="dashBorrowers">0</strong>
+<strong id="dashBorrowers">
+0
+</strong>
 
 </div>
+
 
 <div class="metric">
 
-<small>Total Money Borrowed</small>
+<small>
+Total Money Borrowed
+</small>
 
-<strong id="dashBorrowed">PHP 0.00</strong>
+<strong id="dashBorrowed">
+PHP 0.00
+</strong>
 
 </div>
+
 
 <div class="metric">
 
-<small>Total Profit</small>
+<small>
+Total Profit
+</small>
 
-<strong id="dashProfit">PHP 0.00</strong>
+<strong id="dashProfit">
+PHP 0.00
+</strong>
 
 </div>
+
 
 <div class="metric">
 
-<small>Total Processing Fees</small>
+<small>
+Total Payments Received
+</small>
 
-<strong id="dashProcessing">PHP 0.00</strong>
+<strong id="dashReceived">
+PHP 0.00
+</strong>
 
 </div>
+
 
 <div class="metric">
 
-<small>Payments Received</small>
+<small>
+Amount Due
+</small>
 
-<strong id="dashReceived">PHP 0.00</strong>
+<strong id="dashDue">
+PHP 0.00
+</strong>
 
 </div>
+
 
 <div class="metric">
 
-<small>Amount Due</small>
+<small>
+Outstanding Balance
+</small>
 
-<strong id="dashDue">PHP 0.00</strong>
+<strong id="dashOutstanding">
+PHP 0.00
+</strong>
 
 </div>
+
 
 <div class="metric">
 
-<small>Outstanding Balance</small>
+<small>
+Late Charges
+</small>
 
-<strong id="dashOutstanding">PHP 0.00</strong>
+<strong id="dashLate">
+PHP 0.00
+</strong>
 
 </div>
+
 
 <div class="metric highlight">
 
-<small>Profit From Selected Month</small>
+<small>
+Monthly Payments Received
+</small>
 
-<strong id="dashMonthlyProfit">PHP 0.00</strong>
+<strong id="dashMonthReceived">
+PHP 0.00
+</strong>
 
 </div>
 
 </div>
 
 
-<h3>Money Borrowed / Payments / Due / Profit</h3>
+<h3>
+Monthly Lending Performance
+</h3>
 
 <div class="dashboard-chart">
 
@@ -421,26 +510,33 @@ onchange="updateDashboard()"
 
 
 <!-- =====================================================
-BORROWER
+BORROWER INFORMATION
 ===================================================== -->
 
 <div class="card no-print">
 
-<h2>👤 Borrower Information</h2>
+<h2>
+👤 Borrower Information
+</h2>
 
 <div class="grid">
 
 <div>
 
-<label>Borrower Name</label>
+<label>
+Borrower Name
+</label>
 
 <input
 type="text"
 id="borrowerName"
-placeholder="Enter full borrower name"
+placeholder="Enter borrower name"
 >
 
-<label>Contact Number</label>
+
+<label>
+Contact Number
+</label>
 
 <input
 type="text"
@@ -448,26 +544,35 @@ id="borrowerPhone"
 placeholder="Contact number"
 >
 
-<label>Email Address</label>
+
+<label>
+Email
+</label>
 
 <input
 type="email"
 id="borrowerEmail"
-placeholder="borrower@email.com"
+placeholder="Email address"
 >
 
 </div>
 
+
 <div>
 
-<label>Borrower Address</label>
+<label>
+Borrower Address
+</label>
 
 <textarea
 id="borrowerAddress"
-placeholder="Complete borrower address"
+placeholder="Complete address"
 ></textarea>
 
-<label>Transaction Reference</label>
+
+<label>
+Transaction Reference
+</label>
 
 <input
 type="text"
@@ -483,18 +588,23 @@ readonly
 
 
 <!-- =====================================================
-DATES
+LOAN DETAILS
 ===================================================== -->
 
 <div class="card no-print">
 
-<h2>📅 Loan Dates & Payment Status</h2>
+<h2>
+💰 Loan Details
+</h2>
 
 <div class="grid">
 
+
 <div>
 
-<label>Borrow Date</label>
+<label>
+Borrow Date
+</label>
 
 <input
 type="date"
@@ -504,9 +614,103 @@ onchange="updateDueDate();calculate();"
 
 </div>
 
+
 <div>
 
-<label>Final Due Date</label>
+<label>
+Installment Period
+</label>
+
+<select
+id="months"
+onchange="updateRate();updateDueDate();calculate();"
+>
+
+<option value="1">
+1 Month - 5%
+</option>
+
+<option value="3">
+3 Months - 7%
+</option>
+
+<option value="4">
+4 Months - 10%
+</option>
+
+<option value="6">
+6 Months - 15%
+</option>
+
+<option value="12">
+12 Months - 20%
+</option>
+
+<option value="24">
+24 Months - 35%
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Purchase / Borrowed Amount (PHP)
+</label>
+
+<input
+type="text"
+id="amount"
+value="5,000.00"
+oninput="calculate()"
+onblur="formatAmount(this);calculate();"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Interest Rate - One Time (%)
+</label>
+
+<input
+type="number"
+id="interestRate"
+value="20"
+step="0.01"
+oninput="calculate()"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Processing Fee (%)
+</label>
+
+<input
+type="number"
+id="processingRate"
+value="0.51"
+step="0.01"
+oninput="calculate()"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Final Due Date
+</label>
 
 <input
 type="date"
@@ -516,21 +720,179 @@ onchange="calculateLate();calculate();"
 
 </div>
 
+</div>
+
+
+<div class="rate-box">
+
+<strong id="displayRate">
+20.00% One-Time Interest
+</strong>
+
+<br>
+
+The selected interest rate is applied
+<strong>once</strong> to the original borrowed amount.
+
+</div>
+
+
+<div class="metrics">
+
+
+<div class="metric">
+
+<small>
+Principal
+</small>
+
+<strong id="borrowedDisplay">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+Interest Profit
+</small>
+
+<strong id="profit">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+Processing Fee
+</small>
+
+<strong id="processing">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric highlight">
+
+<small>
+Total Lending Cost
+</small>
+
+<strong id="total">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric highlight">
+
+<small>
+Monthly Installment
+</small>
+
+<strong id="monthly">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+Monthly Profit Allocation
+</small>
+
+<strong id="monthlyProfit">
+PHP 0.00
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="info">
+
+<strong>Calculation Method:</strong>
+
+<br>
+
+Interest Profit =
+Borrowed Amount × Selected One-Time Interest Rate.
+
+<br><br>
+
+Example:
+
+PHP 5,000 × 10% =
+<strong>PHP 500 total interest.</strong>
+
+The PHP 500 is distributed across the installment schedule.
+
+It is NOT multiplied by the number of months.
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+LATE PAYMENT
+===================================================== -->
+
+<div class="card no-print">
+
+<h2>
+⏰ Late Payment Calculation
+</h2>
+
+<div class="grid">
+
+
 <div>
 
-<label>Actual Payment Date</label>
+<label>
+Scheduled Due Date
+</label>
 
 <input
 type="date"
-id="paymentDate"
-onchange="calculateLate();calculate();"
+id="lateDueDate"
+readonly
 >
 
 </div>
 
+
 <div>
 
-<label>Days Late</label>
+<label>
+Actual Payment Date
+</label>
+
+<input
+type="date"
+id="paymentDate"
+onchange="calculateLate();"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Days Late
+</label>
 
 <input
 type="text"
@@ -541,211 +903,46 @@ readonly
 
 </div>
 
-</div>
 
-<div class="date-box">
+<div>
 
-<strong>Borrow Date:</strong>
-<span id="borrowDateDisplay">-</span>
-
-<br>
-
-<strong>Final Due Date:</strong>
-<span id="dueDateDisplay">-</span>
-
-<br>
-
-<strong>Payment Status:</strong>
-<span id="paymentStatus">Pending</span>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-CALCULATOR
-===================================================== -->
-
-<div class="grid">
-
-<div class="card no-print">
-
-<h2>💰 Lending Calculator</h2>
-
-<label>Purchase / Borrowed Amount (PHP)</label>
+<label>
+Late Charge Rate
+</label>
 
 <input
 type="text"
-id="amount"
-value="5,000.00"
-oninput="calculate()"
-onblur="formatAmount(this);calculate();"
+value="0.40% per day"
+readonly
 >
 
-<label>Installment Period</label>
-
-<select
-id="months"
-onchange="updateRate();updateDueDate();"
->
-
-<option value="1">1 Month - 5%</option>
-
-<option value="3">3 Months - 7%</option>
-
-<option value="4">4 Months - 10%</option>
-
-<option value="6">6 Months - 15%</option>
-
-<option value="12" selected>
-12 Months - 20%
-</option>
-
-<option value="24">
-24 Months - 35%
-</option>
-
-</select>
-
-
-<label>Interest / Profit Rate (%)</label>
-
-<input
-type="number"
-id="interestRate"
-value="20"
-step="0.01"
-oninput="calculate()"
->
-
-
-<div class="rate-box">
-
-<small>Selected Interest / Profit Rate</small>
-
-<strong id="displayRate">20.00%</strong>
+</div>
 
 </div>
 
 
-<label>Processing Fee (%)</label>
+<div class="late-box">
 
-<input
-type="number"
-id="processingRate"
-value="0.51"
-step="0.01"
-oninput="calculate()"
->
-
-
-<div class="metrics">
-
-<div class="metric">
-
-<small>Borrowed Amount</small>
-
-<strong id="borrowedDisplay">
-PHP 0.00
+<strong>
+Late Payment Rule:
 </strong>
-
-</div>
-
-<div class="metric">
-
-<small>Total Profit</small>
-
-<strong id="profit">
-PHP 0.00
-</strong>
-
-</div>
-
-<div class="metric">
-
-<small>Processing Fee</small>
-
-<strong id="processing">
-PHP 0.00
-</strong>
-
-</div>
-
-<div class="metric">
-
-<small>Total Lending Cost</small>
-
-<strong id="total">
-PHP 0.00
-</strong>
-
-</div>
-
-<div class="metric highlight">
-
-<small>Monthly Installment</small>
-
-<strong id="monthly">
-PHP 0.00
-</strong>
-
-</div>
-
-<div class="metric">
-
-<small>Total Extra Cost %</small>
-
-<strong id="extraPercent">
-0.00%
-</strong>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-LATE
-===================================================== -->
-
-<div class="card no-print">
-
-<h2>⏰ Late Payment Charges</h2>
-
-<div class="info">
-
-<strong>Late Payment Rate: 0.40% per delayed day</strong>
-
-<br><br>
-
-Late charge formula:
 
 <br>
 
-<strong>
-Total Lending Cost × 0.40% × Days Late
-</strong>
+0.40% of the total lending cost
+is charged for every day late.
 
 </div>
+
 
 <div class="metrics">
 
+
 <div class="metric">
 
-<small>Total Lending Cost</small>
-
-<strong id="lateBase">
-PHP 0.00
-</strong>
-
-</div>
-
-<div class="metric highlight">
-
-<small>Late Charge Per Day</small>
+<small>
+Late Charge / Day
+</small>
 
 <strong id="dailyLate">
 PHP 0.00
@@ -753,9 +950,12 @@ PHP 0.00
 
 </div>
 
+
 <div class="metric">
 
-<small>Actual Late Charge</small>
+<small>
+Actual Late Charge
+</small>
 
 <strong id="actualLate">
 PHP 0.00
@@ -763,9 +963,12 @@ PHP 0.00
 
 </div>
 
+
 <div class="metric highlight">
 
-<small>Final Amount Due</small>
+<small>
+Final Amount Due
+</small>
 
 <strong id="finalDue">
 PHP 0.00
@@ -777,25 +980,332 @@ PHP 0.00
 
 </div>
 
+
+<!-- =====================================================
+PAYMENT SEARCH
+===================================================== -->
+
+<div class="card no-print">
+
+<h2>
+🔎 Search Borrower for Payment
+</h2>
+
+<label>
+Borrower Name / Reference
+</label>
+
+<input
+type="text"
+id="paymentSearch"
+placeholder="Search borrower..."
+oninput="searchBorrowerForPayment()"
+>
+
+<div id="paymentSearchResults"></div>
+
 </div>
 
 
 <!-- =====================================================
-PAYMENT SCHEDULE
+PAYMENT PANEL
 ===================================================== -->
 
-<div class="card">
+<div
+class="card no-print"
+id="paymentPanel"
+style="display:none;"
+>
 
-<h2>📅 Monthly Payment Schedule & Profit Breakdown</h2>
+<h2>
+💳 Record Payment
+</h2>
 
-<div class="info">
 
-The schedule shows the <strong>profit earned every month</strong>
-beside the principal, processing fee and monthly installment.
+<div
+class="search-result"
+id="selectedBorrowerSummary">
+</div>
 
-The bottom row shows the <strong>whole installment period profit</strong>.
+
+<div class="grid">
+
+
+<div>
+
+<label>
+Payment Date
+</label>
+
+<input
+type="date"
+id="newPaymentDate"
+>
 
 </div>
+
+
+<div>
+
+<label>
+Payment Amount (PHP)
+</label>
+
+<input
+type="text"
+id="newPaymentAmount"
+placeholder="0.00"
+onblur="formatAmount(this);calculateAdvancePayment();"
+oninput="calculateAdvancePayment();"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Payment Type
+</label>
+
+<select
+id="paymentType"
+onchange="calculateAdvancePayment()"
+>
+
+<option value="Installment">
+Monthly Installment
+</option>
+
+<option value="Partial">
+Partial Payment
+</option>
+
+<option value="Full Payment">
+Full Payment
+</option>
+
+<option value="Advance">
+Advance Payment
+</option>
+
+<option value="Late Payment">
+Late Payment
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Payment Reference / Receipt
+</label>
+
+<input
+type="text"
+id="paymentReference"
+placeholder="Receipt number"
+>
+
+</div>
+
+</div>
+
+
+<!-- ADVANCE PAYMENT -->
+
+<div
+class="discount-box"
+id="advanceBox"
+>
+
+<strong>
+💚 Advance Payment Discount
+</strong>
+
+<br><br>
+
+The discount is:
+
+<strong>
+PHP 1.00 per day early
+</strong>
+
+<br>
+
+Day 1 = PHP 1
+
+<br>
+
+Day 2 = PHP 2
+
+<br>
+
+Day 3 = PHP 3
+
+<br>
+
+Day 10 = PHP 10
+
+<br><br>
+
+The discount applies only when
+<strong>Advance Payment</strong>
+is selected.
+
+</div>
+
+
+<div class="metrics">
+
+
+<div class="metric">
+
+<small>
+Scheduled Amount
+</small>
+
+<strong id="advanceOriginal">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+Days Early
+</small>
+
+<strong id="advanceDays">
+0 Days
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+Discount
+</small>
+
+<strong id="advanceDiscount">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric highlight">
+
+<small>
+Final Advance Payment
+</small>
+
+<strong id="advanceFinal">
+PHP 0.00
+</strong>
+
+</div>
+
+</div>
+
+
+<label>
+Payment Notes
+</label>
+
+<textarea
+id="paymentNotes"
+placeholder="Payment notes..."
+></textarea>
+
+
+<div class="metrics">
+
+
+<div class="metric">
+
+<small>
+Total Loan Cost
+</small>
+
+<strong id="selectedTotal">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<small>
+Total Paid
+</small>
+
+<strong id="selectedPaid">
+PHP 0.00
+</strong>
+
+</div>
+
+
+<div class="metric highlight">
+
+<small>
+Remaining Balance
+</small>
+
+<strong id="selectedBalance">
+PHP 0.00
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="button-grid">
+
+
+<button
+class="success"
+onclick="recordPayment()">
+
+💾 Record Payment
+
+</button>
+
+
+<button
+class="warning"
+onclick="payFullBalance()">
+
+💰 Pay Full Balance
+
+</button>
+
+
+<button
+class="secondary"
+onclick="closePaymentPanel()">
+
+Close
+
+</button>
+
+</div>
+
+
+<h3>
+Payment History
+</h3>
+
 
 <div class="table-container">
 
@@ -805,29 +1315,107 @@ The bottom row shows the <strong>whole installment period profit</strong>.
 
 <tr>
 
-<th>Payment #</th>
+<th>
+Date
+</th>
 
-<th>Payment Date</th>
+<th>
+Type
+</th>
 
-<th>Principal</th>
+<th>
+Amount
+</th>
 
-<th>Monthly Profit</th>
+<th>
+Discount
+</th>
 
-<th>Processing Fee</th>
+<th>
+Days Early
+</th>
 
-<th>Monthly Installment</th>
+<th>
+Receipt
+</th>
 
-<th>Remaining Principal</th>
+<th>
+Action
+</th>
 
 </tr>
 
 </thead>
 
-<tbody id="schedule"></tbody>
+<tbody
+id="selectedPaymentHistory">
+</tbody>
 
 </table>
 
 </div>
+
+</div>
+
+
+<!-- =====================================================
+MONTHLY PAYMENT SCHEDULE
+===================================================== -->
+
+<div class="card">
+
+<h2>
+📅 Monthly Payment Schedule & Profit Breakdown
+</h2>
+
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+#
+</th>
+
+<th>
+Payment Date
+</th>
+
+<th>
+Principal Allocation
+</th>
+
+<th>
+Profit Allocation
+</th>
+
+<th>
+Processing
+</th>
+
+<th>
+Monthly Installment
+</th>
+
+<th>
+Cumulative Profit
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="schedule">
+</tbody>
+
+</table>
+
+</div>
+
 
 <div id="periodSummary"></div>
 
@@ -835,246 +1423,14 @@ The bottom row shows the <strong>whole installment period profit</strong>.
 
 
 <!-- =====================================================
-CUSTOMER COPY
+ALL PAYMENTS
 ===================================================== -->
 
 <div class="card no-print">
 
-<h2>🧾 Customer Copy</h2>
-
-<p>
-Generate a separate customer copy of the loan computation.
-This can be printed and provided to the borrower.
-</p>
-
-<div class="button-grid">
-
-<button onclick="printCustomerCopy()">
-🖨️ Print Customer Copy
-</button>
-
-<button onclick="emailCustomerCopy()">
-📧 Email Customer Copy
-</button>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-CUSTOMER COPY PRINT AREA
-===================================================== -->
-
-<div
-id="customerCopy"
-class="card customer-copy"
->
-
-<h2>NVI Lending & Installment Management System</h2>
-
-<h3>Customer Loan Computation Copy</h3>
-
-<hr>
-
-<p>
-<strong>Transaction Reference:</strong>
-<span id="ccReference"></span>
-</p>
-
-<p>
-<strong>Borrower:</strong>
-<span id="ccName"></span>
-</p>
-
-<p>
-<strong>Contact:</strong>
-<span id="ccPhone"></span>
-</p>
-
-<p>
-<strong>Email:</strong>
-<span id="ccEmail"></span>
-</p>
-
-<p>
-<strong>Address:</strong>
-<span id="ccAddress"></span>
-</p>
-
-<hr>
-
-<p>
-<strong>Borrow Date:</strong>
-<span id="ccBorrowDate"></span>
-</p>
-
-<p>
-<strong>Final Due Date:</strong>
-<span id="ccDueDate"></span>
-</p>
-
-<p>
-<strong>Payment Date:</strong>
-<span id="ccPaymentDate"></span>
-</p>
-
-<p>
-<strong>Days Late:</strong>
-<span id="ccDaysLate"></span>
-</p>
-
-<hr>
-
-<h3>Loan Computation</h3>
-
-<p>
-Borrowed Amount:
-<strong id="ccAmount"></strong>
-</p>
-
-<p>
-Installment Period:
-<strong id="ccMonths"></strong>
-</p>
-
-<p>
-Interest / Profit Rate:
-<strong id="ccRate"></strong>
-</p>
-
-<p>
-Whole-Period Profit:
-<strong id="ccProfit"></strong>
-</p>
-
-<p>
-Processing Fee:
-<strong id="ccProcessing"></strong>
-</p>
-
-<p>
-Total Lending Cost:
-<strong id="ccTotal"></strong>
-</p>
-
-<p>
-Monthly Installment:
-<strong id="ccMonthly"></strong>
-</p>
-
-<hr>
-
-<h3>Late Payment</h3>
-
-<p>
-Late Rate:
-<strong>0.40% per day</strong>
-</p>
-
-<p>
-Late Charge Per Day:
-<strong id="ccDailyLate"></strong>
-</p>
-
-<p>
-Actual Late Charge:
-<strong id="ccActualLate"></strong>
-</p>
-
-<p>
-Final Amount Due:
-<strong id="ccFinalDue"></strong>
-</p>
-
-<hr>
-
-<h3>Monthly Payment Schedule</h3>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Month</th>
-
-<th>Date</th>
-
-<th>Principal</th>
-
-<th>Monthly Profit</th>
-
-<th>Processing</th>
-
-<th>Installment</th>
-
-</tr>
-
-</thead>
-
-<tbody id="customerSchedule"></tbody>
-
-</table>
-
-<br>
-
-<p>
-<strong>
-Customer Copy - Please retain this document for your records.
-</strong>
-</p>
-
-</div>
-
-
-<!-- =====================================================
-DATABASE
-===================================================== -->
-
-<div class="card no-print">
-
-<h2>🗂️ Borrower Database</h2>
-
-<input
-type="text"
-id="borrowerSearch"
-placeholder="Search borrower or reference..."
-oninput="displayBorrowers()"
->
-
-<div class="button-grid">
-
-<button onclick="saveBorrower()" class="success">
-💾 Save Borrower
-</button>
-
-<button onclick="printTransaction()">
-🖨️ Print Transaction
-</button>
-
-<button onclick="emailTransaction()">
-📧 Email Transaction
-</button>
-
-<button onclick="newTransaction()" class="secondary">
-➕ New Transaction
-</button>
-
-<button onclick="exportCSV()" class="secondary">
-📥 Export CSV
-</button>
-
-<button onclick="deleteAllBorrowers()" class="danger">
-🗑️ Delete All
-</button>
-
-</div>
-
-<div
-id="statusMessage"
-class="status">
-</div>
+<h2>
+💳 All Borrowers Payment Register
+</h2>
 
 <div class="table-container">
 
@@ -1084,35 +1440,198 @@ class="status">
 
 <tr>
 
-<th>Reference</th>
+<th>
+Date
+</th>
 
-<th>Borrower</th>
+<th>
+Borrower
+</th>
 
-<th>Amount</th>
+<th>
+Loan Reference
+</th>
 
-<th>Borrow Date</th>
+<th>
+Payment Type
+</th>
 
-<th>Due Date</th>
+<th>
+Amount
+</th>
 
-<th>Period</th>
+<th>
+Discount
+</th>
 
-<th>Profit</th>
+<th>
+Receipt
+</th>
 
-<th>Total Cost</th>
-
-<th>Monthly</th>
-
-<th>Days Late</th>
-
-<th>Final Due</th>
-
-<th>Action</th>
+<th>
+Action
+</th>
 
 </tr>
 
 </thead>
 
-<tbody id="borrowerTable"></tbody>
+<tbody
+id="allPaymentsTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+BORROWER DATABASE
+===================================================== -->
+
+<div class="card no-print">
+
+<h2>
+🗂️ Borrower Database
+</h2>
+
+
+<label>
+Search Borrower
+</label>
+
+<input
+type="text"
+id="borrowerSearch"
+placeholder="Search by borrower name or reference..."
+oninput="displayBorrowers()"
+>
+
+
+<div class="button-grid">
+
+
+<button
+class="success"
+onclick="saveBorrower()">
+
+💾 Save Borrower
+
+</button>
+
+
+<button
+onclick="printCustomerCopy()">
+
+🖨️ Customer Copy
+
+</button>
+
+
+<button
+onclick="newTransaction()"
+class="secondary">
+
+➕ New Loan
+
+</button>
+
+
+<button
+onclick="exportCSV()"
+class="secondary">
+
+📥 Export Loans
+
+</button>
+
+
+<button
+onclick="exportPaymentsCSV()"
+class="secondary">
+
+📥 Export Payments
+
+</button>
+
+
+<button
+onclick="deleteAllBorrowers()"
+class="danger">
+
+🗑️ Delete All
+
+</button>
+
+</div>
+
+
+<div
+id="statusMessage"
+class="status">
+</div>
+
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Reference
+</th>
+
+<th>
+Borrower
+</th>
+
+<th>
+Principal
+</th>
+
+<th>
+Period
+</th>
+
+<th>
+Rate
+</th>
+
+<th>
+Interest Profit
+</th>
+
+<th>
+Total Loan
+</th>
+
+<th>
+Total Paid
+</th>
+
+<th>
+Balance
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Action
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="borrowerTable">
+</tbody>
 
 </table>
 
@@ -1124,7 +1643,9 @@ class="status">
 <footer>
 
 <p style="text-align:center;color:#667085;">
+
 NVI Lending & Installment Management System
+
 </p>
 
 </footer>
@@ -1134,8 +1655,9 @@ NVI Lending & Installment Management System
 
 <script>
 
+
 /* =====================================================
-INTEREST RATES
+SETTINGS
 ===================================================== */
 
 const interestRates = {
@@ -1155,13 +1677,36 @@ const interestRates = {
 };
 
 
-const processingDefault = 0.51;
+/*
+Late payment:
+
+0.40% per day
+*/
 
 const lateRate = 0.40;
 
 
+/*
+Advance payment:
+
+PHP 1 per day early
+*/
+
+const advanceDiscountPerDay = 1;
+
+
+/*
+Processing fee
+*/
+
+const processingDefault = 0.51;
+
+
+let selectedBorrowerId = null;
+
+
 /* =====================================================
-MONEY
+MONEY FORMAT
 ===================================================== */
 
 function money(value){
@@ -1187,7 +1732,8 @@ function num(id){
     const el =
     document.getElementById(id);
 
-    if(!el)return 0;
+    if(!el)
+        return 0;
 
     return parseFloat(
         el.value
@@ -1209,25 +1755,30 @@ function formatAmount(input){
     .replace(/,/g,"")
     .replace(/[^\d.]/g,"");
 
-    if(!value)return;
+    if(!value)
+        return;
 
     let parts=value.split(".");
 
-    let whole=parts[0] || "0";
+    let whole=
+    parts[0] || "0";
 
-    let decimal=parts[1] || "";
+    let decimal=
+    parts[1] || "";
 
-    decimal=decimal.substring(0,2);
+    decimal=
+    decimal.substring(0,2);
 
     while(decimal.length<2)
         decimal+="0";
 
-    whole=whole.replace(
+    whole=
+    whole.replace(
         /\B(?=(\d{3})+(?!\d))/g,
         ","
     );
 
-    input.value =
+    input.value=
     whole+"."+decimal;
 
 }
@@ -1239,16 +1790,23 @@ DATE
 
 function dateInput(date){
 
-    return date.getFullYear()+"-"+
-    String(date.getMonth()+1).padStart(2,"0")+"-"+
-    String(date.getDate()).padStart(2,"0");
+    return date.getFullYear()+
+    "-" +
+    String(
+        date.getMonth()+1
+    ).padStart(2,"0")+
+    "-" +
+    String(
+        date.getDate()
+    ).padStart(2,"0");
 
 }
 
 
 function displayDate(value){
 
-    if(!value)return "-";
+    if(!value)
+        return "-";
 
     return new Date(
         value+"T00:00:00"
@@ -1263,10 +1821,6 @@ function displayDate(value){
 
 }
 
-
-/* =====================================================
-ADD MONTHS
-===================================================== */
 
 function addMonthsSafe(date,months){
 
@@ -1300,10 +1854,34 @@ function addMonthsSafe(date,months){
 REFERENCE
 ===================================================== */
 
-function reference(){
+function newReference(){
 
-    return "NVI-"+
-    Date.now();
+    return "NVI-"+Date.now();
+
+}
+
+
+/* =====================================================
+DATABASE
+===================================================== */
+
+function getBorrowers(){
+
+    return JSON.parse(
+        localStorage.getItem(
+            "nviBorrowersDatabase"
+        ) || "[]"
+    );
+
+}
+
+
+function saveDatabase(records){
+
+    localStorage.setItem(
+        "nviBorrowersDatabase",
+        JSON.stringify(records)
+    );
 
 }
 
@@ -1316,7 +1894,9 @@ function updateRate(){
 
     let months=
     parseInt(
-        document.getElementById("months").value
+        document.getElementById(
+            "months"
+        ).value
     );
 
     let rate=
@@ -1330,7 +1910,8 @@ function updateRate(){
     document.getElementById(
         "displayRate"
     ).innerText=
-    rate.toFixed(2)+"%";
+    rate.toFixed(2)+
+    "% One-Time Interest";
 
     calculate();
 
@@ -1355,16 +1936,14 @@ function updateDueDate(){
         ).value
     ) || 1;
 
-    if(!borrow)return;
-
-    let date=
-    new Date(
-        borrow+"T00:00:00"
-    );
+    if(!borrow)
+        return;
 
     let due=
     addMonthsSafe(
-        date,
+        new Date(
+            borrow+"T00:00:00"
+        ),
         months
     );
 
@@ -1374,16 +1953,9 @@ function updateDueDate(){
     dateInput(due);
 
     document.getElementById(
-        "borrowDateDisplay"
-    ).innerText=
-    displayDate(borrow);
-
-    document.getElementById(
-        "dueDateDisplay"
-    ).innerText=
-    displayDate(
-        dateInput(due)
-    );
+        "lateDueDate"
+    ).value=
+    dateInput(due);
 
     calculate();
 
@@ -1391,12 +1963,13 @@ function updateDueDate(){
 
 
 /* =====================================================
-CALCULATE
+MAIN CALCULATION
 ===================================================== */
 
 function calculate(){
 
-    let amount=num("amount");
+    let principal=
+    num("amount");
 
     let months=
     parseInt(
@@ -1405,64 +1978,100 @@ function calculate(){
         ).value
     ) || 1;
 
-    let rate=num("interestRate");
+    let rate=
+    num("interestRate");
 
     let processingRate=
     num("processingRate");
 
-    let profit=
-    amount*rate/100;
+
+    /*
+    ONE-TIME INTEREST
+
+    Example:
+
+    5,000 × 10% = 500
+
+    The 500 is NOT multiplied by months.
+    */
+
+
+    let totalInterest=
+    principal*
+    rate/100;
+
 
     let processing=
-    amount*processingRate/100;
+    principal*
+    processingRate/100;
+
 
     let total=
-    amount+profit+processing;
+    principal+
+    totalInterest+
+    processing;
+
 
     let monthly=
     total/months;
 
-    let extraPercent=
-    amount?
-    ((profit+processing)/amount)*100:
-    0;
+
+    let monthlyProfit=
+    totalInterest/months;
+
 
     document.getElementById(
         "borrowedDisplay"
-    ).innerText=money(amount);
+    ).innerText=
+    money(principal);
+
 
     document.getElementById(
         "profit"
-    ).innerText=money(profit);
+    ).innerText=
+    money(totalInterest);
+
 
     document.getElementById(
         "processing"
-    ).innerText=money(processing);
+    ).innerText=
+    money(processing);
+
 
     document.getElementById(
         "total"
-    ).innerText=money(total);
+    ).innerText=
+    money(total);
+
 
     document.getElementById(
         "monthly"
-    ).innerText=money(monthly);
+    ).innerText=
+    money(monthly);
+
 
     document.getElementById(
-        "extraPercent"
+        "monthlyProfit"
     ).innerText=
-    extraPercent.toFixed(2)+"%";
+    money(monthlyProfit);
 
-    updateLate();
+
+    calculateLate();
 
     createSchedule();
 
-    updateCustomerCopy();
+
+    if(selectedBorrowerId){
+
+        updateSelectedBorrowerPanel();
+
+    }
 
 }
 
 
 /* =====================================================
-LATE DAYS
+LATE CALCULATION
 ===================================================== */
 
 function getDaysLate(){
@@ -1492,9 +2101,7 @@ function getDaysLate(){
 
     let days=
     Math.floor(
-        (
-            d2-d1
-        )/
+        (d2-d1)/
         86400000
     );
 
@@ -1506,14 +2113,52 @@ function getDaysLate(){
 }
 
 
-/* =====================================================
-LATE
-===================================================== */
-
 function calculateLate(){
+
+    let principal=
+    num("amount");
+
+    let rate=
+    num("interestRate");
+
+    let processingRate=
+    num("processingRate");
+
+
+    let interest=
+    principal*
+    rate/100;
+
+
+    let processing=
+    principal*
+    processingRate/100;
+
+
+    let total=
+    principal+
+    interest+
+    processing;
+
 
     let days=
     getDaysLate();
+
+
+    let dailyCharge=
+    total*
+    lateRate/100;
+
+
+    let actualCharge=
+    dailyCharge*
+    days;
+
+
+    let finalDue=
+    total+
+    actualCharge;
+
 
     document.getElementById(
         "daysLate"
@@ -1525,99 +2170,29 @@ function calculateLate(){
         " Days"
     );
 
-    let status=
-    document.getElementById(
-        "paymentStatus"
-    );
-
-    if(
-        !document.getElementById(
-            "paymentDate"
-        ).value
-    ){
-
-        status.innerText="Pending";
-
-    }
-    else if(days>0){
-
-        status.innerText=
-        "LATE - "+days+" Days";
-
-        status.style.color=
-        "#c62828";
-
-    }
-    else{
-
-        status.innerText=
-        "PAID ON TIME";
-
-        status.style.color=
-        "#16803c";
-
-    }
-
-    updateLate();
-
-}
-
-
-/* =====================================================
-LATE CALCULATION
-===================================================== */
-
-function updateLate(){
-
-    let amount=num("amount");
-
-    let rate=num("interestRate");
-
-    let processingRate=
-    num("processingRate");
-
-    let profit=
-    amount*rate/100;
-
-    let processing=
-    amount*processingRate/100;
-
-    let total=
-    amount+profit+processing;
-
-    let days=
-    getDaysLate();
-
-    let daily=
-    total*lateRate/100;
-
-    let actual=
-    daily*days;
-
-    let final=
-    total+actual;
-
-    document.getElementById(
-        "lateBase"
-    ).innerText=money(total);
 
     document.getElementById(
         "dailyLate"
-    ).innerText=money(daily);
+    ).innerText=
+    money(dailyCharge);
+
 
     document.getElementById(
         "actualLate"
-    ).innerText=money(actual);
+    ).innerText=
+    money(actualCharge);
+
 
     document.getElementById(
         "finalDue"
-    ).innerText=money(final);
+    ).innerText=
+    money(finalDue);
 
 }
 
 
 /* =====================================================
-PAYMENT SCHEDULE
+MONTHLY SCHEDULE
 ===================================================== */
 
 function createSchedule(){
@@ -1629,7 +2204,10 @@ function createSchedule(){
 
     table.innerHTML="";
 
-    let amount=num("amount");
+
+    let principal=
+    num("amount");
+
 
     let months=
     parseInt(
@@ -1638,42 +2216,60 @@ function createSchedule(){
         ).value
     ) || 1;
 
-    let rate=num("interestRate");
+
+    let rate=
+    num("interestRate");
+
 
     let processingRate=
     num("processingRate");
+
 
     let borrow=
     document.getElementById(
         "borrowDate"
     ).value;
 
-    if(
-        amount<=0 ||
-        !borrow
-    )return;
 
-    let profit=
-    amount*rate/100;
+    if(
+        principal<=0 ||
+        !borrow
+    )
+        return;
+
+
+    let totalInterest=
+    principal*
+    rate/100;
+
 
     let processing=
-    amount*processingRate/100;
+    principal*
+    processingRate/100;
 
-    let principalMonthly=
-    amount/months;
 
-    let profitMonthly=
-    profit/months;
+    let monthlyPrincipal=
+    principal/months;
 
-    let processingMonthly=
+
+    let monthlyProfit=
+    totalInterest/months;
+
+
+    let monthlyProcessing=
     processing/months;
 
-    let remaining=amount;
 
-    let totalPrincipal=0;
-    let totalProfit=0;
-    let totalProcessing=0;
-    let totalPayment=0;
+    let monthlyInstallment=
+    (
+        principal+
+        totalInterest+
+        processing
+    )/
+    months;
+
+
+    let cumulativeProfit=0;
 
 
     for(
@@ -1690,54 +2286,20 @@ function createSchedule(){
             i
         );
 
-        let principal=
-        principalMonthly;
 
-        let monthProfit=
-        profitMonthly;
+        cumulativeProfit+=
+        monthlyProfit;
 
-        let monthProcessing=
-        processingMonthly;
-
-        if(i===months){
-
-            principal=
-            amount-totalPrincipal;
-
-            monthProfit=
-            profit-totalProfit;
-
-            monthProcessing=
-            processing-totalProcessing;
-
-        }
-
-        let installment=
-        principal+
-        monthProfit+
-        monthProcessing;
-
-        remaining-=principal;
-
-        if(
-            Math.abs(remaining)<0.01
-        )
-        remaining=0;
-
-        totalPrincipal+=principal;
-
-        totalProfit+=monthProfit;
-
-        totalProcessing+=monthProcessing;
-
-        totalPayment+=installment;
 
         let row=
         document.createElement("tr");
 
+
         row.innerHTML=`
 
-        <td>${i}</td>
+        <td>
+        ${i}
+        </td>
 
         <td>
         ${displayDate(
@@ -1745,25 +2307,32 @@ function createSchedule(){
         )}
         </td>
 
-        <td>${money(principal)}</td>
+        <td>
+        ${money(monthlyPrincipal)}
+        </td>
 
         <td>
         <strong>
-        ${money(monthProfit)}
+        ${money(monthlyProfit)}
         </strong>
         </td>
 
-        <td>${money(monthProcessing)}</td>
+        <td>
+        ${money(monthlyProcessing)}
+        </td>
 
         <td>
         <strong>
-        ${money(installment)}
+        ${money(monthlyInstallment)}
         </strong>
         </td>
 
-        <td>${money(remaining)}</td>
+        <td>
+        ${money(cumulativeProfit)}
+        </td>
 
         `;
+
 
         table.appendChild(row);
 
@@ -1773,38 +2342,43 @@ function createSchedule(){
     let totalRow=
     document.createElement("tr");
 
+
     totalRow.className=
     "total-row";
+
 
     totalRow.innerHTML=`
 
     <td colspan="2">
-    WHOLE ${months}-MONTH PERIOD
+    WHOLE PERIOD
     </td>
 
     <td>
-    ${money(totalPrincipal)}
+    ${money(principal)}
     </td>
 
     <td>
-    <strong>
-    ${money(totalProfit)}
-    </strong>
+    ${money(totalInterest)}
     </td>
 
     <td>
-    ${money(totalProcessing)}
+    ${money(processing)}
     </td>
 
     <td>
-    ${money(totalPayment)}
+    ${money(
+        principal+
+        totalInterest+
+        processing
+    )}
     </td>
 
     <td>
-    ${money(0)}
+    ${money(totalInterest)}
     </td>
 
     `;
+
 
     table.appendChild(
         totalRow
@@ -1818,33 +2392,84 @@ function createSchedule(){
     <div class="metrics">
 
     <div class="metric">
-    <small>Monthly Profit</small>
-    <strong>${money(profitMonthly)}</strong>
+
+    <small>
+    Monthly Principal
+    </small>
+
+    <strong>
+    ${money(monthlyPrincipal)}
+    </strong>
+
     </div>
+
 
     <div class="metric highlight">
-    <small>Whole-Period Profit</small>
-    <strong>${money(totalProfit)}</strong>
+
+    <small>
+    Monthly Profit
+    </small>
+
+    <strong>
+    ${money(monthlyProfit)}
+    </strong>
+
     </div>
 
-    <div class="metric">
-    <small>Total Principal</small>
-    <strong>${money(totalPrincipal)}</strong>
-    </div>
 
     <div class="metric">
-    <small>Total Processing</small>
-    <strong>${money(totalProcessing)}</strong>
+
+    <small>
+    Whole Period Profit
+    </small>
+
+    <strong>
+    ${money(totalInterest)}
+    </strong>
+
     </div>
+
+
+    <div class="metric">
+
+    <small>
+    Processing Fee
+    </small>
+
+    <strong>
+    ${money(processing)}
+    </strong>
+
+    </div>
+
 
     <div class="metric highlight">
-    <small>Whole-Period Lending Cost</small>
-    <strong>${money(totalPayment)}</strong>
+
+    <small>
+    Total Lending Cost
+    </small>
+
+    <strong>
+    ${money(
+        principal+
+        totalInterest+
+        processing
+    )}
+    </strong>
+
     </div>
 
+
     <div class="metric">
-    <small>Average Monthly Installment</small>
-    <strong>${money(totalPayment/months)}</strong>
+
+    <small>
+    Monthly Installment
+    </small>
+
+    <strong>
+    ${money(monthlyInstallment)}
+    </strong>
+
     </div>
 
     </div>
@@ -1855,525 +2480,71 @@ function createSchedule(){
 
 
 /* =====================================================
-CUSTOMER COPY
+CURRENT LOAN
 ===================================================== */
 
-function updateCustomerCopy(){
+function getCurrentLoanData(){
 
-    let amount=num("amount");
+    let principal=
+    num("amount");
+
 
     let months=
     parseInt(
         document.getElementById(
             "months"
         ).value
-    ) || 1;
+    );
 
-    let rate=num("interestRate");
+
+    let rate=
+    num("interestRate");
+
 
     let processingRate=
     num("processingRate");
 
-    let profit=
-    amount*rate/100;
+
+    let totalInterest=
+    principal*
+    rate/100;
+
 
     let processing=
-    amount*processingRate/100;
+    principal*
+    processingRate/100;
+
 
     let total=
-    amount+profit+processing;
-
-    let monthly=
-    total/months;
-
-    let days=getDaysLate();
-
-    let daily=
-    total*lateRate/100;
-
-    let actual=
-    daily*days;
-
-    let final=
-    total+actual;
-
-
-    document.getElementById(
-        "ccReference"
-    ).innerText=
-    document.getElementById(
-        "referenceNumber"
-    ).value;
-
-    document.getElementById(
-        "ccName"
-    ).innerText=
-    document.getElementById(
-        "borrowerName"
-    ).value || "-";
-
-    document.getElementById(
-        "ccPhone"
-    ).innerText=
-    document.getElementById(
-        "borrowerPhone"
-    ).value || "-";
-
-    document.getElementById(
-        "ccEmail"
-    ).innerText=
-    document.getElementById(
-        "borrowerEmail"
-    ).value || "-";
-
-    document.getElementById(
-        "ccAddress"
-    ).innerText=
-    document.getElementById(
-        "borrowerAddress"
-    ).value || "-";
-
-    document.getElementById(
-        "ccBorrowDate"
-    ).innerText=
-    displayDate(
-        document.getElementById(
-            "borrowDate"
-        ).value
-    );
-
-    document.getElementById(
-        "ccDueDate"
-    ).innerText=
-    displayDate(
-        document.getElementById(
-            "dueDate"
-        ).value
-    );
-
-    document.getElementById(
-        "ccPaymentDate"
-    ).innerText=
-    displayDate(
-        document.getElementById(
-            "paymentDate"
-        ).value
-    );
-
-    document.getElementById(
-        "ccDaysLate"
-    ).innerText=
-    days+" Days";
-
-    document.getElementById(
-        "ccAmount"
-    ).innerText=money(amount);
-
-    document.getElementById(
-        "ccMonths"
-    ).innerText=
-    months+
-    " Month"+
-    (months>1?"s":"");
-
-    document.getElementById(
-        "ccRate"
-    ).innerText=
-    rate.toFixed(2)+"%";
-
-    document.getElementById(
-        "ccProfit"
-    ).innerText=
-    money(profit);
-
-    document.getElementById(
-        "ccProcessing"
-    ).innerText=
-    money(processing);
-
-    document.getElementById(
-        "ccTotal"
-    ).innerText=
-    money(total);
-
-    document.getElementById(
-        "ccMonthly"
-    ).innerText=
-    money(monthly);
-
-    document.getElementById(
-        "ccDailyLate"
-    ).innerText=
-    money(daily);
-
-    document.getElementById(
-        "ccActualLate"
-    ).innerText=
-    money(actual);
-
-    document.getElementById(
-        "ccFinalDue"
-    ).innerText=
-    money(final);
-
-
-    createCustomerSchedule();
-
-}
-
-
-/* =====================================================
-CUSTOMER SCHEDULE
-===================================================== */
-
-function createCustomerSchedule(){
-
-    let table=
-    document.getElementById(
-        "customerSchedule"
-    );
-
-    table.innerHTML="";
-
-    let amount=num("amount");
-
-    let months=
-    parseInt(
-        document.getElementById(
-            "months"
-        ).value
-    ) || 1;
-
-    let rate=num("interestRate");
-
-    let processingRate=
-    num("processingRate");
-
-    let borrow=
-    document.getElementById(
-        "borrowDate"
-    ).value;
-
-    if(!borrow)return;
-
-    let profit=
-    amount*rate/100;
-
-    let processing=
-    amount*processingRate/100;
-
-    let principalMonthly=
-    amount/months;
-
-    let profitMonthly=
-    profit/months;
-
-    let processingMonthly=
-    processing/months;
-
-    for(
-        let i=1;
-        i<=months;
-        i++
-    ){
-
-        let date=
-        addMonthsSafe(
-            new Date(
-                borrow+"T00:00:00"
-            ),
-            i
-        );
-
-        let principal=
-        i===months?
-        amount-principalMonthly*(months-1):
-        principalMonthly;
-
-        let mp=
-        i===months?
-        profit-profitMonthly*(months-1):
-        profitMonthly;
-
-        let pf=
-        i===months?
-        processing-processingMonthly*(months-1):
-        processingMonthly;
-
-        let row=
-        document.createElement("tr");
-
-        row.innerHTML=`
-
-        <td>${i}</td>
-
-        <td>
-        ${displayDate(
-            dateInput(date)
-        )}
-        </td>
-
-        <td>${money(principal)}</td>
-
-        <td>${money(mp)}</td>
-
-        <td>${money(pf)}</td>
-
-        <td>
-        <strong>
-        ${money(
-            principal+mp+pf
-        )}
-        </strong>
-        </td>
-
-        `;
-
-        table.appendChild(row);
-
-    }
-
-}
-
-
-/* =====================================================
-PRINT CUSTOMER COPY
-===================================================== */
-
-function printCustomerCopy(){
-
-    updateCustomerCopy();
-
-    let content=
-    document.getElementById(
-        "customerCopy"
-    ).innerHTML;
-
-    let win=
-    window.open(
-        "",
-        "_blank"
-    );
-
-    win.document.write(`
-
-    <html>
-
-    <head>
-
-    <title>
-    NVI Customer Copy
-    </title>
-
-    <style>
-
-    body{
-        font-family:Arial;
-        padding:30px;
-    }
-
-    table{
-        width:100%;
-        border-collapse:collapse;
-        margin-top:20px;
-    }
-
-    th,td{
-        border:1px solid #ccc;
-        padding:8px;
-        text-align:right;
-    }
-
-    th:first-child,
-    td:first-child{
-        text-align:left;
-    }
-
-    </style>
-
-    </head>
-
-    <body>
-
-    ${content}
-
-    </body>
-
-    </html>
-
-    `);
-
-    win.document.close();
-
-    win.focus();
-
-    setTimeout(
-        ()=>{
-            win.print();
-        },
-        500
-    );
-
-}
-
-
-/* =====================================================
-EMAIL CUSTOMER COPY
-===================================================== */
-
-function emailCustomerCopy(){
-
-    updateCustomerCopy();
-
-    let name=
-    document.getElementById(
-        "borrowerName"
-    ).value;
-
-    let email=
-    document.getElementById(
-        "borrowerEmail"
-    ).value;
-
-    let reference=
-    document.getElementById(
-        "referenceNumber"
-    ).value;
-
-    let amount=num("amount");
-
-    let months=
-    document.getElementById(
-        "months"
-    ).value;
-
-    let profit=num("amount")*
-    num("interestRate")/100;
-
-    let processing=num("amount")*
-    num("processingRate")/100;
-
-    let total=
-    amount+
-    profit+
+    principal+
+    totalInterest+
     processing;
 
-    let monthly=
-    total/months;
 
-    let days=
-    getDaysLate();
+    return {
 
-    let daily=
-    total*lateRate/100;
+        principal,
 
-    let actual=
-    daily*days;
+        months,
 
-    let final=
-    total+actual;
+        monthlyRate:rate,
 
-    let subject=
-    encodeURIComponent(
-        "NVI Customer Loan Copy - "+
-        reference
-    );
+        totalInterest,
 
-    let body=
+        monthlyInterest:
+        totalInterest/months,
 
-`NVI LENDING & INSTALLMENT MANAGEMENT SYSTEM
+        processing,
 
-CUSTOMER LOAN COMPUTATION
+        total
 
-Reference:
-${reference}
-
-Borrower:
-${name}
-
-Borrow Date:
-${displayDate(
-document.getElementById(
-"borrowDate"
-).value
-)}
-
-Final Due Date:
-${displayDate(
-document.getElementById(
-"dueDate"
-).value
-)}
-
-Borrowed Amount:
-${money(amount)}
-
-Installment Period:
-${months} Months
-
-Interest / Profit:
-${money(profit)}
-
-WHOLE-PERIOD PROFIT:
-${money(profit)}
-
-Processing Fee:
-${money(processing)}
-
-TOTAL LENDING COST:
-${money(total)}
-
-MONTHLY INSTALLMENT:
-${money(monthly)}
-
-Late Rate:
-0.40% per day
-
-Days Late:
-${days}
-
-Late Charge Per Day:
-${money(daily)}
-
-Actual Late Charge:
-${money(actual)}
-
-FINAL AMOUNT DUE:
-${money(final)}
-
-NVI Lending & Installment Management System`;
-
-
-    window.location.href=
-    "mailto:"+
-    encodeURIComponent(
-        email || ""
-    )+
-    "?subject="+
-    subject+
-    "&body="+
-    encodeURIComponent(body);
+    };
 
 }
 
 
 /* =====================================================
-DATABASE
-===================================================== */
-
-function getBorrowers(){
-
-    return JSON.parse(
-        localStorage.getItem(
-            "nviBorrowersDatabase"
-        ) || "[]"
-    );
-
-}
-
-
-/* =====================================================
-SAVE
+SAVE BORROWER
 ===================================================== */
 
 function saveBorrower(){
@@ -2382,6 +2553,7 @@ function saveBorrower(){
     document.getElementById(
         "borrowerName"
     ).value.trim();
+
 
     if(!name){
 
@@ -2393,52 +2565,35 @@ function saveBorrower(){
 
     }
 
-    let amount=num("amount");
 
-    let months=
-    parseInt(
-        document.getElementById(
-            "months"
-        ).value
+    let loan=
+    getCurrentLoanData();
+
+
+    let records=
+    getBorrowers();
+
+
+    let ref=
+    document.getElementById(
+        "referenceNumber"
+    ).value;
+
+
+    let existing=
+    records.find(
+        r=>r.reference===ref
     );
 
-    let rate=num("interestRate");
-
-    let processingRate=
-    num("processingRate");
-
-    let profit=
-    amount*rate/100;
-
-    let processing=
-    amount*processingRate/100;
-
-    let total=
-    amount+profit+processing;
-
-    let monthly=
-    total/months;
-
-    let days=
-    getDaysLate();
-
-    let daily=
-    total*lateRate/100;
-
-    let actual=
-    daily*days;
-
-    let final=
-    total+actual;
 
     let record={
 
-        id:Date.now(),
+        id:
+        existing?
+        existing.id:
+        Date.now(),
 
-        reference:
-        document.getElementById(
-            "referenceNumber"
-        ).value,
+        reference:ref,
 
         name:name,
 
@@ -2467,81 +2622,81 @@ function saveBorrower(){
             "dueDate"
         ).value,
 
-        paymentDate:
-        document.getElementById(
-            "paymentDate"
-        ).value,
+        months:loan.months,
 
-        amount:amount,
+        principal:loan.principal,
 
-        months:months,
+        monthlyRate:
+        loan.monthlyRate,
 
-        interestRate:rate,
+        totalInterest:
+        loan.totalInterest,
 
-        processingRate:
-        processingRate,
+        monthlyProfit:
+        loan.monthlyInterest,
 
-        profit:profit,
+        processing:
+        loan.processing,
 
-        processing:processing,
+        total:
+        loan.total,
 
-        total:total,
-
-        monthly:monthly,
-
-        daysLate:days,
-
-        dailyLateCharge:daily,
-
-        actualLateCharge:actual,
-
-        finalAmountDue:final,
+        payments:
+        existing?
+        existing.payments || []:
+        [],
 
         created:
+        existing?
+        existing.created:
         new Date().toISOString()
 
     };
 
 
-    let records=
-    getBorrowers();
+    if(existing){
 
-    let index=
-    records.findIndex(
-        x=>
-        x.reference===
-        record.reference
-    );
+        let index=
+        records.findIndex(
+            r=>r.reference===ref
+        );
 
-    if(index>=0)
         records[index]=record;
-    else
+
+    }
+    else{
+
         records.push(record);
 
-    localStorage.setItem(
-        "nviBorrowersDatabase",
-        JSON.stringify(records)
-    );
+    }
+
+
+    saveDatabase(records);
+
 
     displayBorrowers();
 
+    displayAllPayments();
+
     updateDashboard();
 
+
     alert(
-        "Borrower record saved successfully."
+        "Borrower saved successfully."
     );
 
 }
 
 
 /* =====================================================
-DISPLAY DATABASE
+BORROWER DISPLAY
 ===================================================== */
 
 function displayBorrowers(){
 
     let records=
     getBorrowers();
+
 
     let search=
     (
@@ -2550,57 +2705,106 @@ function displayBorrowers(){
         ).value || ""
     ).toLowerCase();
 
+
     let table=
     document.getElementById(
         "borrowerTable"
     );
 
+
     table.innerHTML="";
+
 
     records
     .filter(
         r=>
-        r.name.toLowerCase()
+        r.name
+        .toLowerCase()
         .includes(search)
         ||
-        r.reference.toLowerCase()
+        r.reference
+        .toLowerCase()
         .includes(search)
     )
     .forEach(
         r=>{
 
+            let paid=
+            getTotalPaid(r);
+
+
+            let balance=
+            Math.max(
+                0,
+                r.total-paid
+            );
+
+
+            let status=
+            getLoanStatus(r);
+
+
             let row=
             document.createElement("tr");
 
+
             row.innerHTML=`
 
-            <td>${r.reference}</td>
+            <td>
+            ${r.reference}
+            </td>
 
-            <td>${r.name}</td>
+            <td>
+            <strong>
+            ${r.name}
+            </strong>
+            </td>
 
-            <td>${money(r.amount)}</td>
+            <td>
+            ${money(r.principal)}
+            </td>
 
-            <td>${displayDate(r.borrowDate)}</td>
+            <td>
+            ${r.months}
+            </td>
 
-            <td>${displayDate(r.dueDate)}</td>
+            <td>
+            ${r.monthlyRate.toFixed(2)}%
+            </td>
 
-            <td>${r.months} Months</td>
+            <td>
+            ${money(r.totalInterest)}
+            </td>
 
-            <td>${money(r.profit)}</td>
+            <td>
+            ${money(r.total)}
+            </td>
 
-            <td>${money(r.total)}</td>
+            <td>
+            ${money(paid)}
+            </td>
 
-            <td>${money(r.monthly)}</td>
+            <td>
+            <strong>
+            ${money(balance)}
+            </strong>
+            </td>
 
-            <td>${r.daysLate}</td>
-
-            <td>${money(r.finalAmountDue)}</td>
+            <td class="${status.class}">
+            ${status.text}
+            </td>
 
             <td>
 
             <button
             onclick="loadBorrower(${r.id})">
-            Load
+            Open
+            </button>
+
+            <button
+            class="success"
+            onclick="openPayment(${r.id})">
+            Payment
             </button>
 
             <button
@@ -2613,6 +2817,7 @@ function displayBorrowers(){
 
             `;
 
+
             table.appendChild(row);
 
         }
@@ -2622,7 +2827,68 @@ function displayBorrowers(){
 
 
 /* =====================================================
-LOAD
+TOTAL PAID
+===================================================== */
+
+function getTotalPaid(record){
+
+    return (
+        record.payments || []
+    )
+    .reduce(
+        (sum,p)=>
+        sum+
+        Number(p.amount),
+        0
+    );
+
+}
+
+
+/* =====================================================
+STATUS
+===================================================== */
+
+function getLoanStatus(record){
+
+    let paid=
+    getTotalPaid(record);
+
+
+    let balance=
+    record.total-paid;
+
+
+    if(balance<=0.01){
+
+        return {
+            text:"PAID",
+            class:"paid"
+        };
+
+    }
+
+
+    if(paid>0){
+
+        return {
+            text:"PARTIAL",
+            class:"partial"
+        };
+
+    }
+
+
+    return {
+        text:"UNPAID",
+        class:"unpaid"
+    };
+
+}
+
+
+/* =====================================================
+LOAD BORROWER
 ===================================================== */
 
 function loadBorrower(id){
@@ -2633,46 +2899,76 @@ function loadBorrower(id){
         r=>r.id===id
     );
 
-    if(!record)return;
+
+    if(!record)
+        return;
+
 
     document.getElementById(
         "borrowerName"
-    ).value=record.name;
+    ).value=
+    record.name;
+
 
     document.getElementById(
         "borrowerPhone"
-    ).value=record.phone;
+    ).value=
+    record.phone || "";
+
 
     document.getElementById(
         "borrowerEmail"
-    ).value=record.email;
+    ).value=
+    record.email || "";
+
 
     document.getElementById(
         "borrowerAddress"
-    ).value=record.address;
+    ).value=
+    record.address || "";
+
 
     document.getElementById(
         "referenceNumber"
-    ).value=record.reference;
+    ).value=
+    record.reference;
+
 
     document.getElementById(
         "borrowDate"
-    ).value=record.borrowDate;
+    ).value=
+    record.borrowDate;
+
 
     document.getElementById(
         "dueDate"
-    ).value=record.dueDate;
+    ).value=
+    record.dueDate;
+
 
     document.getElementById(
-        "paymentDate"
+        "lateDueDate"
     ).value=
-    record.paymentDate || "";
+    record.dueDate;
+
+
+    document.getElementById(
+        "months"
+    ).value=
+    record.months;
+
+
+    document.getElementById(
+        "interestRate"
+    ).value=
+    record.monthlyRate;
+
 
     document.getElementById(
         "amount"
     ).value=
     Number(
-        record.amount
+        record.principal
     ).toLocaleString(
         "en-PH",
         {
@@ -2681,26 +2977,271 @@ function loadBorrower(id){
         }
     );
 
-    document.getElementById(
-        "months"
-    ).value=record.months;
-
-    document.getElementById(
-        "interestRate"
-    ).value=
-    record.interestRate;
-
-    document.getElementById(
-        "processingRate"
-    ).value=
-    record.processingRate;
-
-    calculateLate();
 
     calculate();
 
-    window.scrollTo({
-        top:0,
+
+    openPayment(id);
+
+}
+
+
+/* =====================================================
+PAYMENT SEARCH
+===================================================== */
+
+function searchBorrowerForPayment(){
+
+    let search=
+    document.getElementById(
+        "paymentSearch"
+    ).value
+    .trim()
+    .toLowerCase();
+
+
+    let container=
+    document.getElementById(
+        "paymentSearchResults"
+    );
+
+
+    container.innerHTML="";
+
+
+    if(!search)
+        return;
+
+
+    let records=
+    getBorrowers()
+    .filter(
+        r=>
+        r.name
+        .toLowerCase()
+        .includes(search)
+        ||
+        r.reference
+        .toLowerCase()
+        .includes(search)
+    );
+
+
+    if(!records.length){
+
+        container.innerHTML=
+        `<div class="info">
+        No borrower found.
+        </div>`;
+
+        return;
+
+    }
+
+
+    records.forEach(
+        r=>{
+
+            let paid=
+            getTotalPaid(r);
+
+
+            let balance=
+            Math.max(
+                0,
+                r.total-paid
+            );
+
+
+            let div=
+            document.createElement("div");
+
+
+            div.className=
+            "search-result";
+
+
+            div.innerHTML=`
+
+            <strong>
+            ${r.name}
+            </strong>
+
+            <br>
+
+            Reference:
+            ${r.reference}
+
+            <br>
+
+            Principal:
+            ${money(r.principal)}
+
+            <br>
+
+            Total Loan:
+            ${money(r.total)}
+
+            <br>
+
+            Total Paid:
+            ${money(paid)}
+
+            <br>
+
+            <strong>
+            Remaining:
+            ${money(balance)}
+            </strong>
+
+            <button
+            class="success"
+            onclick="openPayment(${r.id})">
+
+            Select Borrower
+
+            </button>
+
+            `;
+
+
+            container.appendChild(div);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+OPEN PAYMENT
+===================================================== */
+
+function openPayment(id){
+
+    selectedBorrowerId=id;
+
+
+    let record=
+    getBorrowers()
+    .find(
+        r=>r.id===id
+    );
+
+
+    if(!record)
+        return;
+
+
+    document.getElementById(
+        "paymentPanel"
+    ).style.display=
+    "block";
+
+
+    let paid=
+    getTotalPaid(record);
+
+
+    let balance=
+    Math.max(
+        0,
+        record.total-paid
+    );
+
+
+    document.getElementById(
+        "selectedBorrowerSummary"
+    ).innerHTML=`
+
+    <strong>
+    ${record.name}
+    </strong>
+
+    <br>
+
+    Reference:
+    ${record.reference}
+
+    <br>
+
+    Borrowed:
+    ${money(record.principal)}
+
+    <br>
+
+    One-Time Interest:
+    ${record.monthlyRate.toFixed(2)}%
+
+    <br>
+
+    Total Profit:
+    ${money(record.totalInterest)}
+
+    <br>
+
+    Total Loan Cost:
+    ${money(record.total)}
+
+    `;
+
+
+    document.getElementById(
+        "selectedTotal"
+    ).innerText=
+    money(record.total);
+
+
+    document.getElementById(
+        "selectedPaid"
+    ).innerText=
+    money(paid);
+
+
+    document.getElementById(
+        "selectedBalance"
+    ).innerText=
+    money(balance);
+
+
+    document.getElementById(
+        "newPaymentDate"
+    ).value=
+    dateInput(
+        new Date()
+    );
+
+
+    document.getElementById(
+        "newPaymentAmount"
+    ).value="";
+
+
+    document.getElementById(
+        "paymentReference"
+    ).value="";
+
+
+    document.getElementById(
+        "paymentNotes"
+    ).value="";
+
+
+    document.getElementById(
+        "paymentType"
+    ).value=
+    "Installment";
+
+
+    calculateAdvancePayment();
+
+
+    displaySelectedPaymentHistory();
+
+
+    document.getElementById(
+        "paymentPanel"
+    ).scrollIntoView({
         behavior:"smooth"
     });
 
@@ -2708,16 +3249,869 @@ function loadBorrower(id){
 
 
 /* =====================================================
-DELETE
+ADVANCE PAYMENT
+===================================================== */
+
+function calculateAdvancePayment(){
+
+    if(!selectedBorrowerId)
+        return;
+
+
+    let record=
+    getBorrowers()
+    .find(
+        r=>r.id===selectedBorrowerId
+    );
+
+
+    if(!record)
+        return;
+
+
+    let paymentType=
+    document.getElementById(
+        "paymentType"
+    ).value;
+
+
+    let paymentDate=
+    document.getElementById(
+        "newPaymentDate"
+    ).value;
+
+
+    let amount=
+    parseFloat(
+        document.getElementById(
+            "newPaymentAmount"
+        ).value
+        .replace(/,/g,"")
+    ) || 0;
+
+
+    /*
+    Default scheduled monthly amount
+    */
+
+    let scheduledAmount=
+    record.total/
+    record.months;
+
+
+    let daysEarly=0;
+
+
+    /*
+    For advance payment:
+
+    Compare actual payment date
+    against the next scheduled installment date.
+    */
+
+
+    if(
+        paymentType==="Advance" &&
+        paymentDate
+    ){
+
+        let paid=
+        getTotalPaid(record);
+
+
+        let installmentNumber=
+        Math.floor(
+            paid/
+            scheduledAmount
+        )+1;
+
+
+        let scheduledDate=
+        addMonthsSafe(
+            new Date(
+                record.borrowDate+
+                "T00:00:00"
+            ),
+            installmentNumber
+        );
+
+
+        let actualDate=
+        new Date(
+            paymentDate+
+            "T00:00:00"
+        );
+
+
+        let diff=
+        Math.floor(
+            (
+                scheduledDate-
+                actualDate
+            )/
+            86400000
+        );
+
+
+        daysEarly=
+        Math.max(
+            0,
+            diff
+        );
+
+    }
+
+
+    let discount=
+    daysEarly*
+    advanceDiscountPerDay;
+
+
+    /*
+    Never allow discount to exceed
+    the payment amount.
+    */
+
+    discount=
+    Math.min(
+        discount,
+        amount
+    );
+
+
+    let final=
+    Math.max(
+        0,
+        amount-discount
+    );
+
+
+    document.getElementById(
+        "advanceOriginal"
+    ).innerText=
+    money(amount);
+
+
+    document.getElementById(
+        "advanceDays"
+    ).innerText=
+    daysEarly+
+    (
+        daysEarly===1?
+        " Day":
+        " Days"
+    );
+
+
+    document.getElementById(
+        "advanceDiscount"
+    ).innerText=
+    money(discount);
+
+
+    document.getElementById(
+        "advanceFinal"
+    ).innerText=
+    money(final);
+
+}
+
+
+/* =====================================================
+UPDATE SELECTED PANEL
+===================================================== */
+
+function updateSelectedBorrowerPanel(){
+
+    if(!selectedBorrowerId)
+        return;
+
+
+    let record=
+    getBorrowers()
+    .find(
+        r=>r.id===selectedBorrowerId
+    );
+
+
+    if(!record)
+        return;
+
+
+    let paid=
+    getTotalPaid(record);
+
+
+    let balance=
+    Math.max(
+        0,
+        record.total-paid
+    );
+
+
+    document.getElementById(
+        "selectedTotal"
+    ).innerText=
+    money(record.total);
+
+
+    document.getElementById(
+        "selectedPaid"
+    ).innerText=
+    money(paid);
+
+
+    document.getElementById(
+        "selectedBalance"
+    ).innerText=
+    money(balance);
+
+}
+
+
+/* =====================================================
+RECORD PAYMENT
+===================================================== */
+
+function recordPayment(){
+
+    if(!selectedBorrowerId){
+
+        alert(
+            "Please select a borrower."
+        );
+
+        return;
+
+    }
+
+
+    let amount=
+    parseFloat(
+        document.getElementById(
+            "newPaymentAmount"
+        ).value
+        .replace(/,/g,"")
+    ) || 0;
+
+
+    if(amount<=0){
+
+        alert(
+            "Please enter a valid payment amount."
+        );
+
+        return;
+
+    }
+
+
+    let records=
+    getBorrowers();
+
+
+    let record=
+    records.find(
+        r=>r.id===selectedBorrowerId
+    );
+
+
+    if(!record)
+        return;
+
+
+    let paymentType=
+    document.getElementById(
+        "paymentType"
+    ).value;
+
+
+    /*
+    Calculate advance discount
+    */
+
+    let discount=0;
+
+    let daysEarly=0;
+
+
+    if(
+        paymentType==="Advance"
+    ){
+
+        let paymentDate=
+        document.getElementById(
+            "newPaymentDate"
+        ).value;
+
+
+        let paid=
+        getTotalPaid(record);
+
+
+        let installment=
+        record.total/
+        record.months;
+
+
+        let installmentNumber=
+        Math.floor(
+            paid/
+            installment
+        )+1;
+
+
+        let scheduledDate=
+        addMonthsSafe(
+            new Date(
+                record.borrowDate+
+                "T00:00:00"
+            ),
+            installmentNumber
+        );
+
+
+        let actualDate=
+        new Date(
+            paymentDate+
+            "T00:00:00"
+        );
+
+
+        daysEarly=
+        Math.max(
+            0,
+            Math.floor(
+                (
+                    scheduledDate-
+                    actualDate
+                )/
+                86400000
+            )
+        );
+
+
+        discount=
+        daysEarly*
+        advanceDiscountPerDay;
+
+
+        discount=
+        Math.min(
+            discount,
+            amount
+        );
+
+    }
+
+
+    /*
+    Important:
+
+    The amount entered by the user
+    is the amount before discount.
+
+    The actual payment credited to the
+    loan is amount - discount.
+    */
+
+    let creditedAmount=
+    amount-discount;
+
+
+    let alreadyPaid=
+    getTotalPaid(record);
+
+
+    let balance=
+    record.total-
+    alreadyPaid;
+
+
+    if(
+        creditedAmount>
+        balance+0.01
+    ){
+
+        if(
+            !confirm(
+                "The payment after discount is greater than the remaining balance. Continue?"
+            )
+        ){
+
+            return;
+
+        }
+
+    }
+
+
+    let payment={
+
+        id:Date.now(),
+
+        date:
+        document.getElementById(
+            "newPaymentDate"
+        ).value,
+
+        enteredAmount:amount,
+
+        amount:creditedAmount,
+
+        type:paymentType,
+
+        discount:discount,
+
+        daysEarly:daysEarly,
+
+        reference:
+        document.getElementById(
+            "paymentReference"
+        ).value,
+
+        notes:
+        document.getElementById(
+            "paymentNotes"
+        ).value
+
+    };
+
+
+    if(!record.payments)
+        record.payments=[];
+
+
+    record.payments.push(payment);
+
+
+    saveDatabase(records);
+
+
+    displayBorrowers();
+
+    displayAllPayments();
+
+    updateDashboard();
+
+    updateSelectedBorrowerPanel();
+
+    displaySelectedPaymentHistory();
+
+
+    alert(
+        "Payment recorded successfully."
+    );
+
+}
+
+
+/* =====================================================
+PAY FULL BALANCE
+===================================================== */
+
+function payFullBalance(){
+
+    if(!selectedBorrowerId)
+        return;
+
+
+    let record=
+    getBorrowers()
+    .find(
+        r=>r.id===selectedBorrowerId
+    );
+
+
+    if(!record)
+        return;
+
+
+    let balance=
+    record.total-
+    getTotalPaid(record);
+
+
+    if(balance<=0){
+
+        alert(
+            "This loan is already fully paid."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "newPaymentAmount"
+    ).value=
+    balance.toLocaleString(
+        "en-PH",
+        {
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        }
+    );
+
+
+    document.getElementById(
+        "paymentType"
+    ).value=
+    "Full Payment";
+
+
+    calculateAdvancePayment();
+
+
+    recordPayment();
+
+}
+
+
+/* =====================================================
+PAYMENT HISTORY
+===================================================== */
+
+function displaySelectedPaymentHistory(){
+
+    if(!selectedBorrowerId)
+        return;
+
+
+    let record=
+    getBorrowers()
+    .find(
+        r=>r.id===selectedBorrowerId
+    );
+
+
+    if(!record)
+        return;
+
+
+    let table=
+    document.getElementById(
+        "selectedPaymentHistory"
+    );
+
+
+    table.innerHTML="";
+
+
+    let payments=
+    record.payments || [];
+
+
+    if(!payments.length){
+
+        table.innerHTML=`
+
+        <tr>
+
+        <td colspan="7">
+
+        No payments recorded.
+
+        </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    payments.forEach(
+        p=>{
+
+            let row=
+            document.createElement("tr");
+
+
+            row.innerHTML=`
+
+            <td>
+            ${displayDate(p.date)}
+            </td>
+
+            <td>
+            ${p.type}
+            </td>
+
+            <td>
+            ${money(p.amount)}
+            </td>
+
+            <td>
+            ${money(p.discount || 0)}
+            </td>
+
+            <td>
+            ${p.daysEarly || 0}
+            </td>
+
+            <td>
+            ${p.reference || "-"}
+            </td>
+
+            <td>
+
+            <button
+            class="danger"
+            onclick="deletePayment(${p.id})">
+
+            Delete
+
+            </button>
+
+            </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+DELETE PAYMENT
+===================================================== */
+
+function deletePayment(paymentId){
+
+    if(
+        !confirm(
+            "Delete this payment record?"
+        )
+    )
+        return;
+
+
+    let records=
+    getBorrowers();
+
+
+    let record=
+    records.find(
+        r=>r.id===selectedBorrowerId
+    );
+
+
+    if(!record)
+        return;
+
+
+    record.payments=
+    (
+        record.payments || []
+    )
+    .filter(
+        p=>p.id!==paymentId
+    );
+
+
+    saveDatabase(records);
+
+
+    displaySelectedPaymentHistory();
+
+    displayBorrowers();
+
+    displayAllPayments();
+
+    updateDashboard();
+
+    updateSelectedBorrowerPanel();
+
+}
+
+
+/* =====================================================
+ALL PAYMENTS
+===================================================== */
+
+function displayAllPayments(){
+
+    let table=
+    document.getElementById(
+        "allPaymentsTable"
+    );
+
+
+    table.innerHTML="";
+
+
+    let records=
+    getBorrowers();
+
+
+    let payments=[];
+
+
+    records.forEach(
+        r=>{
+
+            (
+                r.payments || []
+            )
+            .forEach(
+                p=>{
+
+                    payments.push({
+
+                        borrower:r.name,
+
+                        loanReference:
+                        r.reference,
+
+                        ...p
+
+                    });
+
+                }
+            );
+
+        }
+    );
+
+
+    payments.sort(
+        (a,b)=>
+        new Date(b.date)-
+        new Date(a.date)
+    );
+
+
+    payments.forEach(
+        p=>{
+
+            let row=
+            document.createElement("tr");
+
+
+            row.innerHTML=`
+
+            <td>
+            ${displayDate(p.date)}
+            </td>
+
+            <td>
+            ${p.borrower}
+            </td>
+
+            <td>
+            ${p.loanReference}
+            </td>
+
+            <td>
+            ${p.type}
+            </td>
+
+            <td>
+            ${money(p.amount)}
+            </td>
+
+            <td>
+            ${money(p.discount || 0)}
+            </td>
+
+            <td>
+            ${p.reference || "-"}
+            </td>
+
+            <td>
+
+            <button
+            onclick="openPaymentByReference('${p.loanReference}')">
+
+            Open
+
+            </button>
+
+            </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+
+    if(!payments.length){
+
+        table.innerHTML=`
+
+        <tr>
+
+        <td colspan="8">
+
+        No payments recorded.
+
+        </td>
+
+        </tr>
+
+        `;
+
+    }
+
+}
+
+
+function openPaymentByReference(reference){
+
+    let record=
+    getBorrowers()
+    .find(
+        r=>r.reference===reference
+    );
+
+
+    if(record)
+        openPayment(record.id);
+
+}
+
+
+/* =====================================================
+CLOSE PAYMENT
+===================================================== */
+
+function closePaymentPanel(){
+
+    selectedBorrowerId=null;
+
+
+    document.getElementById(
+        "paymentPanel"
+    ).style.display=
+    "none";
+
+}
+
+
+/* =====================================================
+DELETE BORROWER
 ===================================================== */
 
 function deleteBorrower(id){
 
     if(
         !confirm(
-            "Delete this borrower?"
+            "Delete this borrower and ALL payment records?"
         )
-    )return;
+    )
+        return;
+
 
     let records=
     getBorrowers()
@@ -2725,12 +4119,13 @@ function deleteBorrower(id){
         r=>r.id!==id
     );
 
-    localStorage.setItem(
-        "nviBorrowersDatabase",
-        JSON.stringify(records)
-    );
+
+    saveDatabase(records);
+
 
     displayBorrowers();
+
+    displayAllPayments();
 
     updateDashboard();
 
@@ -2745,15 +4140,23 @@ function deleteAllBorrowers(){
 
     if(
         !confirm(
-            "Delete ALL borrower records?"
+            "WARNING: Delete ALL borrowers and payments?"
         )
-    )return;
+    )
+        return;
+
 
     localStorage.removeItem(
         "nviBorrowersDatabase"
     );
 
+
+    selectedBorrowerId=null;
+
+
     displayBorrowers();
+
+    displayAllPayments();
 
     updateDashboard();
 
@@ -2761,7 +4164,7 @@ function deleteAllBorrowers(){
 
 
 /* =====================================================
-CSV
+EXPORT LOANS
 ===================================================== */
 
 function exportCSV(){
@@ -2769,40 +4172,112 @@ function exportCSV(){
     let records=
     getBorrowers();
 
+
     if(!records.length){
 
         alert(
-            "No records available."
+            "No borrower records."
         );
 
         return;
 
     }
 
+
     let csv=
-    "Reference,Borrower,Amount,Borrow Date,Due Date,Payment Date,Months,Rate,Profit,Processing,Total,Monthly,Days Late,Final Due\n";
+    "Reference,Borrower,Principal,Months,One-Time Rate,Interest Profit,Processing,Total Loan,Total Paid,Balance,Status\n";
+
 
     records.forEach(
         r=>{
 
+            let paid=
+            getTotalPaid(r);
+
+
+            let balance=
+            Math.max(
+                0,
+                r.total-paid
+            );
+
+
             csv+=
             `"${r.reference}",`+
             `"${r.name}",`+
-            `${r.amount},`+
-            `${r.borrowDate},`+
-            `${r.dueDate},`+
-            `${r.paymentDate || ""},`+
+            `${r.principal},`+
             `${r.months},`+
-            `${r.interestRate},`+
-            `${r.profit},`+
+            `${r.monthlyRate},`+
+            `${r.totalInterest},`+
             `${r.processing},`+
             `${r.total},`+
-            `${r.monthly},`+
-            `${r.daysLate},`+
-            `${r.finalAmountDue}\n`;
+            `${paid},`+
+            `${balance},`+
+            `"${getLoanStatus(r).text}"\n`;
 
         }
     );
+
+
+    downloadCSV(
+        csv,
+        "NVI_Borrowers.csv"
+    );
+
+}
+
+
+/* =====================================================
+EXPORT PAYMENTS
+===================================================== */
+
+function exportPaymentsCSV(){
+
+    let records=
+    getBorrowers();
+
+
+    let csv=
+    "Date,Borrower,Loan Reference,Payment Type,Entered Amount,Credit Amount,Discount,Days Early,Receipt,Notes\n";
+
+
+    records.forEach(
+        r=>{
+
+            (
+                r.payments || []
+            )
+            .forEach(
+                p=>{
+
+                    csv+=
+                    `${p.date},`+
+                    `"${r.name}",`+
+                    `${r.reference},`+
+                    `"${p.type}",`+
+                    `${p.enteredAmount || p.amount},`+
+                    `${p.amount},`+
+                    `${p.discount || 0},`+
+                    `${p.daysEarly || 0},`+
+                    `"${p.reference || ""}",`+
+                    `"${p.notes || ""}"\n`;
+
+                }
+            );
+
+        }
+    );
+
+
+    downloadCSV(
+        csv,
+        "NVI_Payments.csv"
+    );
+
+}
+
+
+function downloadCSV(csv,name){
 
     let blob=
     new Blob(
@@ -2812,18 +4287,21 @@ function exportCSV(){
         }
     );
 
+
     let url=
     URL.createObjectURL(blob);
+
 
     let a=
     document.createElement("a");
 
+
     a.href=url;
 
-    a.download=
-    "NVI_Borrowers_Database.csv";
+    a.download=name;
 
     a.click();
+
 
     URL.revokeObjectURL(url);
 
@@ -2834,106 +4312,137 @@ function exportCSV(){
 DASHBOARD
 ===================================================== */
 
-let dashboardChart=null;
-
-
 function updateDashboard(){
 
     let records=
     getBorrowers();
+
 
     let month=
     document.getElementById(
         "dashboardMonth"
     ).value;
 
-    let totalBorrowed=0;
-    let totalProfit=0;
-    let totalProcessing=0;
+
+    let borrowed=0;
+
+    let profit=0;
+
     let received=0;
-    let due=0;
+
     let outstanding=0;
-    let monthlyProfit=0;
+
+    let due=0;
+
+    let late=0;
+
+    let monthReceived=0;
 
 
     records.forEach(
         r=>{
 
-            totalBorrowed+=
-            Number(r.amount);
-
-            totalProfit+=
-            Number(r.profit);
-
-            totalProcessing+=
-            Number(r.processing);
+            borrowed+=
+            Number(r.principal);
 
 
-            /*
-             Payment received:
-             counted when actual payment date
-             falls inside selected month.
-            */
-
-            if(
-                r.paymentDate &&
-                r.paymentDate.substring(0,7)
-                ===month
-            ){
-
-                received+=
-                Number(r.finalAmountDue);
-
-            }
+            profit+=
+            Number(r.totalInterest);
 
 
-            /*
-             Amount due:
-             loans whose final due date
-             falls inside selected month.
-            */
+            let paid=
+            getTotalPaid(r);
+
+
+            let balance=
+            Math.max(
+                0,
+                r.total-paid
+            );
+
+
+            outstanding+=
+            balance;
+
+
+            (
+                r.payments || []
+            )
+            .forEach(
+                p=>{
+
+                    if(
+                        p.date &&
+                        p.date.substring(0,7)
+                        ===month
+                    ){
+
+                        received+=
+                        Number(p.amount);
+
+                        monthReceived+=
+                        Number(p.amount);
+
+                    }
+
+                }
+            );
+
 
             if(
                 r.dueDate &&
                 r.dueDate.substring(0,7)
-                ===month
+                ===month &&
+                balance>0
             ){
 
-                if(!r.paymentDate){
-
-                    due+=
-                    Number(r.finalAmountDue);
-
-                }
+                due+=
+                balance;
 
             }
 
 
             /*
-             Outstanding:
-             unpaid loan total.
-            */
-
-            if(!r.paymentDate){
-
-                outstanding+=
-                Number(r.finalAmountDue);
-
-            }
-
-
-            /*
-             Profit for selected month.
+            Current late charges
             */
 
             if(
-                r.borrowDate &&
-                r.borrowDate.substring(0,7)
-                ===month
+                r.dueDate &&
+                balance>0
             ){
 
-                monthlyProfit+=
-                Number(r.profit);
+                let dueDate=
+                new Date(
+                    r.dueDate+
+                    "T00:00:00"
+                );
+
+
+                let today=
+                new Date();
+
+
+                if(today>dueDate){
+
+                    let days=
+                    Math.floor(
+                        (
+                            today-
+                            dueDate
+                        )/
+                        86400000
+                    );
+
+
+                    let daily=
+                    r.total*
+                    lateRate/100;
+
+
+                    late+=
+                    daily*days;
+
+                }
 
             }
 
@@ -2950,19 +4459,13 @@ function updateDashboard(){
     document.getElementById(
         "dashBorrowed"
     ).innerText=
-    money(totalBorrowed);
+    money(borrowed);
 
 
     document.getElementById(
         "dashProfit"
     ).innerText=
-    money(totalProfit);
-
-
-    document.getElementById(
-        "dashProcessing"
-    ).innerText=
-    money(totalProcessing);
+    money(profit);
 
 
     document.getElementById(
@@ -2984,374 +4487,680 @@ function updateDashboard(){
 
 
     document.getElementById(
-        "dashMonthlyProfit"
+        "dashLate"
     ).innerText=
-    money(monthlyProfit);
+    money(late);
 
 
-    drawDashboardChart(
-        records,
-        month
+    document.getElementById(
+        "dashMonthReceived"
+    ).innerText=
+    money(monthReceived);
+
+
+    drawChart(
+        borrowed,
+        received,
+        due,
+        profit
     );
 
 }
 
 
 /* =====================================================
-DASHBOARD CHART
+CHART
 ===================================================== */
 
-function drawDashboardChart(
-    records,
-    month
+function drawChart(
+    borrowed,
+    received,
+    due,
+    profit
 ){
 
-    const canvas=
+    let canvas=
     document.getElementById(
         "dashboardChart"
     );
 
-    const ctx=
+
+    let ctx=
     canvas.getContext("2d");
 
 
-    if(dashboardChart){
-
-        dashboardChart.destroy();
-
-    }
+    let rect=
+    canvas.getBoundingClientRect();
 
 
-    let borrowed=0;
-    let received=0;
-    let due=0;
-    let profit=0;
+    let dpr=
+    window.devicePixelRatio || 1;
 
 
-    records.forEach(
-        r=>{
-
-            if(
-                r.borrowDate &&
-                r.borrowDate.substring(0,7)
-                ===month
-            ){
-
-                borrowed+=
-                Number(r.amount);
-
-                profit+=
-                Number(r.profit);
-
-            }
+    canvas.width=
+    rect.width*dpr;
 
 
-            if(
-                r.paymentDate &&
-                r.paymentDate.substring(0,7)
-                ===month
-            ){
-
-                received+=
-                Number(r.finalAmountDue);
-
-            }
+    canvas.height=
+    rect.height*dpr;
 
 
-            if(
-                r.dueDate &&
-                r.dueDate.substring(0,7)
-                ===month &&
-                !r.paymentDate
-            ){
-
-                due+=
-                Number(r.finalAmountDue);
-
-            }
-
-        }
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
     );
 
 
-    dashboardChart=
-    new SimpleChart(
-        ctx,
-        [
-            borrowed,
-            received,
-            due,
-            profit
-        ],
-        [
-            "Money Borrowed",
-            "Payments Received",
-            "Amount Due",
-            "Profit"
-        ]
+    let width=
+    rect.width;
+
+
+    let height=
+    rect.height;
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
     );
 
-}
+
+    let values=[
+        borrowed,
+        received,
+        due,
+        profit
+    ];
 
 
-/* =====================================================
-SIMPLE CHART
-===================================================== */
+    let labels=[
+        "Borrowed",
+        "Received",
+        "Due",
+        "Profit"
+    ];
 
-class SimpleChart{
 
-    constructor(
-        ctx,
-        values,
-        labels
+    let max=
+    Math.max(
+        ...values,
+        1
+    );
+
+
+    let left=80;
+
+    let bottom=60;
+
+    let top=30;
+
+    let right=30;
+
+
+    let chartWidth=
+    width-left-right;
+
+
+    let chartHeight=
+    height-top-bottom;
+
+
+    ctx.strokeStyle="#ddd";
+
+
+    for(
+        let i=0;
+        i<=5;
+        i++
     ){
 
-        this.ctx=ctx;
-        this.values=values;
-        this.labels=labels;
+        let y=
+        top+
+        chartHeight-
+        chartHeight*i/5;
 
-        this.draw();
 
-        window.addEventListener(
-            "resize",
-            ()=>{
-                this.draw();
-            }
+        ctx.beginPath();
+
+        ctx.moveTo(
+            left,
+            y
         );
+
+        ctx.lineTo(
+            width-right,
+            y
+        );
+
+        ctx.stroke();
 
     }
 
 
-    draw(){
-
-        let canvas=
-        this.ctx.canvas;
-
-        let rect=
-        canvas.getBoundingClientRect();
-
-        let dpr=
-        window.devicePixelRatio || 1;
-
-        canvas.width=
-        rect.width*dpr;
-
-        canvas.height=
-        rect.height*dpr;
-
-        this.ctx.setTransform(
-            dpr,
-            0,
-            0,
-            dpr,
-            0,
-            0
-        );
-
-        let width=
-        rect.width;
-
-        let height=
-        rect.height;
-
-        this.ctx.clearRect(
-            0,
-            0,
-            width,
-            height
-        );
+    let barWidth=
+    chartWidth/
+    values.length*
+    .5;
 
 
-        let max=
-        Math.max(
-            ...this.values,
-            1
-        );
+    values.forEach(
+        (value,index)=>{
+
+            let x=
+            left+
+            (
+                index+.5
+            )*
+            chartWidth/
+            values.length-
+            barWidth/2;
 
 
-        let left=80;
-        let bottom=55;
-        let top=30;
-        let right=30;
+            let barHeight=
+            value/max*
+            chartHeight;
 
-        let chartWidth=
-        width-left-right;
-
-        let chartHeight=
-        height-top-bottom;
-
-
-        /*
-        Grid
-        */
-
-        this.ctx.strokeStyle=
-        "#e2e5ea";
-
-        this.ctx.lineWidth=1;
-
-
-        for(let i=0;i<=5;i++){
 
             let y=
             top+
             chartHeight-
-            (chartHeight*i/5);
+            barHeight;
 
-            this.ctx.beginPath();
 
-            this.ctx.moveTo(
-                left,
-                y
+            ctx.fillStyle=
+            "#3f51b5";
+
+
+            ctx.fillRect(
+                x,
+                y,
+                barWidth,
+                barHeight
             );
 
-            this.ctx.lineTo(
-                width-right,
-                y
+
+            ctx.fillStyle=
+            "#172033";
+
+
+            ctx.font=
+            "bold 12px Arial";
+
+
+            ctx.textAlign=
+            "center";
+
+
+            ctx.fillText(
+                moneyShort(value),
+                x+barWidth/2,
+                y-8
             );
 
-            this.ctx.stroke();
 
-
-            let value=
-            max*i/5;
-
-            this.ctx.fillStyle=
-            "#667085";
-
-            this.ctx.font=
+            ctx.font=
             "12px Arial";
 
-            this.ctx.textAlign=
-            "right";
 
-            this.ctx.fillText(
-                this.shortMoney(value),
-                left-10,
-                y+4
+            ctx.fillText(
+                labels[index],
+                x+barWidth/2,
+                height-25
             );
 
         }
+    );
+
+}
 
 
-        let barWidth=
-        chartWidth/
-        this.values.length*
-        .55;
+function moneyShort(value){
 
-
-        this.values.forEach(
-            (value,index)=>{
-
-                let x=
-                left+
-                (
-                    index+
-                    .5
-                )*
-                (
-                    chartWidth/
-                    this.values.length
-                )-
-                barWidth/2;
-
-
-                let barHeight=
-                (
-                    value/max
-                )*
-                chartHeight;
-
-
-                let y=
-                top+
-                chartHeight-
-                barHeight;
-
-
-                this.ctx.fillStyle=
-                "#3f51b5";
-
-
-                this.ctx.fillRect(
-                    x,
-                    y,
-                    barWidth,
-                    barHeight
-                );
-
-
-                this.ctx.fillStyle=
-                "#172033";
-
-                this.ctx.font=
-                "bold 12px Arial";
-
-                this.ctx.textAlign=
-                "center";
-
-
-                this.ctx.fillText(
-                    this.shortMoney(value),
-                    x+barWidth/2,
-                    y-8
-                );
-
-
-                this.ctx.font=
-                "12px Arial";
-
-
-                this.ctx.fillText(
-                    this.labels[index],
-                    x+barWidth/2,
-                    height-25
-                );
-
-            }
-        );
-
-    }
-
-
-    shortMoney(value){
-
-        if(value>=1000000)
-            return "PHP "+
-            (value/1000000).toFixed(1)+"M";
-
-        if(value>=1000)
-            return "PHP "+
-            (value/1000).toFixed(1)+"K";
+    if(value>=1000000){
 
         return "PHP "+
-        value.toFixed(0);
+        (
+            value/
+            1000000
+        ).toFixed(1)+"M";
 
     }
 
+
+    if(value>=1000){
+
+        return "PHP "+
+        (
+            value/
+            1000
+        ).toFixed(1)+"K";
+
+    }
+
+
+    return "PHP "+
+    value.toFixed(0);
+
 }
 
 
 /* =====================================================
-PRINT
+CUSTOMER COPY
 ===================================================== */
 
-function printTransaction(){
+function printCustomerCopy(){
 
-    updateCustomerCopy();
+    let name=
+    document.getElementById(
+        "borrowerName"
+    ).value;
 
-    window.print();
+
+    if(!name){
+
+        alert(
+            "Please load a borrower first."
+        );
+
+        return;
+
+    }
+
+
+    let loan=
+    getCurrentLoanData();
+
+
+    let paid=
+    selectedBorrowerId?
+    getTotalPaid(
+        getBorrowers().find(
+            r=>r.id===selectedBorrowerId
+        )
+    ):
+    0;
+
+
+    let balance=
+    Math.max(
+        0,
+        loan.total-paid
+    );
+
+
+    let win=
+    window.open(
+        "",
+        "_blank"
+    );
+
+
+    win.document.write(`
+
+    <html>
+
+    <head>
+
+    <title>
+    NVI Customer Loan Copy
+    </title>
+
+    <style>
+
+    body{
+        font-family:Arial;
+        padding:30px;
+    }
+
+    h1{
+        text-align:center;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+        margin-top:20px;
+    }
+
+    th,td{
+        border:1px solid #aaa;
+        padding:8px;
+    }
+
+    th{
+        background:#eee;
+    }
+
+    </style>
+
+    </head>
+
+    <body>
+
+
+    <h1>
+    NVI Lending & Installment Management System
+    </h1>
+
+
+    <h2>
+    Customer Loan Copy
+    </h2>
+
+
+    <hr>
+
+
+    <p>
+    <strong>
+    Borrower:
+    </strong>
+
+    ${name}
+
+    </p>
+
+
+    <p>
+    <strong>
+    Reference:
+    </strong>
+
+    ${
+        document.getElementById(
+            "referenceNumber"
+        ).value
+    }
+
+    </p>
+
+
+    <p>
+    <strong>
+    Borrow Date:
+    </strong>
+
+    ${
+        displayDate(
+            document.getElementById(
+                "borrowDate"
+            ).value
+        )
+    }
+
+    </p>
+
+
+    <p>
+    <strong>
+    Final Due Date:
+    </strong>
+
+    ${
+        displayDate(
+            document.getElementById(
+                "dueDate"
+            ).value
+        )
+    }
+
+    </p>
+
+
+    <hr>
+
+
+    <p>
+    Principal:
+
+    <strong>
+    ${money(loan.principal)}
+    </strong>
+
+    </p>
+
+
+    <p>
+    One-Time Interest Rate:
+
+    <strong>
+    ${loan.monthlyRate.toFixed(2)}%
+    </strong>
+
+    </p>
+
+
+    <p>
+    Total Interest Profit:
+
+    <strong>
+    ${money(loan.totalInterest)}
+    </strong>
+
+    </p>
+
+
+    <p>
+    Processing Fee:
+
+    <strong>
+    ${money(loan.processing)}
+    </strong>
+
+    </p>
+
+
+    <p>
+    Total Lending Cost:
+
+    <strong>
+    ${money(loan.total)}
+    </strong>
+
+    </p>
+
+
+    <p>
+    Total Paid:
+
+    <strong>
+    ${money(paid)}
+    </strong>
+
+    </p>
+
+
+    <p>
+    Remaining Balance:
+
+    <strong>
+    ${money(balance)}
+    </strong>
+
+    </p>
+
+
+    <hr>
+
+
+    <h3>
+    Monthly Payment Schedule
+    </h3>
+
+
+    <table>
+
+    <tr>
+
+    <th>
+    Month
+    </th>
+
+    <th>
+    Date
+    </th>
+
+    <th>
+    Principal
+    </th>
+
+    <th>
+    Profit
+    </th>
+
+    <th>
+    Installment
+    </th>
+
+    </tr>
+
+
+    ${
+        createPrintableSchedule(
+            loan
+        )
+    }
+
+
+    </table>
+
+
+    <hr>
+
+
+    <p>
+
+    Advance Payment Discount:
+
+    <strong>
+    PHP 1.00 per day early
+    </strong>
+
+    </p>
+
+
+    <p>
+
+    Late Payment Charge:
+
+    <strong>
+    0.40% per day
+    </strong>
+
+    </p>
+
+
+    <p>
+    Customer Copy
+    </p>
+
+
+    </body>
+
+    </html>
+
+    `);
+
+
+    win.document.close();
+
+
+    setTimeout(
+        ()=>{
+            win.print();
+        },
+        500
+    );
 
 }
 
 
 /* =====================================================
-EMAIL
+PRINTABLE SCHEDULE
 ===================================================== */
 
-function emailTransaction(){
+function createPrintableSchedule(loan){
 
-    emailCustomerCopy();
+    let borrow=
+    document.getElementById(
+        "borrowDate"
+    ).value;
+
+
+    let monthlyPrincipal=
+    loan.principal/
+    loan.months;
+
+
+    let monthlyProfit=
+    loan.totalInterest/
+    loan.months;
+
+
+    let monthlyInstallment=
+    loan.total/
+    loan.months;
+
+
+    let html="";
+
+
+    for(
+        let i=1;
+        i<=loan.months;
+        i++
+    ){
+
+        let date=
+        addMonthsSafe(
+            new Date(
+                borrow+
+                "T00:00:00"
+            ),
+            i
+        );
+
+
+        html+=`
+
+        <tr>
+
+        <td>
+        ${i}
+        </td>
+
+        <td>
+        ${displayDate(
+            dateInput(date)
+        )}
+        </td>
+
+        <td>
+        ${money(monthlyPrincipal)}
+        </td>
+
+        <td>
+        ${money(monthlyProfit)}
+        </td>
+
+        <td>
+        ${money(monthlyInstallment)}
+        </td>
+
+        </tr>
+
+        `;
+
+    }
+
+
+    return html;
 
 }
 
@@ -3362,26 +5171,34 @@ NEW TRANSACTION
 
 function newTransaction(){
 
+    selectedBorrowerId=null;
+
+
     document.getElementById(
         "borrowerName"
     ).value="";
+
 
     document.getElementById(
         "borrowerPhone"
     ).value="";
 
+
     document.getElementById(
         "borrowerEmail"
     ).value="";
+
 
     document.getElementById(
         "borrowerAddress"
     ).value="";
 
+
     document.getElementById(
         "referenceNumber"
     ).value=
-    reference();
+    newReference();
+
 
     document.getElementById(
         "borrowDate"
@@ -3390,22 +5207,23 @@ function newTransaction(){
         new Date()
     );
 
-    document.getElementById(
-        "paymentDate"
-    ).value="";
-
-    document.getElementById(
-        "amount"
-    ).value="5,000.00";
 
     document.getElementById(
         "months"
     ).value="12";
 
+
     document.getElementById(
         "processingRate"
     ).value=
     processingDefault;
+
+
+    document.getElementById(
+        "amount"
+    ).value=
+    "5,000.00";
+
 
     updateRate();
 
@@ -3413,11 +5231,13 @@ function newTransaction(){
 
     calculate();
 
+    closePaymentPanel();
+
 }
 
 
 /* =====================================================
-INITIALIZATION
+INITIALIZE
 ===================================================== */
 
 function initialize(){
@@ -3425,7 +5245,8 @@ function initialize(){
     document.getElementById(
         "referenceNumber"
     ).value=
-    reference();
+    newReference();
+
 
     document.getElementById(
         "borrowDate"
@@ -3433,6 +5254,7 @@ function initialize(){
     dateInput(
         new Date()
     );
+
 
     document.getElementById(
         "dashboardMonth"
@@ -3441,16 +5263,20 @@ function initialize(){
     .toISOString()
     .substring(0,7);
 
+
     document.getElementById(
         "processingRate"
     ).value=
     processingDefault;
+
 
     updateRate();
 
     updateDueDate();
 
     displayBorrowers();
+
+    displayAllPayments();
 
     updateDashboard();
 
@@ -3461,7 +5287,9 @@ function initialize(){
 
 initialize();
 
+
 </script>
 
 </body>
+
 </html>
