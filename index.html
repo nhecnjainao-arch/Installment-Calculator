@@ -12,7 +12,7 @@
 <style>
 
 /* =========================================================
-   GENERAL
+   GLOBAL
 ========================================================= */
 
 * {
@@ -27,28 +27,34 @@ body {
 }
 
 .container {
-    max-width: 1250px;
+    max-width: 1400px;
     margin: auto;
     padding: 20px;
 }
 
 header,
 .card {
-    background: white;
+    background: #ffffff;
     border-radius: 16px;
     padding: 22px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
 }
 
 header h1 {
     margin: 0 0 8px;
+    font-size: 30px;
 }
 
 header p {
-    color: #667085;
     margin: 0;
+    color: #667085;
 }
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
 
 .grid {
     display: grid;
@@ -58,7 +64,20 @@ header p {
 
 
 /* =========================================================
-   FORM
+   HEADINGS
+========================================================= */
+
+h2 {
+    margin-top: 0;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   FORMS
 ========================================================= */
 
 label {
@@ -70,8 +89,8 @@ label {
 
 input,
 select,
-button,
-textarea {
+textarea,
+button {
     width: 100%;
     padding: 12px;
     border-radius: 8px;
@@ -100,7 +119,7 @@ button {
 }
 
 button:hover {
-    opacity: 0.90;
+    opacity: 0.9;
 }
 
 .secondary {
@@ -129,7 +148,6 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    margin-top: 10px;
 }
 
 
@@ -140,7 +158,7 @@ button:hover {
 .metrics {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 12px;
     margin-top: 20px;
 }
 
@@ -188,7 +206,7 @@ button:hover {
 
 
 /* =========================================================
-   INFO
+   INFORMATION BOX
 ========================================================= */
 
 .info {
@@ -202,7 +220,7 @@ button:hover {
 
 
 /* =========================================================
-   DATE BOX
+   DATE STATUS
 ========================================================= */
 
 .date-box {
@@ -211,10 +229,7 @@ button:hover {
     padding: 14px;
     border-radius: 8px;
     margin-top: 15px;
-}
-
-.date-box strong {
-    font-size: 18px;
+    line-height: 1.8;
 }
 
 
@@ -230,7 +245,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
-    min-width: 650px;
+    min-width: 750px;
 }
 
 th,
@@ -238,6 +253,7 @@ td {
     padding: 11px;
     border-bottom: 1px solid #ddd;
     text-align: right;
+    white-space: nowrap;
 }
 
 th:first-child,
@@ -277,12 +293,29 @@ tr.selected {
 
 
 /* =========================================================
-   PRINT
+   PRINT AREA
 ========================================================= */
 
 .print-area {
     display: none;
 }
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    text-align: center;
+    color: #667085;
+    padding: 20px;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
 
 @media print {
 
@@ -309,22 +342,10 @@ tr.selected {
 
 
 /* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    text-align: center;
-    color: #667085;
-    padding: 20px;
-    font-size: 13px;
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
-@media(max-width:850px) {
+@media(max-width:900px) {
 
     .grid {
         grid-template-columns: 1fr;
@@ -336,10 +357,14 @@ footer {
 
 }
 
-@media(max-width:550px) {
+@media(max-width:600px) {
 
     .container {
         padding: 10px;
+    }
+
+    header h1 {
+        font-size: 23px;
     }
 
     .metrics {
@@ -375,8 +400,8 @@ footer {
 
     <p>
         Borrower registration, lending calculation,
-        installment management, payment tracking and
-        late-payment monitoring.
+        installment management, payment tracking,
+        late-payment monitoring and borrower records.
     </p>
 
 </header>
@@ -442,7 +467,7 @@ footer {
 
             <textarea
                 id="borrowerAddress"
-                placeholder="Enter borrower address"
+                placeholder="Enter complete borrower address"
             ></textarea>
 
 
@@ -460,14 +485,18 @@ footer {
 
     </div>
 
+</div>
 
-    <!-- =================================================
-         DATES
-    ================================================== -->
 
-    <h3>
-        📅 Loan Dates
-    </h3>
+<!-- =====================================================
+     LOAN DATES
+====================================================== -->
+
+<div class="card">
+
+    <h2>
+        📅 Loan Dates & Payment Status
+    </h2>
 
 
     <div class="grid">
@@ -497,7 +526,7 @@ footer {
             <input
                 type="date"
                 id="dueDate"
-                onchange="calculateLateByDate();"
+                readonly
             >
 
         </div>
@@ -539,14 +568,24 @@ footer {
     <div class="date-box">
 
         <strong>
+            Borrow Date:
+        </strong>
+
+        <span id="borrowDateDisplay">
+            -
+        </span>
+
+        <br>
+
+        <strong>
             Final Due Date:
         </strong>
 
         <span id="dueDateDisplay">
-            Not yet calculated
+            -
         </span>
 
-        <br><br>
+        <br>
 
         <strong>
             Payment Status:
@@ -562,14 +601,14 @@ footer {
 
 
 <!-- =====================================================
-     MAIN CALCULATOR
+     CALCULATOR + LATE PAYMENT
 ====================================================== -->
 
 <div class="grid">
 
 
 <!-- =====================================================
-     INSTALLMENT CALCULATOR
+     LENDING CALCULATOR
 ====================================================== -->
 
 <div class="card">
@@ -601,6 +640,10 @@ footer {
         id="months"
         onchange="updateRate(); updateDueDate();"
     >
+
+        <option value="1">
+            1 Month
+        </option>
 
         <option value="2">
             2 Months
@@ -705,6 +748,19 @@ footer {
         <div class="metric">
 
             <small>
+                Borrowed Amount
+            </small>
+
+            <strong id="borrowedDisplay">
+                PHP 0.00
+            </strong>
+
+        </div>
+
+
+        <div class="metric">
+
+            <small>
                 Interest / Profit
             </small>
 
@@ -803,13 +859,18 @@ footer {
 
         <br><br>
 
-        Late Charge Formula:
+        Formula:
 
         <br>
 
         <strong>
-            Total Lending Cost × 0.40% × Number of Days Late
+            Total Lending Cost × 0.40% × Days Late
         </strong>
+
+        <br><br>
+
+        The late charge is calculated against the
+        total lending cost.
 
     </div>
 
@@ -889,7 +950,7 @@ footer {
                     </th>
 
                     <th>
-                        Rate
+                        Total Rate
                     </th>
 
                     <th>
@@ -918,7 +979,140 @@ footer {
 
 
 <!-- =====================================================
-     ACTION BUTTONS
+     INSTALLMENT COMPARISON
+====================================================== -->
+
+<div class="card">
+
+    <h2>
+        📊 Installment Comparison
+    </h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Period
+                    </th>
+
+                    <th>
+                        Interest Rate
+                    </th>
+
+                    <th>
+                        Profit
+                    </th>
+
+                    <th>
+                        Processing Fee
+                    </th>
+
+                    <th>
+                        Total Lending Cost
+                    </th>
+
+                    <th>
+                        Monthly Installment
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="comparisonTable">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAYMENT SCHEDULE
+====================================================== -->
+
+<div class="card">
+
+    <h2>
+        📅 Monthly Payment Schedule
+    </h2>
+
+
+    <div class="info">
+
+        The first installment is scheduled
+        <strong>one month after the Borrow Date</strong>.
+
+        <br>
+
+        The final installment date automatically becomes
+        the <strong>Final Due Date</strong>.
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Payment #
+                    </th>
+
+                    <th>
+                        Installment Date
+                    </th>
+
+                    <th>
+                        Principal
+                    </th>
+
+                    <th>
+                        Interest
+                    </th>
+
+                    <th>
+                        Processing
+                    </th>
+
+                    <th>
+                        Total Payment
+                    </th>
+
+                    <th>
+                        Remaining Balance
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="schedule">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ACTIONS
 ====================================================== -->
 
 <div class="card no-print">
@@ -929,7 +1123,6 @@ footer {
 
 
     <div class="button-grid">
-
 
         <button
             class="success"
@@ -976,122 +1169,6 @@ footer {
 
 
 <!-- =====================================================
-     COMPARISON
-====================================================== -->
-
-<div class="card">
-
-    <h2>
-        📊 Installment Comparison
-    </h2>
-
-
-    <div class="table-container">
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Period
-                    </th>
-
-                    <th>
-                        Rate
-                    </th>
-
-                    <th>
-                        Profit
-                    </th>
-
-                    <th>
-                        Processing
-                    </th>
-
-                    <th>
-                        Total Cost
-                    </th>
-
-                    <th>
-                        Monthly Payment
-                    </th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="comparisonTable">
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     PAYMENT SCHEDULE
-====================================================== -->
-
-<div class="card">
-
-    <h2>
-        📅 Payment Schedule
-    </h2>
-
-
-    <div class="table-container">
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Payment #
-                    </th>
-
-                    <th>
-                        Principal
-                    </th>
-
-                    <th>
-                        Interest
-                    </th>
-
-                    <th>
-                        Processing
-                    </th>
-
-                    <th>
-                        Payment
-                    </th>
-
-                    <th>
-                        Remaining Balance
-                    </th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="schedule">
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
      BORROWER DATABASE
 ====================================================== -->
 
@@ -1106,13 +1183,12 @@ footer {
         class="search-box"
         type="text"
         id="borrowerSearch"
-        placeholder="Search borrower name, phone or reference..."
+        placeholder="Search borrower, phone or reference..."
         oninput="displayBorrowers()"
     >
 
 
     <div class="button-grid">
-
 
         <button
             class="secondary"
@@ -1159,7 +1235,7 @@ footer {
                     </th>
 
                     <th>
-                        Due Date
+                        Final Due
                     </th>
 
                     <th>
@@ -1179,7 +1255,7 @@ footer {
                     </th>
 
                     <th>
-                        Final Due
+                        Final Amount Due
                     </th>
 
                     <th>
@@ -1219,57 +1295,32 @@ footer {
 
 
     <p>
-        <strong>
-            Reference:
-        </strong>
-
-        <span id="printReference">
-            -
-        </span>
+        <strong>Reference:</strong>
+        <span id="printReference">-</span>
     </p>
 
 
     <p>
-        <strong>
-            Borrower:
-        </strong>
-
-        <span id="printBorrower">
-            -
-        </span>
+        <strong>Borrower:</strong>
+        <span id="printBorrower">-</span>
     </p>
 
 
     <p>
-        <strong>
-            Contact:
-        </strong>
-
-        <span id="printPhone">
-            -
-        </span>
+        <strong>Contact:</strong>
+        <span id="printPhone">-</span>
     </p>
 
 
     <p>
-        <strong>
-            Email:
-        </strong>
-
-        <span id="printEmail">
-            -
-        </span>
+        <strong>Email:</strong>
+        <span id="printEmail">-</span>
     </p>
 
 
     <p>
-        <strong>
-            Address:
-        </strong>
-
-        <span id="printAddress">
-            -
-        </span>
+        <strong>Address:</strong>
+        <span id="printAddress">-</span>
     </p>
 
 
@@ -1277,46 +1328,26 @@ footer {
 
 
     <p>
-        <strong>
-            Borrow Date:
-        </strong>
-
-        <span id="printBorrowDate">
-            -
-        </span>
+        <strong>Borrow Date:</strong>
+        <span id="printBorrowDate">-</span>
     </p>
 
 
     <p>
-        <strong>
-            Final Due Date:
-        </strong>
-
-        <span id="printDueDate">
-            -
-        </span>
+        <strong>Final Due Date:</strong>
+        <span id="printDueDate">-</span>
     </p>
 
 
     <p>
-        <strong>
-            Actual Payment Date:
-        </strong>
-
-        <span id="printPaymentDate">
-            -
-        </span>
+        <strong>Actual Payment Date:</strong>
+        <span id="printPaymentDate">-</span>
     </p>
 
 
     <p>
-        <strong>
-            Days Late:
-        </strong>
-
-        <span id="printDaysLate">
-            0 Days
-        </span>
+        <strong>Days Late:</strong>
+        <span id="printDaysLate">0 Days</span>
     </p>
 
 
@@ -1324,68 +1355,38 @@ footer {
 
 
     <p>
-        <strong>
-            Borrowed Amount:
-        </strong>
-
-        <span id="printAmount">
-            PHP 0.00
-        </span>
+        <strong>Borrowed Amount:</strong>
+        <span id="printAmount">PHP 0.00</span>
     </p>
 
 
     <p>
-        <strong>
-            Installment Period:
-        </strong>
-
-        <span id="printMonths">
-            0 Months
-        </span>
+        <strong>Installment Period:</strong>
+        <span id="printMonths">0 Months</span>
     </p>
 
 
     <p>
-        <strong>
-            Interest / Profit:
-        </strong>
-
-        <span id="printProfit">
-            PHP 0.00
-        </span>
+        <strong>Interest / Profit:</strong>
+        <span id="printProfit">PHP 0.00</span>
     </p>
 
 
     <p>
-        <strong>
-            Processing Fee:
-        </strong>
-
-        <span id="printProcessing">
-            PHP 0.00
-        </span>
+        <strong>Processing Fee:</strong>
+        <span id="printProcessing">PHP 0.00</span>
     </p>
 
 
     <p>
-        <strong>
-            Total Lending Cost:
-        </strong>
-
-        <span id="printTotal">
-            PHP 0.00
-        </span>
+        <strong>Total Lending Cost:</strong>
+        <span id="printTotal">PHP 0.00</span>
     </p>
 
 
     <p>
-        <strong>
-            Monthly Installment:
-        </strong>
-
-        <span id="printMonthly">
-            PHP 0.00
-        </span>
+        <strong>Monthly Installment:</strong>
+        <span id="printMonthly">PHP 0.00</span>
     </p>
 
 
@@ -1393,44 +1394,26 @@ footer {
 
 
     <p>
-        <strong>
-            Late Payment Rate:
-        </strong>
-
+        <strong>Late Payment Rate:</strong>
         0.40% per delayed day
     </p>
 
 
     <p>
-        <strong>
-            Late Charge Per Day:
-        </strong>
-
-        <span id="printDailyLate">
-            PHP 0.00
-        </span>
+        <strong>Late Charge Per Day:</strong>
+        <span id="printDailyLate">PHP 0.00</span>
     </p>
 
 
     <p>
-        <strong>
-            Actual Late Charge:
-        </strong>
-
-        <span id="printActualLate">
-            PHP 0.00
-        </span>
+        <strong>Actual Late Charge:</strong>
+        <span id="printActualLate">PHP 0.00</span>
     </p>
 
 
     <p>
-        <strong>
-            FINAL AMOUNT DUE:
-        </strong>
-
-        <span id="printFinalDue">
-            PHP 0.00
-        </span>
+        <strong>FINAL AMOUNT DUE:</strong>
+        <span id="printFinalDue">PHP 0.00</span>
     </p>
 
 
@@ -1450,7 +1433,7 @@ footer {
 
     <br><br>
 
-    Lending calculation and record-management system.
+    Lending calculation and borrower management system.
 
 </footer>
 
@@ -1460,12 +1443,13 @@ footer {
 
 <script>
 
-
 /* =========================================================
    INTEREST / PROFIT RATES
 ========================================================= */
 
 const interestRates = {
+
+    1: 1.50,
 
     2: 2.50,
 
@@ -1489,7 +1473,7 @@ const interestRates = {
 
 
 /* =========================================================
-   PROCESSING FEE
+   DEFAULT PROCESSING FEE
 ========================================================= */
 
 const defaultProcessingRate = 0.51;
@@ -1500,9 +1484,7 @@ const defaultProcessingRate = 0.51;
 ========================================================= */
 
 /*
-   IMPORTANT:
-
-   0.40% PER DELAYED DAY
+    0.40% per delayed day
 */
 
 const dailyLateRate = 0.40;
@@ -1515,7 +1497,6 @@ const dailyLateRate = 0.40;
 function money(value) {
 
     return "PHP " +
-
         Number(value).toLocaleString(
             "en-PH",
             {
@@ -1528,7 +1509,7 @@ function money(value) {
 
 
 /* =========================================================
-   NUMBER
+   GET NUMERIC VALUE
 ========================================================= */
 
 function getNumber(id) {
@@ -1536,19 +1517,14 @@ function getNumber(id) {
     const element =
         document.getElementById(id);
 
-
     if (!element) {
-
         return 0;
-
     }
-
 
     const value =
         element.value
             .replace(/,/g, "")
             .replace(/[^\d.-]/g, "");
-
 
     return parseFloat(value) || 0;
 
@@ -1556,7 +1532,7 @@ function getNumber(id) {
 
 
 /* =========================================================
-   FORMAT AMOUNT
+   FORMAT AMOUNT INPUT
 ========================================================= */
 
 function formatAmount(input) {
@@ -1566,7 +1542,6 @@ function formatAmount(input) {
             .replace(/,/g, "")
             .replace(/[^\d.]/g, "");
 
-
     if (!value) {
 
         input.value = "";
@@ -1575,32 +1550,23 @@ function formatAmount(input) {
 
     }
 
-
     let parts =
         value.split(".");
-
 
     let integerPart =
         parts[0] || "0";
 
-
     let decimalPart =
         parts[1] || "";
 
-
     decimalPart =
-        decimalPart.substring(
-            0,
-            2
-        );
-
+        decimalPart.substring(0, 2);
 
     integerPart =
         integerPart.replace(
             /\B(?=(\d{3})+(?!\d))/g,
             ","
         );
-
 
     if (
         decimalPart.length === 0
@@ -1609,7 +1575,6 @@ function formatAmount(input) {
         decimalPart = "00";
 
     }
-
     else if (
         decimalPart.length === 1
     ) {
@@ -1617,7 +1582,6 @@ function formatAmount(input) {
         decimalPart += "0";
 
     }
-
 
     input.value =
         integerPart +
@@ -1628,7 +1592,7 @@ function formatAmount(input) {
 
 
 /* =========================================================
-   DATE FORMAT
+   DATE TO YYYY-MM-DD
 ========================================================= */
 
 function formatDateForInput(date) {
@@ -1636,24 +1600,15 @@ function formatDateForInput(date) {
     const year =
         date.getFullYear();
 
-
     const month =
         String(
             date.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
-
+        ).padStart(2, "0");
 
     const day =
         String(
             date.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
+        ).padStart(2, "0");
 
     return (
         year +
@@ -1673,18 +1628,13 @@ function formatDateForInput(date) {
 function displayDate(value) {
 
     if (!value) {
-
         return "-";
-
     }
-
 
     const date =
         new Date(
-            value +
-            "T00:00:00"
+            value + "T00:00:00"
         );
-
 
     return date.toLocaleDateString(
         "en-PH",
@@ -1699,7 +1649,47 @@ function displayDate(value) {
 
 
 /* =========================================================
-   GENERATE REFERENCE
+   ADD MONTHS SAFELY
+========================================================= */
+
+function addMonthsSafe(
+    originalDate,
+    months
+) {
+
+    const date =
+        new Date(originalDate);
+
+    const originalDay =
+        date.getDate();
+
+    date.setDate(1);
+
+    date.setMonth(
+        date.getMonth() + months
+    );
+
+    const lastDay =
+        new Date(
+            date.getFullYear(),
+            date.getMonth() + 1,
+            0
+        ).getDate();
+
+    date.setDate(
+        Math.min(
+            originalDay,
+            lastDay
+        )
+    );
+
+    return date;
+
+}
+
+
+/* =========================================================
+   GENERATE TRANSACTION REFERENCE
 ========================================================= */
 
 function generateReference() {
@@ -1707,31 +1697,21 @@ function generateReference() {
     const now =
         new Date();
 
-
     const date =
         now.getFullYear().toString() +
 
         String(
             now.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        ) +
+        ).padStart(2, "0") +
 
         String(
             now.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
+        ).padStart(2, "0");
 
     const random =
         Math.floor(
-            Math.random() *
-            9000
+            Math.random() * 9000
         ) + 1000;
-
 
     return (
         "NVI-" +
@@ -1754,27 +1734,20 @@ function updateRate() {
             document.getElementById(
                 "months"
             ).value
-        );
-
+        ) || 1;
 
     const rate =
-        interestRates[
-            months
-        ] || 0;
-
+        interestRates[months] || 0;
 
     document.getElementById(
         "interestRate"
     ).value =
         rate.toFixed(2);
 
-
     document.getElementById(
         "displayRate"
     ).innerText =
-        rate.toFixed(2) +
-        "%";
-
+        rate.toFixed(2) + "%";
 
     updateDueDate();
 
@@ -1784,8 +1757,12 @@ function updateRate() {
 
 
 /* =========================================================
-   UPDATE DUE DATE
+   UPDATE FINAL DUE DATE
 ========================================================= */
+
+/*
+    Borrow Date + Selected Number of Months
+*/
 
 function updateDueDate() {
 
@@ -1794,24 +1771,16 @@ function updateDueDate() {
             "borrowDate"
         ).value;
 
-
     const months =
         parseInt(
             document.getElementById(
                 "months"
             ).value
-        ) || 0;
+        ) || 1;
 
-
-    if (
-        !borrowDateValue ||
-        months <= 0
-    ) {
-
+    if (!borrowDateValue) {
         return;
-
     }
-
 
     const borrowDate =
         new Date(
@@ -1819,30 +1788,28 @@ function updateDueDate() {
             "T00:00:00"
         );
 
-
     const dueDate =
-        new Date(
-            borrowDate
+        addMonthsSafe(
+            borrowDate,
+            months
         );
-
-
-    dueDate.setMonth(
-        dueDate.getMonth() +
-        months
-    );
-
 
     const dueDateValue =
         formatDateForInput(
             dueDate
         );
 
-
     document.getElementById(
         "dueDate"
     ).value =
         dueDateValue;
 
+    document.getElementById(
+        "borrowDateDisplay"
+    ).innerText =
+        displayDate(
+            borrowDateValue
+        );
 
     document.getElementById(
         "dueDateDisplay"
@@ -1851,23 +1818,21 @@ function updateDueDate() {
             dueDateValue
         );
 
-
     calculateLateByDate();
+
+    createScheduleFromCurrentCalculation();
 
 }
 
 
 /* =========================================================
-   MAIN CALCULATION
+   MAIN CALCULATOR
 ========================================================= */
 
 function calculate() {
 
     const amount =
-        getNumber(
-            "amount"
-        );
-
+        getNumber("amount");
 
     const months =
         parseInt(
@@ -1876,92 +1841,75 @@ function calculate() {
             ).value
         ) || 1;
 
-
     const interestRate =
-        getNumber(
-            "interestRate"
-        );
-
+        getNumber("interestRate");
 
     const processingRate =
-        getNumber(
-            "processingRate"
-        );
-
+        getNumber("processingRate");
 
     const profit =
         amount *
         interestRate /
         100;
 
-
     const processing =
         amount *
         processingRate /
         100;
 
-
     const extra =
         profit +
         processing;
-
 
     const total =
         amount +
         extra;
 
-
     const monthly =
         total /
         months;
 
-
     const extraPercent =
         amount > 0
-            ? (
-                extra /
-                amount *
-                100
-            )
+            ? extra / amount * 100
             : 0;
 
+
+    document.getElementById(
+        "borrowedDisplay"
+    ).innerText =
+        money(amount);
 
     document.getElementById(
         "profit"
     ).innerText =
         money(profit);
 
-
     document.getElementById(
         "processing"
     ).innerText =
         money(processing);
-
 
     document.getElementById(
         "extra"
     ).innerText =
         money(extra);
 
-
     document.getElementById(
         "total"
     ).innerText =
         money(total);
-
 
     document.getElementById(
         "monthly"
     ).innerText =
         money(monthly);
 
-
     document.getElementById(
         "extraPercent"
     ).innerText =
         extraPercent.toFixed(2) +
         "%";
-
 
     document.getElementById(
         "displayRate"
@@ -1974,9 +1922,7 @@ function calculate() {
         total
     );
 
-
     createComparison();
-
 
     createSchedule(
         amount,
@@ -1985,14 +1931,13 @@ function calculate() {
         months
     );
 
-
     updatePrintSummary();
 
 }
 
 
 /* =========================================================
-   CALCULATE LATE DAYS
+   CALCULATE DAYS LATE
 ========================================================= */
 
 function calculateLateByDate() {
@@ -2002,15 +1947,12 @@ function calculateLateByDate() {
             "dueDate"
         ).value;
 
-
     const paymentDateValue =
         document.getElementById(
             "paymentDate"
         ).value;
 
-
     let daysLate = 0;
-
 
     if (
         dueDateValue &&
@@ -2023,18 +1965,15 @@ function calculateLateByDate() {
                 "T00:00:00"
             );
 
-
         const paymentDate =
             new Date(
                 paymentDateValue +
                 "T00:00:00"
             );
 
-
         const difference =
-            paymentDate -
-            dueDate;
-
+            paymentDate.getTime() -
+            dueDate.getTime();
 
         daysLate =
             Math.ceil(
@@ -2047,7 +1986,6 @@ function calculateLateByDate() {
                 )
             );
 
-
         if (
             daysLate < 0
         ) {
@@ -2057,7 +1995,6 @@ function calculateLateByDate() {
         }
 
     }
-
 
     document.getElementById(
         "daysLate"
@@ -2069,12 +2006,10 @@ function calculateLateByDate() {
                 : " Days"
         );
 
-
     updatePaymentStatus(
         daysLate,
         paymentDateValue
     );
-
 
     calculate();
 
@@ -2095,7 +2030,6 @@ function updatePaymentStatus(
             "paymentStatus"
         );
 
-
     if (!paymentDate) {
 
         status.innerText =
@@ -2107,7 +2041,6 @@ function updatePaymentStatus(
         return;
 
     }
-
 
     if (
         daysLate > 0
@@ -2127,7 +2060,6 @@ function updatePaymentStatus(
             "#c62828";
 
     }
-
     else {
 
         status.innerText =
@@ -2152,15 +2084,12 @@ function updateLatePayment(total) {
             "dueDate"
         ).value;
 
-
     const paymentDateValue =
         document.getElementById(
             "paymentDate"
         ).value;
 
-
     let daysLate = 0;
-
 
     if (
         dueDateValue &&
@@ -2173,13 +2102,11 @@ function updateLatePayment(total) {
                 "T00:00:00"
             );
 
-
         const paymentDate =
             new Date(
                 paymentDateValue +
                 "T00:00:00"
             );
-
 
         daysLate =
             Math.ceil(
@@ -2195,7 +2122,6 @@ function updateLatePayment(total) {
                 )
             );
 
-
         if (
             daysLate < 0
         ) {
@@ -2206,7 +2132,6 @@ function updateLatePayment(total) {
 
     }
 
-
     /*
        0.40% PER DAY
     */
@@ -2216,11 +2141,9 @@ function updateLatePayment(total) {
         dailyLateRate /
         100;
 
-
     const actualLateCharge =
         dailyCharge *
         daysLate;
-
 
     const finalAmountDue =
         total +
@@ -2232,33 +2155,24 @@ function updateLatePayment(total) {
     ).innerText =
         money(total);
 
-
     document.getElementById(
         "dailyLateCharge"
     ).innerText =
-        money(
-            dailyCharge
-        );
-
+        money(dailyCharge);
 
     document.getElementById(
         "actualLateCharge"
     ).innerText =
-        money(
-            actualLateCharge
-        );
-
+        money(actualLateCharge);
 
     document.getElementById(
         "finalAmountDue"
     ).innerText =
-        money(
-            finalAmountDue
-        );
+        money(finalAmountDue);
 
 
     /*
-       Reference table.
+       Late reference table
     */
 
     const delays = [
@@ -2269,12 +2183,10 @@ function updateLatePayment(total) {
         30
     ];
 
-
     const table =
         document.getElementById(
             "lateTable"
         );
-
 
     table.innerHTML = "";
 
@@ -2286,22 +2198,18 @@ function updateLatePayment(total) {
                 dailyCharge *
                 days;
 
-
             const totalDue =
                 total +
                 additionalCharge;
-
 
             const rate =
                 dailyLateRate *
                 days;
 
-
             const row =
                 document.createElement(
                     "tr"
                 );
-
 
             row.innerHTML = `
 
@@ -2330,7 +2238,6 @@ function updateLatePayment(total) {
 
             `;
 
-
             table.appendChild(
                 row
             );
@@ -2342,22 +2249,18 @@ function updateLatePayment(total) {
 
 
 /* =========================================================
-   COMPARISON TABLE
+   INSTALLMENT COMPARISON
 ========================================================= */
 
 function createComparison() {
 
     const amount =
-        getNumber(
-            "amount"
-        );
-
+        getNumber("amount");
 
     const processingRate =
         getNumber(
             "processingRate"
         );
-
 
     const selectedMonths =
         parseInt(
@@ -2372,7 +2275,6 @@ function createComparison() {
             "comparisonTable"
         );
 
-
     table.innerHTML = "";
 
 
@@ -2382,45 +2284,36 @@ function createComparison() {
         function(period) {
 
             const months =
-                parseInt(
-                    period
-                );
-
+                parseInt(period);
 
             const rate =
                 interestRates[
                     months
                 ];
 
-
             const profit =
                 amount *
                 rate /
                 100;
-
 
             const processing =
                 amount *
                 processingRate /
                 100;
 
-
             const total =
                 amount +
                 profit +
                 processing;
 
-
             const monthly =
                 total /
                 months;
-
 
             const row =
                 document.createElement(
                     "tr"
                 );
-
 
             if (
                 months ===
@@ -2433,11 +2326,10 @@ function createComparison() {
 
             }
 
-
             row.innerHTML = `
 
                 <td>
-                    ${months} Months
+                    ${months} Month${months > 1 ? "s" : ""}
                 </td>
 
                 <td>
@@ -2464,7 +2356,6 @@ function createComparison() {
 
             `;
 
-
             table.appendChild(
                 row
             );
@@ -2476,8 +2367,40 @@ function createComparison() {
 
 
 /* =========================================================
-   PAYMENT SCHEDULE
+   CREATE PAYMENT SCHEDULE
 ========================================================= */
+
+/*
+    IMPORTANT:
+
+    Borrow Date:
+        August 11, 2026
+
+    6 Months:
+
+    Payment #1:
+        September 11, 2026
+
+    Payment #2:
+        October 11, 2026
+
+    Payment #3:
+        November 11, 2026
+
+    Payment #4:
+        December 11, 2026
+
+    Payment #5:
+        January 11, 2027
+
+    Payment #6:
+        February 11, 2027
+
+    Therefore:
+
+    Final Payment Date =
+    Final Due Date
+*/
 
 function createSchedule(
     amount,
@@ -2490,7 +2413,6 @@ function createSchedule(
         document.getElementById(
             "schedule"
         );
-
 
     table.innerHTML = "";
 
@@ -2505,20 +2427,36 @@ function createSchedule(
     }
 
 
+    const borrowDateValue =
+        document.getElementById(
+            "borrowDate"
+        ).value;
+
+    if (!borrowDateValue) {
+
+        return;
+
+    }
+
+
+    const borrowDate =
+        new Date(
+            borrowDateValue +
+            "T00:00:00"
+        );
+
+
     const principal =
         amount /
         months;
-
 
     const interest =
         profit /
         months;
 
-
     const fee =
         processing /
         months;
-
 
     const payment =
         principal +
@@ -2535,6 +2473,25 @@ function createSchedule(
         i <= months;
         i++
     ) {
+
+        /*
+            First payment is
+            one month after
+            the borrow date.
+        */
+
+        const installmentDate =
+            addMonthsSafe(
+                borrowDate,
+                i
+            );
+
+
+        const installmentDateValue =
+            formatDateForInput(
+                installmentDate
+            );
+
 
         balance -=
             principal;
@@ -2559,6 +2516,14 @@ function createSchedule(
 
             <td>
                 ${i}
+            </td>
+
+            <td>
+                <strong>
+                    ${displayDate(
+                        installmentDateValue
+                    )}
+                </strong>
             </td>
 
             <td>
@@ -2606,16 +2571,13 @@ function createSchedule(
 
 
 /* =========================================================
-   PRINT SUMMARY
+   CREATE SCHEDULE FROM CURRENT VALUES
 ========================================================= */
 
-function updatePrintSummary() {
+function createScheduleFromCurrentCalculation() {
 
     const amount =
-        getNumber(
-            "amount"
-        );
-
+        getNumber("amount");
 
     const months =
         parseInt(
@@ -2624,24 +2586,20 @@ function updatePrintSummary() {
             ).value
         ) || 1;
 
-
     const interestRate =
         getNumber(
             "interestRate"
         );
-
 
     const processingRate =
         getNumber(
             "processingRate"
         );
 
-
     const profit =
         amount *
         interestRate /
         100;
-
 
     const processing =
         amount *
@@ -2649,28 +2607,70 @@ function updatePrintSummary() {
         100;
 
 
+    createSchedule(
+        amount,
+        profit,
+        processing,
+        months
+    );
+
+}
+
+
+/* =========================================================
+   PRINT SUMMARY
+========================================================= */
+
+function updatePrintSummary() {
+
+    const amount =
+        getNumber("amount");
+
+    const months =
+        parseInt(
+            document.getElementById(
+                "months"
+            ).value
+        ) || 1;
+
+    const interestRate =
+        getNumber(
+            "interestRate"
+        );
+
+    const processingRate =
+        getNumber(
+            "processingRate"
+        );
+
+    const profit =
+        amount *
+        interestRate /
+        100;
+
+    const processing =
+        amount *
+        processingRate /
+        100;
+
     const total =
         amount +
         profit +
         processing;
 
-
     const monthly =
         total /
         months;
-
 
     const dueDate =
         document.getElementById(
             "dueDate"
         ).value;
 
-
     const paymentDate =
         document.getElementById(
             "paymentDate"
         ).value;
-
 
     let daysLate = 0;
 
@@ -2686,13 +2686,11 @@ function updatePrintSummary() {
                 "T00:00:00"
             );
 
-
         const payment =
             new Date(
                 paymentDate +
                 "T00:00:00"
             );
-
 
         daysLate =
             Math.max(
@@ -2719,11 +2717,9 @@ function updatePrintSummary() {
         dailyLateRate /
         100;
 
-
     const actualLate =
         dailyLate *
         daysLate;
-
 
     const finalDue =
         total +
@@ -2821,7 +2817,12 @@ function updatePrintSummary() {
         "printMonths"
     ).innerText =
         months +
-        " Months";
+        " Month" +
+        (
+            months > 1
+                ? "s"
+                : ""
+        );
 
 
     document.getElementById(
@@ -2869,7 +2870,7 @@ function updatePrintSummary() {
 
 
 /* =========================================================
-   GET DATABASE
+   DATABASE
 ========================================================= */
 
 function getBorrowers() {
@@ -2908,9 +2909,7 @@ function saveBorrower() {
 
 
     const amount =
-        getNumber(
-            "amount"
-        );
+        getNumber("amount");
 
 
     if (
@@ -2996,13 +2995,11 @@ function saveBorrower() {
                 "T00:00:00"
             );
 
-
         const payment =
             new Date(
                 paymentDate +
                 "T00:00:00"
             );
-
 
         daysLate =
             Math.max(
@@ -3134,7 +3131,6 @@ function saveBorrower() {
         ] = record;
 
     }
-
     else {
 
         borrowers.push(
@@ -3268,7 +3264,7 @@ function displayBorrowers() {
 
                     <td>
                         ${record.months}
-                        Months
+                        Month${record.months > 1 ? "s" : ""}
                     </td>
 
                     <td>
@@ -3383,9 +3379,7 @@ function loadBorrower(id) {
 
 
     if (!record) {
-
         return;
-
     }
 
 
@@ -3473,13 +3467,7 @@ function loadBorrower(id) {
         ).toFixed(2);
 
 
-    document.getElementById(
-        "dueDateDisplay"
-    ).innerText =
-        displayDate(
-            record.dueDate
-        );
-
+    updateDueDate();
 
     calculateLateByDate();
 
@@ -3597,7 +3585,6 @@ function exportCSV() {
 
 
     let csv =
-
         "Reference,Borrower,Phone,Email,Address,Borrow Date,Due Date,Payment Date,Days Late,Amount,Months,Interest Rate,Processing Rate,Profit,Processing Fee,Total Cost,Monthly Payment,Daily Late Charge,Actual Late Charge,Final Amount Due,Created\n";
 
 
@@ -3783,9 +3770,7 @@ function emailTransaction() {
 
 
     const amount =
-        getNumber(
-            "amount"
-        );
+        getNumber("amount");
 
 
     const months =
@@ -3924,7 +3909,7 @@ Borrow Date: ${displayDate(
     ).value
 )}
 
-Due Date: ${displayDate(
+Final Due Date: ${displayDate(
     dueDate
 )}
 
@@ -3938,7 +3923,7 @@ Borrowed Amount: ${money(
     amount
 )}
 
-Installment Period: ${months} Months
+Installment Period: ${months} Month${months > 1 ? "s" : ""}
 
 Interest / Profit: ${money(
     profit
@@ -4036,8 +4021,7 @@ function newTransaction() {
 
     document.getElementById(
         "paymentDate"
-    ).value =
-        "";
+    ).value = "";
 
 
     document.getElementById(
@@ -4049,7 +4033,7 @@ function newTransaction() {
     document.getElementById(
         "months"
     ).value =
-        "9";
+        "1";
 
 
     document.getElementById(
@@ -4060,9 +4044,7 @@ function newTransaction() {
 
     updateRate();
 
-
     updateDueDate();
-
 
     calculate();
 
@@ -4078,7 +4060,7 @@ function newTransaction() {
 
 
 /* =========================================================
-   RESET
+   RESET CALCULATOR
 ========================================================= */
 
 function resetCalculator() {
@@ -4092,7 +4074,7 @@ function resetCalculator() {
     document.getElementById(
         "months"
     ).value =
-        "9";
+        "1";
 
 
     document.getElementById(
@@ -4103,11 +4085,14 @@ function resetCalculator() {
 
     document.getElementById(
         "paymentDate"
-    ).value =
-        "";
+    ).value = "";
 
 
     updateRate();
+
+    updateDueDate();
+
+    calculate();
 
 }
 
@@ -4146,7 +4131,6 @@ function showStatus(
             "#b42318";
 
     }
-
     else {
 
         box.style.background =
@@ -4157,44 +4141,62 @@ function showStatus(
 
     }
 
+
+    setTimeout(
+        function() {
+
+            box.style.display =
+                "none";
+
+        },
+        4000
+    );
+
 }
 
 
 /* =========================================================
-   INITIALIZE
+   INITIALIZATION
 ========================================================= */
 
-document.getElementById(
-    "referenceNumber"
-).value =
-    generateReference();
+function initializeSystem() {
+
+    document.getElementById(
+        "referenceNumber"
+    ).value =
+        generateReference();
 
 
-document.getElementById(
-    "borrowDate"
-).value =
-    formatDateForInput(
-        new Date()
-    );
+    document.getElementById(
+        "borrowDate"
+    ).value =
+        formatDateForInput(
+            new Date()
+        );
 
 
-document.getElementById(
-    "processingRate"
-).value =
-    defaultProcessingRate;
+    document.getElementById(
+        "processingRate"
+    ).value =
+        defaultProcessingRate;
 
 
-updateRate();
+    updateRate();
+
+    updateDueDate();
+
+    displayBorrowers();
+
+    calculate();
+
+}
 
 
-updateDueDate();
+/* =========================================================
+   START
+========================================================= */
 
-
-displayBorrowers();
-
-
-calculate();
-
+initializeSystem();
 
 </script>
 
