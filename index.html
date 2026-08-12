@@ -4,131 +4,107 @@ html = r'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>NVI Lending & Installment Management System</title>
 <style>
-*{box-sizing:border-box}
-body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f3f6fa;color:#1f2937}
-header{background:#12355b;color:#fff;padding:20px}
-header h1{margin:0 0 5px;font-size:25px}
-header p{margin:0;opacity:.85}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f6fa;color:#1f2937}
+header{background:#12355b;color:#fff;padding:20px}header h1{margin:0 0 5px;font-size:25px}header p{margin:0;opacity:.85}
 nav{background:#fff;padding:10px;display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px #0001}
-button,.btn{border:0;border-radius:6px;padding:9px 13px;cursor:pointer;background:#12355b;color:#fff}
-button:hover{opacity:.9}
-button.secondary{background:#64748b}
-button.success{background:#15803d}
-button.warning{background:#b45309}
-button.danger{background:#b91c1c}
-main{max-width:1450px;margin:20px auto;padding:0 15px}
-.section{background:#fff;border-radius:10px;padding:18px;margin-bottom:18px;box-shadow:0 2px 10px #0000000d}
-.section h2{margin:0 0 15px;color:#12355b;font-size:19px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-label{font-weight:600;font-size:13px;display:block;margin-bottom:5px}
-input,select,textarea{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:6px;background:#fff}
-textarea{min-height:70px;resize:vertical}
-.required{color:#b91c1c}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px #0001}
-.card .value{font-size:22px;font-weight:bold;color:#12355b;margin-top:5px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{border:1px solid #e2e8f0;padding:8px;text-align:left;vertical-align:top}
-th{background:#e8eef5;color:#12355b}
-.table-wrap{overflow:auto}
-.badge{padding:4px 8px;border-radius:12px;font-size:11px;font-weight:bold;display:inline-block}
-.badge.active{background:#dcfce7;color:#166534}
-.badge.overdue{background:#fee2e2;color:#991b1b}
-.badge.paid{background:#dbeafe;color:#1e40af}
-.badge.pending{background:#fef3c7;color:#92400e}
-.hidden{display:none!important}
-.small{font-size:12px;color:#64748b}
-.photo{width:100px;height:100px;object-fit:cover;border:1px solid #cbd5e1;border-radius:8px}
-.idpreview{max-width:180px;max-height:120px;object-fit:contain;border:1px solid #cbd5e1;border-radius:6px}
-.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;z-index:100}
-.modal.show{display:flex}
-.modal-box{background:#fff;border-radius:10px;padding:20px;max-width:700px;width:95%;max-height:90vh;overflow:auto}
-.modal-box h3{margin-top:0;color:#12355b}
-.close{float:right;background:#64748b}
-.print-area{background:#fff}
-hr{border:0;border-top:1px solid #e2e8f0;margin:18px 0}
-@media print{
- nav,header,.no-print,.actions,button{display:none!important}
- body{background:#fff}
- .section{box-shadow:none}
-}
+main{max-width:1500px;margin:20px auto;padding:0 15px}.section{background:#fff;border-radius:10px;padding:18px;margin-bottom:18px;box-shadow:0 2px 10px #0001}
+h2{color:#12355b;margin-top:0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+label{display:block;font-weight:bold;font-size:13px;margin-bottom:5px}input,select,textarea{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:6px;background:#fff}textarea{min-height:70px}
+button{border:0;border-radius:6px;padding:9px 13px;cursor:pointer;background:#12355b;color:#fff}button:hover{opacity:.9}.secondary{background:#64748b}.success{background:#15803d}.warning{background:#b45309}.danger{background:#b91c1c}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.card{background:#fff;border:1px solid #e2e8f0;border-radius:9px;padding:14px}.value{font-size:21px;font-weight:bold;color:#12355b;margin-top:5px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{border:1px solid #e2e8f0;padding:8px;text-align:left;vertical-align:top}th{background:#e8eef5;color:#12355b}.table-wrap{overflow:auto}
+.badge{padding:4px 8px;border-radius:12px;font-size:11px;font-weight:bold}.active{background:#dcfce7;color:#166534}.overdue{background:#fee2e2;color:#991b1b}.paid{background:#dbeafe;color:#1e40af}
+.hidden{display:none!important}.required{color:#b91c1c}.small{font-size:12px;color:#64748b}
+.upload-preview{margin-top:8px;padding:10px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc}.upload-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.photo{width:120px;height:120px;object-fit:cover;border:1px solid #cbd5e1;border-radius:8px}.idpreview{max-width:220px;max-height:150px;object-fit:contain;border:1px solid #cbd5e1;border-radius:6px}
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;z-index:100}.modal.show{display:flex}.modal-box{background:#fff;border-radius:10px;padding:20px;width:95%;max-width:800px;max-height:92vh;overflow:auto}.close{float:right}
+@media print{nav,header,.no-print,button{display:none!important}.section{box-shadow:none}body{background:#fff}}
 </style>
 </head>
 <body>
-
 <header>
-  <h1>NVI Lending & Installment Management System</h1>
-  <p>Borrower records, installment schedules, payments, profit and late-payment management</p>
+<h1>NVI Lending & Installment Management System</h1>
+<p>Borrower records, installments, payments, profit and late-payment management</p>
 </header>
 
 <nav class="no-print">
-  <button onclick="showSection('dashboard')">Dashboard</button>
-  <button onclick="showSection('borrowing')">New Borrowing</button>
-  <button onclick="showSection('management')">Payment Management</button>
-  <button onclick="showSection('schedule')">Payment Schedule</button>
-  <button onclick="exportCSV()">Export Excel/CSV</button>
-  <button class="secondary" onclick="backupJSON()">Backup Database</button>
-  <button class="secondary" onclick="document.getElementById('restoreFile').click()">Restore Database</button>
-  <input id="restoreFile" type="file" accept=".json" class="hidden" onchange="restoreJSON(event)">
+<button onclick="showSection('dashboard')">Dashboard</button>
+<button onclick="showSection('borrowing')">New Borrowing</button>
+<button onclick="showSection('management')">Payment Management</button>
+<button onclick="showSection('schedule')">Payment Schedule</button>
+<button onclick="exportCSV()">Export Excel / CSV</button>
+<button class="secondary" onclick="backupDB()">Backup Database</button>
+<button class="secondary" onclick="document.getElementById('restoreFile').click()">Restore Database</button>
+<input id="restoreFile" type="file" accept=".json" class="hidden" onchange="restoreDB(event)">
 </nav>
 
 <main>
-
 <section id="dashboard" class="section">
 <h2>Dashboard</h2>
 <div class="cards">
- <div class="card"><div>Total Borrowers</div><div class="value" id="dBorrowers">0</div></div>
- <div class="card"><div>Total Principal</div><div class="value" id="dPrincipal">₱0.00</div></div>
- <div class="card"><div>Total Lending Profit</div><div class="value" id="dProfit">₱0.00</div></div>
- <div class="card"><div>Total Expected Collection</div><div class="value" id="dExpected">₱0.00</div></div>
- <div class="card"><div>Total Received</div><div class="value" id="dReceived">₱0.00</div></div>
- <div class="card"><div>Total Due</div><div class="value" id="dDue">₱0.00</div></div>
+<div class="card">Total Borrowers<div class="value" id="dBorrowers">0</div></div>
+<div class="card">Total Principal<div class="value" id="dPrincipal">₱0.00</div></div>
+<div class="card">Total Profit<div class="value" id="dProfit">₱0.00</div></div>
+<div class="card">Expected Collection<div class="value" id="dExpected">₱0.00</div></div>
+<div class="card">Payments Received<div class="value" id="dReceived">₱0.00</div></div>
+<div class="card">Outstanding Due<div class="value" id="dDue">₱0.00</div></div>
 </div>
-<div class="section">
+<hr>
 <h2>Monthly Dashboard</h2>
-<div class="table-wrap"><table><thead><tr><th>Month</th><th>Payments Received</th><th>Amount Due</th><th>Profit</th></tr></thead><tbody id="monthlyDashboard"></tbody></table></div>
-</div>
+<div class="table-wrap"><table><thead><tr><th>Month</th><th>Payments Received</th><th>Scheduled Due</th><th>Profit</th></tr></thead><tbody id="monthlyDashboard"></tbody></table></div>
 </section>
 
 <section id="borrowing" class="section hidden">
 <h2>New Borrowing / Installment</h2>
 <form id="loanForm">
 <div class="grid">
- <div><label>Borrower Full Name <span class="required">*</span></label><input id="name" required></div>
- <div><label>Contact Number <span class="required">*</span></label><input id="contact" required></div>
- <div><label>Address <span class="required">*</span></label><textarea id="address" required></textarea></div>
- <div><label>Valid ID Type <span class="required">*</span></label>
-   <select id="idType" required><option value="">Select ID</option><option>National ID</option><option>Passport</option><option>Driver's License</option><option>UMID</option><option>PRC ID</option><option>Other Government ID</option></select>
- </div>
- <div><label>Valid ID Number <span class="required">*</span></label><input id="idNumber" required></div>
- <div><label>Borrower Photo <span class="required">*</span></label><input id="borrowerPhoto" type="file" accept="image/*" capture="user" required></div>
- <div><label>Valid ID Photo/Document <span class="required">*</span></label><input id="idPhoto" type="file" accept="image/*,.pdf" required></div>
- <div><label>Borrowed Amount (PHP) <span class="required">*</span></label><input id="amount" type="number" min="1" step="0.01" required oninput="previewLoan()"></div>
- <div><label>Installment Period <span class="required">*</span></label>
-   <select id="period" required onchange="previewLoan()">
-    <option value="">Select Period</option><option value="1">1 Month - 5%</option><option value="3">3 Months - 7%</option>
-    <option value="4">4 Months - 10%</option><option value="6">6 Months - 15%</option>
-    <option value="12">12 Months - 20%</option><option value="24">24 Months - 35%</option>
-   </select>
- </div>
- <div><label>Borrow Date <span class="required">*</span></label><input id="borrowDate" type="date" required></div>
- <div><label>Final Due Date</label><input id="finalDueDate" type="date" readonly></div>
- <div><label>Interest Rate</label><input id="rate" readonly></div>
+<div><label>Borrower Full Name <span class="required">*</span></label><input id="name" required></div>
+<div><label>Contact Number <span class="required">*</span></label><input id="contact" required></div>
+<div><label>Address <span class="required">*</span></label><textarea id="address" required></textarea></div>
+<div><label>Valid ID Type <span class="required">*</span></label><select id="idType" required><option value="">Select ID</option><option>National ID</option><option>Passport</option><option>Driver's License</option><option>UMID</option><option>PRC ID</option><option>Other Government ID</option></select></div>
+<div><label>Valid ID Number <span class="required">*</span></label><input id="idNumber" required></div>
+<div><label>Borrowed Amount (PHP) <span class="required">*</span></label><input id="amount" type="number" min="1" step="0.01" required oninput="previewLoan()"></div>
+<div><label>Installment Period <span class="required">*</span></label><select id="period" required onchange="previewLoan()"><option value="">Select</option><option value="1">1 Month - 5%</option><option value="3">3 Months - 7%</option><option value="4">4 Months - 10%</option><option value="6">6 Months - 15%</option><option value="12">12 Months - 20%</option><option value="24">24 Months - 35%</option></select></div>
+<div><label>Borrow Date <span class="required">*</span></label><input id="borrowDate" type="date" required onchange="previewLoan()"></div>
+<div><label>Final Due Date</label><input id="finalDueDate" type="date" readonly></div>
+<div><label>Interest Rate</label><input id="rate" readonly></div>
+
+<div>
+<label>Borrower Photo <span class="required">*</span></label>
+<input id="borrowerPhoto" type="file" accept="image/*" capture="user" required onchange="previewUpload('borrowerPhoto','borrowerPhotoBox','borrowerPhotoPreview')">
+<div id="borrowerPhotoBox" class="upload-preview hidden">
+<img id="borrowerPhotoPreview" class="photo" alt="Borrower photo">
+<div class="upload-actions">
+<button type="button" class="secondary" onclick="document.getElementById('borrowerPhoto').click()">🔄 Re-upload</button>
+<button type="button" class="danger" onclick="deleteUpload('borrowerPhoto','borrowerPhotoBox','borrowerPhotoPreview')">🗑️ Delete</button>
 </div>
-<div class="grid" style="margin-top:15px">
- <div class="card"><div>Total Interest / Profit</div><div class="value" id="pInterest">₱0.00</div></div>
- <div class="card"><div>Total Installment Cost</div><div class="value" id="pTotal">₱0.00</div></div>
- <div class="card"><div>Monthly Required Payment</div><div class="value" id="pMonthly">₱0.00</div></div>
- <div class="card"><div>Monthly Profit</div><div class="value" id="pMonthlyProfit">₱0.00</div></div>
 </div>
-<div class="actions">
- <button type="submit" class="success">Create Borrowing Record</button>
- <button type="button" class="secondary" onclick="document.getElementById('loanForm').reset();setDefaultDates();previewLoan()">Clear</button>
 </div>
+
+<div>
+<label>Valid ID Photo / Document <span class="required">*</span></label>
+<input id="idPhoto" type="file" accept="image/*,.pdf" required onchange="previewUpload('idPhoto','idPhotoBox','idPhotoPreview')">
+<div id="idPhotoBox" class="upload-preview hidden">
+<img id="idPhotoPreview" class="idpreview" alt="Valid ID preview">
+<div id="idPdfText" class="hidden">📄 PDF document selected.</div>
+<div class="upload-actions">
+<button type="button" class="secondary" onclick="document.getElementById('idPhoto').click()">🔄 Re-upload</button>
+<button type="button" class="danger" onclick="deleteUpload('idPhoto','idPhotoBox','idPhotoPreview')">🗑️ Delete</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="cards" style="margin-top:15px">
+<div class="card">Total Profit<div class="value" id="pInterest">₱0.00</div></div>
+<div class="card">Total Installment<div class="value" id="pTotal">₱0.00</div></div>
+<div class="card">Monthly Payment<div class="value" id="pMonthly">₱0.00</div></div>
+<div class="card">Monthly Profit<div class="value" id="pMonthlyProfit">₱0.00</div></div>
+</div>
+<div class="actions"><button class="success" type="submit">Create Borrowing Record</button><button class="secondary" type="button" onclick="clearLoanForm()">Clear</button></div>
 </form>
 </section>
 
@@ -136,237 +112,139 @@ hr{border:0;border-top:1px solid #e2e8f0;margin:18px 0}
 <h2>Payment Management <button class="secondary no-print" onclick="toggleBox('managementBody')">Hide / Show</button></h2>
 <div id="managementBody">
 <div class="grid no-print">
- <div><label>Search Borrower</label><input id="search" placeholder="Name, contact or ID..." oninput="renderBorrowers()"></div>
- <div><label>Status</label><select id="statusFilter" onchange="renderBorrowers()"><option value="">All</option><option>Active</option><option>Overdue</option><option>Paid</option></select></div>
+<div><label>Search Borrower</label><input id="search" placeholder="Name, contact or ID..." oninput="renderBorrowers()"></div>
+<div><label>Status</label><select id="statusFilter" onchange="renderBorrowers()"><option value="">All</option><option>Active</option><option>Overdue</option><option>Paid</option></select></div>
 </div>
-<div class="table-wrap" style="margin-top:15px"><table>
-<thead><tr><th>Borrower</th><th>Borrow Date</th><th>Due Date</th><th>Principal</th><th>Monthly Payment</th><th>Received</th><th>Balance</th><th>Late</th><th>Status</th><th class="no-print">Actions</th></tr></thead>
-<tbody id="borrowerTable"></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Borrower</th><th>Borrow Date</th><th>Final Due</th><th>Principal</th><th>Monthly Required</th><th>Received</th><th>Balance</th><th>Late</th><th>Status</th><th class="no-print">Actions</th></tr></thead><tbody id="borrowerTable"></tbody></table></div>
 </div>
 </section>
 
 <section id="schedule" class="section hidden">
 <h2>Monthly Payment Schedule & Profit Breakdown <button class="secondary no-print" onclick="toggleBox('scheduleBody')">Hide / Show</button></h2>
-<div id="scheduleBody"><div id="scheduleContent"><p class="small">Select a borrower from Payment Management.</p></div></div>
+<div id="scheduleBody"><p class="small">Select Schedule from a borrower record.</p></div>
 </section>
-
 </main>
 
-<div id="paymentModal" class="modal">
-<div class="modal-box">
-<button class="close" onclick="closeModal('paymentModal')">Close</button>
-<h3>Record Payment</h3>
-<div id="paymentBorrowerInfo"></div>
+<div id="paymentModal" class="modal"><div class="modal-box">
+<button class="close secondary" onclick="closeModal('paymentModal')">Close</button>
+<h2>Record Payment</h2><div id="paymentBorrowerInfo"></div>
 <form id="paymentForm">
 <input type="hidden" id="paymentLoanId">
 <div class="grid">
- <div><label>Payment Type</label><select id="paymentType"><option>Regular Payment</option><option>Advance Payment</option><option>Full Payment</option></select></div>
- <div><label>Payment Date <span class="required">*</span></label><input id="paymentDate" type="date" required></div>
- <div><label>Amount Paid (PHP) <span class="required">*</span></label><input id="paymentAmount" type="number" min="0.01" step="0.01" required></div>
- <div><label>Payment Method <span class="required">*</span></label><select id="paymentMethod" required><option value="">Select</option><option>Cash</option><option>GCash</option><option>Bank Transfer</option><option>Maya</option><option>Other</option></select></div>
- <div><label>Reference Number</label><input id="reference"></div>
- <div><label>Proof of Payment</label><input id="proof" type="file" accept="image/*,.pdf"></div>
+<div><label>Payment Type</label><select id="paymentType"><option>Regular Payment</option><option>Advance Payment</option><option>Full Payment</option></select></div>
+<div><label>Payment Date <span class="required">*</span></label><input id="paymentDate" type="date" required></div>
+<div><label>Due Date</label><input id="paymentDueDate" type="date" readonly></div>
+<div><label>Amount Paid (PHP) <span class="required">*</span></label><input id="paymentAmount" type="number" min=".01" step=".01" required></div>
+<div><label>Payment Method <span class="required">*</span></label><select id="paymentMethod" required><option value="">Select</option><option>Cash</option><option>GCash</option><option>Bank Transfer</option><option>Maya</option><option>Other</option></select></div>
+<div><label>Reference Number</label><input id="reference"></div>
+<div><label>Proof of Payment</label><input id="proof" type="file" accept="image/*,.pdf" onchange="previewUpload('proof','proofBox','proofPreview')">
+<div id="proofBox" class="upload-preview hidden"><img id="proofPreview" class="idpreview"><div id="proofPdfText" class="hidden">📄 PDF selected.</div><div class="upload-actions"><button type="button" class="secondary" onclick="document.getElementById('proof').click()">🔄 Re-upload</button><button type="button" class="danger" onclick="deleteUpload('proof','proofBox','proofPreview')">🗑️ Delete</button></div></div></div>
 </div>
 <div id="lateInfo" class="card" style="margin-top:12px"></div>
-<div class="actions"><button type="submit" class="success">Save Payment</button><button type="button" class="secondary" onclick="closeModal('paymentModal')">Cancel</button></div>
+<div class="actions"><button class="success" type="submit">Save Payment</button><button type="button" class="secondary" onclick="closeModal('paymentModal')">Cancel</button></div>
 </form>
-</div>
-</div>
+</div></div>
 
-<div id="viewModal" class="modal">
-<div class="modal-box">
-<button class="close" onclick="closeModal('viewModal')">Close</button>
-<div id="viewContent"></div>
-<div class="actions no-print"><button onclick="printCustomerCopy()">Print Customer Copy</button></div>
-</div>
-</div>
+<div id="viewModal" class="modal"><div class="modal-box"><button class="close secondary" onclick="closeModal('viewModal')">Close</button><div id="viewContent"></div><div class="actions no-print"><button onclick="printCustomerCopy()">Print Customer Copy</button></div></div></div>
 
 <script>
 const RATES={1:.05,3:.07,4:.10,6:.15,12:.20,24:.35};
 const LATE_RATE=.004;
 const ADVANCE_DAILY_DISCOUNT=.0001;
-let db=JSON.parse(localStorage.getItem('nviLendingDB')||'[]');
-let selectedLoan=null;
-let customerPrintHTML='';
+let db=loadDB(),selectedLoan=null,customerPrintHTML='';
 
-function money(n){return '₱'+Number(n||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function iso(d){return new Date(d+'T00:00:00')}
-function fmt(d){if(!d)return '';return iso(d).toLocaleDateString('en-PH',{year:'numeric',month:'short',day:'2-digit'})}
-function addMonths(date,months){let d=new Date(date);let day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+Number(months));let last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(day,last));return d.toISOString().slice(0,10)}
-function daysBetween(a,b){return Math.max(0,Math.floor((iso(b)-iso(a))/86400000))}
-function today(){return new Date().toISOString().slice(0,10)}
+function loadDB(){try{const x=JSON.parse(localStorage.getItem('nviLendingDB')||'[]');return Array.isArray(x)?x:[]}catch(e){return[]}}
 function saveDB(){localStorage.setItem('nviLendingDB',JSON.stringify(db));renderAll()}
-function showSection(id){['dashboard','borrowing','management','schedule'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));if(id==='dashboard')renderDashboard();if(id==='management')renderBorrowers()}
+function money(n){return '₱'+Number(n||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function dateObj(s){return new Date(s+'T00:00:00')}
+function fmt(s){return s?dateObj(s).toLocaleDateString('en-PH',{year:'numeric',month:'short',day:'2-digit'}):''}
+function today(){return new Date().toISOString().slice(0,10)}
+function addMonths(s,n){let d=dateObj(s),day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+Number(n));d.setDate(Math.min(day,new Date(d.getFullYear(),d.getMonth()+1,0).getDate()));return d.toISOString().slice(0,10)}
+function daysBetween(a,b){return Math.max(0,Math.floor((dateObj(b)-dateObj(a))/86400000))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+function showSection(id){
+['dashboard','borrowing','management','schedule'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));
+if(id==='dashboard')renderDashboard();if(id==='management')renderBorrowers();
+}
 function toggleBox(id){document.getElementById(id).classList.toggle('hidden')}
 function closeModal(id){document.getElementById(id).classList.remove('show')}
+
 function setDefaultDates(){document.getElementById('borrowDate').value=today();previewLoan()}
-function getFormLoan(){
- const amount=Number(document.getElementById('amount').value||0),period=Number(document.getElementById('period').value||0),rate=RATES[period]||0;
- const bd=document.getElementById('borrowDate').value;
- return {amount,period,rate,bd}
-}
+function clearLoanForm(){document.getElementById('loanForm').reset();document.getElementById('borrowerPhotoBox').classList.add('hidden');document.getElementById('idPhotoBox').classList.add('hidden');setDefaultDates();previewLoan()}
 function previewLoan(){
- const x=getFormLoan();
- if(x.bd&&x.period)document.getElementById('finalDueDate').value=addMonths(x.bd,x.period);
- document.getElementById('rate').value=x.rate?((x.rate*100).toFixed(2)+'%'): '';
- const interest=x.amount*x.rate,total=x.amount+interest,monthly=x.period?total/x.period:0;
- document.getElementById('pInterest').textContent=money(interest);
- document.getElementById('pTotal').textContent=money(total);
- document.getElementById('pMonthly').textContent=money(monthly);
- document.getElementById('pMonthlyProfit').textContent=money(x.period?interest/x.period:0);
+const amount=Number(document.getElementById('amount').value||0),period=Number(document.getElementById('period').value||0),rate=RATES[period]||0,bd=document.getElementById('borrowDate').value;
+if(bd&&period)document.getElementById('finalDueDate').value=addMonths(bd,period);
+document.getElementById('rate').value=rate?(rate*100).toFixed(2)+'%':'';
+const interest=amount*rate,total=amount+interest,monthly=period?total/period:0;
+document.getElementById('pInterest').textContent=money(interest);document.getElementById('pTotal').textContent=money(total);document.getElementById('pMonthly').textContent=money(monthly);document.getElementById('pMonthlyProfit').textContent=money(period?interest/period:0);
+}
+
+function previewUpload(inputId,boxId,previewId){
+const input=document.getElementById(inputId),box=document.getElementById(boxId),preview=document.getElementById(previewId);
+if(!input.files||!input.files[0])return;
+const file=input.files[0];
+if(file.size>5*1024*1024){alert('Maximum file size is 5 MB. Please delete and re-upload a smaller file.');input.value='';box.classList.add('hidden');return}
+box.classList.remove('hidden');
+if(file.type.startsWith('image/')){const r=new FileReader();r.onload=e=>{preview.src=e.target.result;preview.classList.remove('hidden');};r.readAsDataURL(file)}
+else if(file.type==='application/pdf'){preview.removeAttribute('src');preview.classList.add('hidden');const t=box.querySelector('[id$="PdfText"]');if(t)t.classList.remove('hidden')}
+else{alert('Unsupported file type.');input.value='';box.classList.add('hidden')}
+}
+function deleteUpload(inputId,boxId,previewId){
+if(!confirm('Delete this file? You can upload another file afterward.'))return;
+document.getElementById(inputId).value='';document.getElementById(boxId).classList.add('hidden');document.getElementById(previewId).removeAttribute('src');
 }
 async function fileData(file){
- if(!file)return null;
- if(file.size>3*1024*1024){alert('Please use a file smaller than 3 MB.');throw new Error('File too large')}
- return await new Promise((res,rej)=>{let r=new FileReader();r.onload=()=>res({name:file.name,type:file.type,data:r.result});r.onerror=rej;r.readAsDataURL(file)})
+if(!file)return null;if(file.size>5*1024*1024)throw new Error('File is larger than 5 MB.');
+return await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve({name:file.name,type:file.type,size:file.size,data:r.result});r.onerror=()=>reject(new Error('Unable to read file.'));r.readAsDataURL(file)})
 }
-document.getElementById('loanForm').addEventListener('submit',async e=>{
- e.preventDefault();
- const required=['name','contact','address','idType','idNumber','borrowerPhoto','idPhoto','amount','period','borrowDate'];
- for(const id of required){if(!document.getElementById(id).value){alert('Please complete all required fields before creating the borrowing record.');document.getElementById(id).focus();return}}
- const x=getFormLoan();
- if(x.amount<=0||!x.period){alert('Please enter a valid amount and installment period.');return}
- if(!confirm('Are you sure you want to create this borrowing record?'))return;
- try{
- const interest=x.amount*x.rate,total=x.amount+interest;
- const loan={
-  id:Date.now().toString(),name:name.value.trim(),contact:contact.value.trim(),address:address.value.trim(),
-  idType:idType.value,idNumber:idNumber.value.trim(),borrowerPhoto:await fileData(borrowerPhoto.files[0]),idPhoto:await fileData(idPhoto.files[0]),
-  amount:x.amount,period:x.period,rate:x.rate,interest,total,monthly:total/x.period,monthlyProfit:interest/x.period,
-  borrowDate:x.bd,dueDate:addMonths(x.bd,x.period),payments:[],createdAt:new Date().toISOString()
- };
- db.push(loan);saveDB();alert('Borrowing record created successfully.');e.target.reset();setDefaultDates();showSection('management');
- }catch(err){alert('Could not save the record: '+err.message)}
-});
-function received(loan){return loan.payments.reduce((s,p)=>s+Number(p.amount||0),0)}
-function balance(loan){return Math.max(0,loan.total+lateCharges(loan)-received(loan))}
-function lateDays(loan,asOf=today()){
- const lastPayment=loan.payments.length?loan.payments[loan.payments.length-1].date:null;
- const start=lastPayment&&lastPayment>loan.borrowDate?lastPayment:loan.borrowDate;
- return Math.max(0,daysBetween(loan.dueDate,asOf))
-}
-function lateCharges(loan){
- // Late charge starts from the contractual final due date.
- const d=lateDays(loan);
- return (loan.total*LATE_RATE*d);
-}
-function status(loan){
- if(balance(loan)<=.009)return 'Paid';
- if(today()>loan.dueDate)return 'Overdue';
- return 'Active';
-}
-function renderBorrowers(){
- const q=(document.getElementById('search').value||'').toLowerCase(),sf=document.getElementById('statusFilter').value;
- const rows=db.filter(l=>(!q||l.name.toLowerCase().includes(q)||l.contact.toLowerCase().includes(q)||l.idNumber.toLowerCase().includes(q))&&(!sf||status(l)===sf));
- document.getElementById('borrowerTable').innerHTML=rows.map(l=>`<tr>
- <td><b>${esc(l.name)}</b><br><span class="small">${esc(l.contact)}</span></td>
- <td>${fmt(l.borrowDate)}</td><td>${fmt(l.dueDate)}</td><td>${money(l.amount)}</td>
- <td>${money(l.monthly)}</td><td>${money(received(l))}</td><td>${money(balance(l))}</td>
- <td>${lateDays(l)} day(s)<br>${money(lateCharges(l))}</td>
- <td><span class="badge ${status(l).toLowerCase()}">${status(l)}</span></td>
- <td class="no-print"><button onclick="openPayment('${l.id}')">Record Payment</button>
- <button class="success" onclick="openFullPayment('${l.id}')">Full Payment</button>
- <button class="secondary" onclick="viewLoan('${l.id}')">View</button>
- <button class="warning" onclick="showSchedule('${l.id}')">Schedule</button></td>
- </tr>`).join('')||'<tr><td colspan="10">No borrower records found.</td></tr>';
-}
-function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function openPayment(id){
- const l=db.find(x=>x.id===id);if(!l)return;
- selectedLoan=l;document.getElementById('paymentLoanId').value=id;document.getElementById('paymentDate').value=today();
- document.getElementById('paymentAmount').value=l.monthly.toFixed(2);document.getElementById('paymentType').value='Regular Payment';
- document.getElementById('paymentMethod').value='';document.getElementById('reference').value='';document.getElementById('proof').value='';
- document.getElementById('paymentBorrowerInfo').innerHTML=`<p><b>${esc(l.name)}</b> | Due: ${fmt(l.dueDate)} | Monthly Required: ${money(l.monthly)} | Current Balance: ${money(balance(l))}</p>`;
- updateLateInfo();document.getElementById('paymentModal').classList.add('show');
-}
-function openFullPayment(id){openPayment(id);document.getElementById('paymentType').value='Full Payment';document.getElementById('paymentAmount').value=balance(db.find(x=>x.id===id)).toFixed(2);updateLateInfo()}
-document.getElementById('paymentDate').addEventListener('change',updateLateInfo);
-document.getElementById('paymentAmount').addEventListener('input',updateLateInfo);
-function updateLateInfo(){
- if(!selectedLoan)return;
- const pd=document.getElementById('paymentDate').value||today(),days=daysBetween(selectedLoan.dueDate,pd),charge=selectedLoan.total*LATE_RATE*days;
- const amt=Number(document.getElementById('paymentAmount').value||0);
- const advance=daysBetween(pd,selectedLoan.dueDate);
- const discount=advance>0?amt*ADVANCE_DAILY_DISCOUNT*advance:0;
- document.getElementById('lateInfo').innerHTML=`<b>Late Payment:</b> ${days} day(s) × 0.4% × total lending cost = ${money(charge)}<br><b>Advance:</b> ${advance} day(s) before final due date. Indicative discount = ${money(discount)} (${(ADVANCE_DAILY_DISCOUNT*100).toFixed(2)}% per advance day).`;
-}
-document.getElementById('paymentForm').addEventListener('submit',async e=>{
- e.preventDefault();const l=db.find(x=>x.id===document.getElementById('paymentLoanId').value);if(!l)return;
- const amount=Number(document.getElementById('paymentAmount').value||0),date=document.getElementById('paymentDate').value;
- if(amount<=0||!date||!document.getElementById('paymentMethod').value){alert('Payment date, amount and payment method are required.');return}
- if(amount>balance(l)+0.01){if(!confirm('The payment exceeds the current balance. Continue?'))return}
- if(!confirm(`Confirm payment of ${money(amount)} for ${l.name}?`))return;
- try{
-  const proof=await fileData(document.getElementById('proof').files[0]);
-  const lateD=daysBetween(l.dueDate,date),lateC=l.total*LATE_RATE*lateD;
-  const advD=daysBetween(date,l.dueDate),discount=advD>0?amount*ADVANCE_DAILY_DISCOUNT*advD:0;
-  l.payments.push({id:Date.now().toString(),date,amount,type:document.getElementById('paymentType').value,method:document.getElementById('paymentMethod').value,reference:document.getElementById('reference').value.trim(),proof,lateDays:lateD,lateCharge:lateC,advanceDays:advD,discount});
-  saveDB();closeModal('paymentModal');alert('Payment recorded successfully.');showSection('management');
- }catch(err){alert(err.message)}
-});
-function showSchedule(id){const l=db.find(x=>x.id===id);if(!l)return;selectedLoan=l;showSection('schedule');renderSchedule(l)}
-function renderSchedule(l){
- let rows='',base=new Date(l.borrowDate+'T00:00:00');
- for(let i=1;i<=l.period;i++){
-  const due=addMonths(l.borrowDate,i),paid=l.payments.filter(p=>p.date<=due).reduce((s,p)=>s+Number(p.amount),0);
-  const req=Math.min(l.monthly,Math.max(0,l.total-(i-1)*l.monthly));
-  rows+=`<tr><td>${i}</td><td>${fmt(due)}</td><td>${money(req)}</td><td>${money(l.monthlyProfit)}</td><td>${money(paid)}</td><td>${money(Math.max(0,req-paid))}</td></tr>`;
- }
- document.getElementById('scheduleContent').innerHTML=`<div class="grid">
- <div class="card"><b>Borrower</b><div>${esc(l.name)}</div></div>
- <div class="card"><b>Total Period Profit</b><div>${money(l.interest)}</div></div>
- <div class="card"><b>Profit / Month</b><div>${money(l.monthlyProfit)}</div></div>
- <div class="card"><b>Total Installment</b><div>${money(l.total)}</div></div>
- </div>
- <hr><div class="table-wrap"><table><thead><tr><th>Month</th><th>Due Date</th><th>Required Payment</th><th>Monthly Profit</th><th>Received To Date</th><th>Remaining</th></tr></thead><tbody>${rows}</tbody></table></div>
- <hr><h3>Payment History</h3>${paymentHistoryHTML(l)}`;
-}
-function paymentHistoryHTML(l){
- if(!l.payments.length)return '<p>No payments recorded.</p>';
- return `<div class="table-wrap"><table><thead><tr><th>Payment Date</th><th>Due Date</th><th>Type</th><th>Amount</th><th>Method</th><th>Reference</th><th>Late</th><th>Proof</th></tr></thead><tbody>${l.payments.map(p=>`<tr><td>${fmt(p.date)}</td><td>${fmt(l.dueDate)}</td><td>${esc(p.type)}</td><td>${money(p.amount)}</td><td>${esc(p.method)}</td><td>${esc(p.reference)}</td><td>${p.lateDays} day(s)<br>${money(p.lateCharge)}</td><td>${p.proof?(p.proof.type==='application/pdf'?'<a target="_blank" href="'+p.proof.data+'">View PDF</a>':'<img class="idpreview" src="'+p.proof.data+'">'):'None'}</td></tr>`).join('')}</tbody></table></div>`;
-}
-function viewLoan(id){
- const l=db.find(x=>x.id===id);if(!l)return;selectedLoan=l;
- customerPrintHTML=`<div class="print-area"><h2>NVI Lending & Installment Management System</h2><h3>Customer Borrowing Copy</h3>
- <p><b>Borrower:</b> ${esc(l.name)}<br><b>Contact:</b> ${esc(l.contact)}<br><b>Address:</b> ${esc(l.address)}<br>
- <b>ID:</b> ${esc(l.idType)} - ${esc(l.idNumber)}<br><b>Borrow Date:</b> ${fmt(l.borrowDate)}<br><b>Final Due:</b> ${fmt(l.dueDate)}</p>
- <table><tr><th>Principal</th><th>Rate</th><th>Total Profit</th><th>Total Installment</th><th>Monthly Payment</th></tr>
- <tr><td>${money(l.amount)}</td><td>${l.rate*100}%</td><td>${money(l.interest)}</td><td>${money(l.total)}</td><td>${money(l.monthly)}</td></tr></table>
- <h3>Monthly Payment Schedule</h3>${scheduleTable(l)}<h3>Payment History</h3>${paymentHistoryHTML(l)}</div>`;
- document.getElementById('viewContent').innerHTML=customerPrintHTML;document.getElementById('viewModal').classList.add('show');
-}
-function scheduleTable(l){let rows='';for(let i=1;i<=l.period;i++){let d=addMonths(l.borrowDate,i);rows+=`<tr><td>${i}</td><td>${fmt(d)}</td><td>${money(Math.min(l.monthly,Math.max(0,l.total-(i-1)*l.monthly)))}</td><td>${money(l.monthlyProfit)}</td></tr>`}return `<table><thead><tr><th>Month</th><th>Due Date</th><th>Required Amount</th><th>Monthly Profit</th></tr></thead><tbody>${rows}</tbody></table>`}
-function printCustomerCopy(){let w=window.open('','_blank');w.document.write('<html><head><title>Customer Copy</title><style>body{font-family:Arial;padding:25px}table{width:100%;border-collapse:collapse}td,th{border:1px solid #999;padding:7px}th{background:#eee}</style></head><body>'+customerPrintHTML+'</body></html>');w.document.close();w.print()}
-function renderDashboard(){
- document.getElementById('dBorrowers').textContent=db.length;
- document.getElementById('dPrincipal').textContent=money(db.reduce((s,l)=>s+l.amount,0));
- document.getElementById('dProfit').textContent=money(db.reduce((s,l)=>s+l.interest,0));
- document.getElementById('dExpected').textContent=money(db.reduce((s,l)=>s+l.total+lateCharges(l),0));
- document.getElementById('dReceived').textContent=money(db.reduce((s,l)=>s+received(l),0));
- document.getElementById('dDue').textContent=money(db.reduce((s,l)=>s+balance(l),0));
- let months={};
- db.forEach(l=>{for(let i=1;i<=l.period;i++){let m=addMonths(l.borrowDate,i).slice(0,7);months[m]??={due:0,profit:0,received:0};months[m].due+=Math.min(l.monthly,Math.max(0,l.total-(i-1)*l.monthly));months[m].profit+=l.monthlyProfit}l.payments.forEach(p=>{let m=p.date.slice(0,7);months[m]??={due:0,profit:0,received:0};months[m].received+=p.amount})});
- document.getElementById('monthlyDashboard').innerHTML=Object.keys(months).sort().map(m=>`<tr><td>${m}</td><td>${money(months[m].received)}</td><td>${money(months[m].due)}</td><td>${money(months[m].profit)}</td></tr>`).join('')||'<tr><td colspan="4">No data.</td></tr>';
-}
-function renderAll(){renderDashboard();renderBorrowers();if(selectedLoan&&document.getElementById('schedule').classList.contains('hidden')===false)renderSchedule(selectedLoan)}
-function exportCSV(){
- const rows=[['Borrower ID','Name','Contact','Address','ID Type','ID Number','Borrow Date','Final Due Date','Principal','Rate','Profit','Total Installment','Monthly Payment','Received','Balance','Status']];
- db.forEach(l=>rows.push([l.id,l.name,l.contact,l.address,l.idType,l.idNumber,l.borrowDate,l.dueDate,l.amount,l.rate,l.interest,l.total,l.monthly,received(l),balance(l),status(l)]));
- lPayments=[];
- db.forEach(l=>l.payments.forEach(p=>lPayments.push([l.id,l.name,p.date,l.dueDate,p.type,p.amount,p.method,p.reference,p.lateDays,p.lateCharge,p.advanceDays,p.discount])));
- rows.push([]);rows.push(['PAYMENT TRANSACTIONS']);rows.push(['Loan ID','Borrower','Payment Date','Final Due Date','Type','Amount','Method','Reference','Late Days','Late Charge','Advance Days','Discount']);rows.push(...lPayments);
- const csv=rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\\r\\n');
- const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='NVI_Lending_Database_'+today()+'.csv';a.click();URL.revokeObjectURL(a.href);
-}
-function backupJSON(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='NVI_Lending_Backup_'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
-function restoreJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!Array.isArray(x))throw Error('Invalid backup');if(confirm('Replace the current database with this backup?')){db=x;saveDB();alert('Database restored.')}}catch(err){alert('Invalid backup file.')}};r.readAsText(f)}
-document.getElementById('borrowDate').addEventListener('change',previewLoan);
-setDefaultDates();renderAll();
-</script>
-</body>
-</html>
-'''
 
-path = Path("/mnt/data/index.html")
-path.write_text(html, encoding="utf-8")
-print(f"Created: {path}")
+document.getElementById('loanForm').addEventListener('submit',async function(e){
+e.preventDefault();
+const ids=['name','contact','address','idType','idNumber','amount','period','borrowDate','borrowerPhoto','idPhoto'];
+for(const id of ids){const el=document.getElementById(id);if(!el){alert('System error: missing field '+id);return}}
+const borrowerName=String(document.getElementById('name').value||'').trim();
+const contact=String(document.getElementById('contact').value||'').trim();
+const address=String(document.getElementById('address').value||'').trim();
+const idType=String(document.getElementById('idType').value||'').trim();
+const idNumber=String(document.getElementById('idNumber').value||'').trim();
+const amount=Number(document.getElementById('amount').value||0);
+const period=Number(document.getElementById('period').value||0);
+const borrowDate=String(document.getElementById('borrowDate').value||'').trim();
+const photo=document.getElementById('borrowerPhoto'),idPhoto=document.getElementById('idPhoto');
+if(!borrowerName)return alert('Please enter the borrower full name.');
+if(!contact)return alert('Please enter contact number.');
+if(!address)return alert('Please enter address.');
+if(!idType)return alert('Please select Valid ID type.');
+if(!idNumber)return alert('Please enter Valid ID number.');
+if(amount<=0)return alert('Please enter a valid borrowing amount.');
+if(!RATES[period])return alert('Please select a valid installment period.');
+if(!borrowDate)return alert('Please select borrowing date.');
+if(!photo.files.length)return alert('Borrower Photo is required.');
+if(!idPhoto.files.length)return alert('Valid ID Photo/Document is required.');
+const rate=RATES[period],interest=amount*rate,total=amount+interest,monthly=total/period,finalDueDate=addMonths(borrowDate,period);
+if(!confirm('Create borrowing record for '+borrowerName+'?\\n\\nAmount: '+money(amount)+'\\nInterest: '+(rate*100)+'%\\nTotal Profit: '+money(interest)+'\\nMonthly Payment: '+money(monthly)+'\\nFinal Due: '+fmt(finalDueDate)))return;
+try{
+const loan={id:Date.now().toString(),name:borrowerName,contact,address,idType,idNumber,borrowerPhoto:await fileData(photo.files[0]),idPhoto:await fileData(idPhoto.files[0]),amount,period,rate,interest,total,monthly,monthlyProfit:interest/period,borrowDate,dueDate:finalDueDate,payments:[],createdAt:new Date().toISOString()};
+db.push(loan);saveDB();alert('Borrowing record created successfully.');clearLoanForm();showSection('management');
+}catch(err){console.error(err);alert('Could not save the record: '+err.message)}
+});
+
+function received(l){return l.payments.reduce((s,p)=>s+Number(p.amount||0),0)}
+function lateDays(l,asOf=today()){return daysBetween(l.dueDate,asOf)}
+function lateCharge(l,asOf=today()){return l.total*LATE_RATE*lateDays(l,asOf)}
+function balance(l){return Math.max(0,l.total+lateCharge(l)-received(l))}
+function status(l){if(balance(l)<=.009)return'Paid';if(today()>l.dueDate)return'Overdue';return'Active'}
+
+function renderBorrowers(){
+const q=String(document.getElementById('search')?.value||'').toLowerCase(),sf=document.getElementById('statusFilter')?.value||'';
+const rows=db.filter(l=>(!q||l.name.toLowerCase().includes(q)||l.contact.toLowerCase().includes(q)||l.idNumber.toLowerCase().includes(q))&&(!sf||status(l)===sf));
+document.getElementById('borrowerTable').innerHTML=rows.map(l=>`<tr>
+<td><b>${esc(l.name)}</b><br><span class="small">${esc(l.contact)}</span></td><td>${fmt(l.borrowDate)}</td><td>${fmt(l.dueDate)}</td><td>${money(l.amount)}</td><td>${money(l.monthly)}</td><td>${money(received(l))}</td><td>${money(balance(l))}</td><td>${lateDays(l)} day(s)<br>${money(lateCharge(l))}</td><td><span class="badge ${status(l).toLowerCase()}">${status(l)}</span></td>
+<td class="no-print"><button onclick="openPayment('${l.id}')">Record Payment</button> <button class="success" onclick="openFullPayment('${l.id}')">Full Payment</button> <button class="secondary" onclick="viewLoan('${l.id}')">View</button> <button class="warning" onclick="showSchedule('${l.id}')">Schedule</button></td></tr>`).join('')||'<tr><td colspan="10">No borrower records found.</td></tr>';
+}
+
+function openPayment(id){
+selectedLoan=db.find(x=>x.id===id);if(!selectedLoan)return;
+document.getElementById('paymentLoanId').value=id;document.getElementById('paymentDate').value=today();document.getElementById('paymentDueDate').value=selectedLoan.dueDate;
+document.getElementById('paymentAmount').value=selectedLoan.monthly.toFixed(2);document.getElementById('paymentType').value='Regular Payment';document.getElementById('paymentMethod').value='';document.getElementById('reference').value='';document.getElementById('proof').value='';document.getElementById('proofBox').classList
