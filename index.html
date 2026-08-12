@@ -1,42 +1,352 @@
 from pathlib import Path
-p=Path("/mnt/data/index.html")
-s=p.read_text(encoding="utf-8")
 
-# Make the primary navigation work independently of JavaScript initialization.
-s=s.replace('<button data-action="dashboard">Dashboard</button>',
-            '<button type="button" onclick="showSection(\'dashboard\')">Dashboard</button>')
-s=s.replace('<button data-action="borrowing">New Borrowing</button>',
-            '<button type="button" onclick="showSection(\'borrowing\')">New Borrowing</button>')
-s=s.replace('<button data-action="management">Payment Management</button>',
-            '<button type="button" onclick="showSection(\'management\')">Payment Management</button>')
-s=s.replace('<button data-action="schedule">Payment Schedule</button>',
-            '<button type="button" onclick="showSection(\'schedule\')">Payment Schedule</button>')
-s=s.replace('<button data-action="export">Export Excel / CSV</button>',
-            '<button type="button" onclick="exportCSV()">Export Excel / CSV</button>')
-s=s.replace('<button data-action="backup" class="secondary">Backup Database</button>',
-            '<button type="button" onclick="backupDatabase()" class="secondary">Backup Database</button>')
-s=s.replace('<button data-action="restore" class="secondary">Restore Database</button>',
-            '<button type="button" onclick="document.getElementById(\'restoreFile\').click()" class="secondary">Restore Database</button>')
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVI Lending & Installment Management System</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6fa;color:#172033}
+header{background:#172033;color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:25px}
+header p{margin:5px 0 0;color:#cbd5e1}
+nav{background:#fff;border-bottom:1px solid #ddd;padding:10px 15px;display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
+button{border:0;border-radius:7px;padding:10px 14px;cursor:pointer;font-weight:600;background:#3156b5;color:white}
+button:hover{opacity:.9}
+button.secondary{background:#e7ebf5;color:#172033}
+button.danger{background:#b42318}
+button.success{background:#16834b}
+main{max-width:1250px;margin:auto;padding:18px}
+.section{display:none}
+.section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{background:white;border:1px solid #ddd;border-radius:12px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px #0000000a}
+.card h2,.card h3{margin-top:0}
+label{display:block;font-weight:700;margin:11px 0 5px}
+input,select,textarea{width:100%;padding:10px;border:1px solid #bcc4d0;border-radius:7px;font-size:15px;background:#fff}
+textarea{min-height:80px;resize:vertical}
+input[type=file]{padding:7px}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.metric{background:#f7f9fd;border-radius:9px;padding:15px;border:1px solid #e2e6ef}
+.metric small{display:block;color:#667085;margin-bottom:5px}
+.metric strong{font-size:22px}
+table{width:100%;border-collapse:collapse;margin-top:10px;background:#fff}
+th,td{padding:9px;border-bottom:1px solid #e2e6ef;text-align:left;vertical-align:top}
+th{background:#f5f7fb}
+.table-wrap{overflow:auto}
+.badge{display:inline-block;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:bold}
+.badge.active{background:#e6f7ed;color:#087443}
+.badge.overdue{background:#fdecec;color:#b42318}
+.badge.paid{background:#e8eefc;color:#3156b5}
+.badge.advance{background:#fff3d6;color:#8a5a00}
+.actions{display:flex;gap:7px;flex-wrap:wrap}
+.notice{padding:11px;border-radius:8px;background:#fff7df;border:1px solid #f2d98b;margin:10px 0}
+.successbox{padding:11px;border-radius:8px;background:#eaf8f0;border:1px solid #a9dfbf;margin:10px 0}
+.error{color:#b42318;font-weight:bold;margin-top:8px}
+.preview{max-width:150px;max-height:150px;border-radius:8px;border:1px solid #ddd;display:none;margin-top:8px}
+.bar{height:22px;background:#3156b5;border-radius:5px;min-width:2px}
+.chart-row{display:grid;grid-template-columns:120px 1fr 100px;gap:8px;align-items:center;margin:8px 0}
+.small{font-size:13px;color:#667085}
+.right{text-align:right}
+.hidden{display:none!important}
+@media(max-width:800px){.grid,.grid3,.row{grid-template-columns:1fr}.chart-row{grid-template-columns:90px 1fr 80px}}
+</style>
+</head>
+<body>
 
-# Add a visible version indicator so it is obvious the new file is loaded.
-s=s.replace('<p>Borrower records, installment payments, profit and late-payment management</p>',
-            '<p>Borrower records, installment payments, profit and late-payment management · Version 2026.08</p>')
+<header>
+  <h1>NVI Lending & Installment Management System</h1>
+  <p>Borrowing, installment, payment, profit and late-payment management</p>
+</header>
 
-# Replace init invocation with a fault-tolerant startup.
-old="""if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();"""
-new="""function startNVI(){
- try {
-  init();
- } catch(err) {
-  console.error('NVI startup error:',err);
-  const msg=document.createElement('div');
-  msg.style='position:fixed;bottom:15px;left:15px;right:15px;background:#b91c1c;color:white;padding:14px;border-radius:8px;z-index:9999;font-family:Arial';
-  msg.innerHTML='<b>NVI startup error.</b> '+safe(err.message||err)+'<br>Please refresh the page.';
-  document.body.appendChild(msg);
- }
+<nav>
+  <button type="button" onclick="showSection('dashboard')">Dashboard</button>
+  <button type="button" onclick="showSection('borrowing')">New Borrowing</button>
+  <button type="button" onclick="showSection('payments')">Payment Management</button>
+  <button type="button" onclick="showSection('schedule')">Payment Schedule</button>
+  <button type="button" onclick="exportCSV()">Export Excel / CSV</button>
+  <button type="button" class="secondary" onclick="backupDatabase()">Backup</button>
+  <button type="button" class="secondary" onclick="document.getElementById('restoreFile').click()">Restore</button>
+  <input id="restoreFile" type="file" accept=".json" class="hidden" onchange="restoreDatabase(event)">
+</nav>
+
+<main>
+
+<section id="dashboard" class="section active">
+  <div class="card">
+    <h2>Dashboard</h2>
+    <div class="grid3">
+      <div class="metric"><small>Total Borrowers</small><strong id="mBorrowers">0</strong></div>
+      <div class="metric"><small>Total Borrowed</small><strong id="mBorrowed">PHP 0.00</strong></div>
+      <div class="metric"><small>Total Received</small><strong id="mReceived">PHP 0.00</strong></div>
+      <div class="metric"><small>Total Due</small><strong id="mDue">PHP 0.00</strong></div>
+      <div class="metric"><small>Total Profit</small><strong id="mProfit">PHP 0.00</strong></div>
+      <div class="metric"><small>Outstanding</small><strong id="mOutstanding">PHP 0.00</strong></div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>Borrower Status</h3>
+      <div id="statusChart"></div>
+    </div>
+    <div class="card">
+      <h3>Monthly Payment Received</h3>
+      <div id="monthChart"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Recent Borrowers</h3>
+    <div class="table-wrap"><table><thead><tr><th>Name</th><th>Borrowed</th><th>Period</th><th>Due</th><th>Status</th></tr></thead><tbody id="recentTable"></tbody></table></div>
+  </div>
+</section>
+
+<section id="borrowing" class="section">
+  <div class="card">
+    <h2>New Borrowing / Installment</h2>
+    <div class="notice">Interest is calculated once on the original borrowed amount for the selected period. Late charge is <b>0.4% per late day</b> of the scheduled amount due. Advance discount is <b>0.01% per day</b> when payment is made before the scheduled due date.</div>
+    <form id="borrowForm" onsubmit="createBorrowing(event)">
+      <div class="row">
+        <div>
+          <label>Borrower Name *</label>
+          <input id="bName" required>
+        </div>
+        <div>
+          <label>Contact Number *</label>
+          <input id="bContact" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Address *</label>
+          <textarea id="bAddress" required></textarea>
+        </div>
+        <div>
+          <label>Valid ID Type *</label>
+          <select id="bIdType" required>
+            <option value="">Select ID</option><option>PhilID / National ID</option><option>Driver's License</option><option>Passport</option><option>UMID</option><option>Other</option>
+          </select>
+          <label>Valid ID Number *</label>
+          <input id="bIdNumber" required>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Borrower Photo</label>
+          <input id="bPhoto" type="file" accept="image/*" capture="environment" onchange="previewFile(this,'bPhotoPreview')">
+          <img id="bPhotoPreview" class="preview">
+        </div>
+        <div>
+          <label>Valid ID Photo / Document</label>
+          <input id="bIdPhoto" type="file" accept="image/*,.pdf" onchange="previewFile(this,'bIdPreview')">
+          <img id="bIdPreview" class="preview">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Borrow Date *</label>
+          <input id="bDate" type="date" required onchange="autoDueDate()">
+        </div>
+        <div>
+          <label>Installment Period *</label>
+          <select id="bTerm" required onchange="updateRateAndDue()">
+            <option value="">Select period</option>
+            <option value="1">1 Month</option><option value="3">3 Months</option><option value="4">4 Months</option>
+            <option value="6">6 Months</option><option value="12">12 Months</option><option value="24">24 Months</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Borrowed Amount (PHP) *</label>
+          <input id="bAmount" type="number" min="1" step="0.01" required oninput="formatNumberPreview()">
+          <div class="small" id="amountPreview">PHP 0.00</div>
+        </div>
+        <div>
+          <label>Interest Rate</label>
+          <input id="bRate" readonly>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Final Due Date *</label>
+          <input id="bDueDate" type="date" required>
+        </div>
+        <div>
+          <label>Notes</label>
+          <input id="bNotes">
+        </div>
+      </div>
+      <div id="borrowCalc" class="grid3"></div>
+      <div id="borrowError" class="error"></div>
+      <br>
+      <button type="submit" class="success">Create Borrowing Record</button>
+      <button type="button" class="secondary" onclick="document.getElementById('borrowForm').reset();clearPreviews()">Clear</button>
+    </form>
+  </div>
+</section>
+
+<section id="payments" class="section">
+  <div class="card">
+    <h2>Payment Management</h2>
+    <div class="row">
+      <div><label>Search Borrower</label><input id="searchBorrower" placeholder="Type name or ID..." oninput="renderPayments()"></div>
+      <div><label>Status</label><select id="statusFilter" onchange="renderPayments()"><option value="ALL">All</option><option value="ACTIVE">Active</option><option value="OVERDUE">Overdue</option><option value="PAID">Paid</option><option value="ADVANCE">Advance</option></select></div>
+    </div>
+    <div id="paymentList"></div>
+  </div>
+</section>
+
+<section id="schedule" class="section">
+  <div class="card">
+    <h2>Monthly Payment Schedule & Profit Breakdown</h2>
+    <button type="button" class="secondary" onclick="toggle('scheduleBody')">Hide / Show Schedule</button>
+    <div id="scheduleBody">
+      <div id="scheduleList"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+"use strict";
+
+const RATES={1:5,3:7,4:10,6:15,12:20,24:35};
+const LATE_RATE=.004;
+const ADVANCE_RATE=.0001;
+const KEY="nvi_lending_db_v1";
+let db=loadDB();
+
+window.showSection=function(id){
+  document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+  const el=document.getElementById(id);
+  if(el) el.classList.add("active");
+  refresh();
+  window.scrollTo({top:0,behavior:"smooth"});
+};
+
+window.toggle=function(id){
+  const el=document.getElementById(id);
+  if(el) el.classList.toggle("hidden");
+};
+
+function loadDB(){
+  try{return JSON.parse(localStorage.getItem(KEY))||{borrowers:[],payments:[]};}
+  catch(e){return {borrowers:[],payments:[]};}
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',startNVI);else startNVI();"""
-s=s.replace(old,new)
+function saveDB(){localStorage.setItem(KEY,JSON.stringify(db));}
 
-p.write_text(s,encoding="utf-8")
-print(f"Created corrected standalone version: {p}")
+function money(n){return "PHP "+Number(n||0).toLocaleString("en-PH",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function isoToday(){return new Date().toISOString().slice(0,10);}
+function addMonths(dateStr,months){
+  const d=new Date(dateStr+"T12:00:00");
+  const day=d.getDate();
+  d.setMonth(d.getMonth()+Number(months));
+  if(d.getDate()<day)d.setDate(0);
+  return d.toISOString().slice(0,10);
+}
+function diffDays(a,b){
+  const x=new Date(a+"T12:00:00"),y=new Date(b+"T12:00:00");
+  return Math.max(0,Math.round((x-y)/86400000));
+}
+function uid(){return "NVI-"+Date.now()+"-"+Math.random().toString(36).slice(2,7).toUpperCase();}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+
+window.previewFile=function(input,imgId){
+  const img=document.getElementById(imgId);
+  if(!input.files||!input.files[0]){img.style.display="none";return;}
+  if(input.files[0].type.startsWith("image/")){
+    const r=new FileReader();r.onload=()=>{img.src=r.result;img.style.display="block"};r.readAsDataURL(input.files[0]);
+  }
+};
+window.clearPreviews=function(){
+  ["bPhotoPreview","bIdPreview"].forEach(id=>{const x=document.getElementById(id);x.src="";x.style.display="none"});
+};
+window.formatNumberPreview=function(){
+  const v=Number(document.getElementById("bAmount").value||0);
+  document.getElementById("amountPreview").textContent=money(v);
+};
+window.updateRateAndDue=function(){
+  const term=Number(document.getElementById("bTerm").value||0);
+  document.getElementById("bRate").value=RATES[term]?RATES[term]+"%":"";
+  autoDueDate(); updateBorrowCalc();
+};
+window.autoDueDate=function(){
+  const date=document.getElementById("bDate").value,term=Number(document.getElementById("bTerm").value||1);
+  if(date)document.getElementById("bDueDate").value=addMonths(date,term);
+  updateBorrowCalc();
+};
+function updateBorrowCalc(){
+  const amount=Number(document.getElementById("bAmount").value||0),term=Number(document.getElementById("bTerm").value||0),rate=RATES[term]||0;
+  const profit=amount*rate/100,total=amount+profit,monthly=term?total/term:0;
+  document.getElementById("borrowCalc").innerHTML=`
+    <div class="metric"><small>Interest / Total Profit</small><strong>${money(profit)}</strong></div>
+    <div class="metric"><small>Total Payable</small><strong>${money(total)}</strong></div>
+    <div class="metric"><small>Monthly Required</small><strong>${money(monthly)}</strong></div>`;
+}
+
+async function fileData(input){
+  return new Promise(resolve=>{
+    if(!input||!input.files||!input.files[0])return resolve("");
+    const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>resolve("");r.readAsDataURL(input.files[0]);
+  });
+}
+
+window.createBorrowing=async function(e){
+  e.preventDefault();
+  const err=document.getElementById("borrowError");err.textContent="";
+  const name=(document.getElementById("bName").value||"").trim();
+  const contact=(document.getElementById("bContact").value||"").trim();
+  const address=(document.getElementById("bAddress").value||"").trim();
+  const idType=(document.getElementById("bIdType").value||"").trim();
+  const idNumber=(document.getElementById("bIdNumber").value||"").trim();
+  const date=(document.getElementById("bDate").value||"").trim();
+  const due=(document.getElementById("bDueDate").value||"").trim();
+  const term=Number(document.getElementById("bTerm").value||0);
+  const amount=Number(document.getElementById("bAmount").value||0);
+  if(!name||!contact||!address||!idType||!idNumber||!date||!due||!term||amount<=0){
+    err.textContent="Please complete all required fields before saving.";return;
+  }
+  if(new Date(due)<new Date(date)){err.textContent="Final due date cannot be before the borrow date.";return;}
+  const rate=RATES[term],profit=amount*rate/100,total=amount+profit,monthly=total/term;
+  const photo=await fileData(document.getElementById("bPhoto"));
+  const idPhoto=await fileData(document.getElementById("bIdPhoto"));
+  const rec={id:uid(),name,contact,address,idType,idNumber,photo,idPhoto,borrowDate:date,dueDate:due,term,amount,rate,profit,total,monthly,notes:(document.getElementById("bNotes").value||"").trim(),created:new Date().toISOString()};
+  db.borrowers.push(rec);saveDB();
+  alert("Borrowing record saved successfully.\nRecord: "+rec.id);
+  document.getElementById("borrowForm").reset();clearPreviews();updateBorrowCalc();showSection("payments");
+};
+
+function borrowerPaid(b){
+  return db.payments.filter(p=>p.borrowerId===b.id).reduce((a,p)=>a+Number(p.amount||0),0);
+}
+function statusOf(b){
+  const paid=borrowerPaid(b),today=isoToday();
+  if(paid>=b.total-.009)return "PAID";
+  if(today>b.dueDate)return "OVERDUE";
+  if(paid>0 && today<b.dueDate)return "ADVANCE";
+  return "ACTIVE";
+}
+function statusBadge(s){return `<span class="badge ${s.toLowerCase()}">${s}</span>`;}
+
+window.renderPayments=function(){
+  const q=(document.getElementById("searchBorrower").value||"").trim().toLowerCase();
+  const filter=document.getElementById("statusFilter").value;
+  const list=db.borrowers.filter(b=>(!q||b.name.toLowerCase().includes(q)||b.id.toLowerCase().includes(q))&&(filter==="ALL"||statusOf(b)===filter));
+  const box=document.getElementById("paymentList");
+  if(!list.length){box.innerHTML='<div class="notice">No borrower records found.</div>';return;}
+  box.innerHTML=list.map(b=>paymentCard(b)).join("");
+};
+function paymentCard(b){
+  const paid=borrowerPaid(b),out=Math.max(0,b.total-paid),status=statusOf(b);
+  const late=isoToday()>b.dueDate?diffDays(isoToday(),b.dueDate):0;
+  const lateCharge=late*out*LATE_RATE;
+  const htmlProof=(p)=>p.proof?`<a href="${p.proof}" target="_blank">View proof</a>`:"";
+  const history=db.payments.filter(p=>p.borrowerId===b.id).sort((a,c)=>c.paymentDate.localeCompare(a.paymentDate));
+  return `<div class="card">
+    <div class="row"><div><h3>${esc(b.name)} ${statusBadge(status)}</h3><div class="small">Record: ${esc(b.id)} · ${esc(b.contact)}</div></div>
+    <div class="right"><b>${money(out)}</b><div class="small
